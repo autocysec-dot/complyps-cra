@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard.jsx';
 import AssessmentDetail from './pages/AssessmentDetail.jsx';
 import SelfAssessment from './pages/SelfAssessment.jsx';
 import Declaration from './pages/Declaration.jsx';
+import TechDoc from './pages/TechDoc.jsx';
 import Register from './pages/Register.jsx';
 import Settings from './pages/Settings.jsx';
 
@@ -73,6 +74,10 @@ export default function App() {
         <Route
           path="/assessments/:id/declaration"
           element={<RequireAuth><Declaration /></RequireAuth>}
+        />
+        <Route
+          path="/assessments/:id/techdoc"
+          element={<RequireAuth><TechDoc /></RequireAuth>}
         />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

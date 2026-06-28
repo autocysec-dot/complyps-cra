@@ -72,6 +72,9 @@ export const api = {
   declarationFields: () => request('/api/assessments/declaration/fields'),
   saveDeclaration: (id, fields) =>
     request(`/api/assessments/${id}/declaration`, { method: 'PUT', body: { fields }, auth: true }),
+  techdocFields: () => request('/api/assessments/techdoc/fields'),
+  saveTechDoc: (id, fields) =>
+    request(`/api/assessments/${id}/techdoc`, { method: 'PUT', body: { fields }, auth: true }),
 
   // Vulnerability & incident register (all reporting logic computed server-side)
   registerMeta: () => request('/api/register/meta'),

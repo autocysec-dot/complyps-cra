@@ -61,6 +61,19 @@ export default function AssessmentDetail() {
         </div>
       </div>
 
+      <div className="card">
+        <h2>Technical documentation (Annex VII)</h2>
+        <p className="muted small">
+          Aggregates your classification, Annex I self-assessment and declaration, and collects the
+          remaining Annex VII sections into one document.
+        </p>
+        <div className="btn-row">
+          <Link className="btn" to={`/assessments/${assessment.id}/techdoc`}>
+            {assessment.techdoc ? 'Edit technical documentation' : 'Generate technical documentation'}
+          </Link>
+        </div>
+      </div>
+
       <div className="btn-row">
         <button className="btn secondary" onClick={exportJson}>Export as JSON</button>
       </div>
