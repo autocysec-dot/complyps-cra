@@ -3,11 +3,18 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { api } from '../api.js';
 import ResultView from '../components/ResultView.jsx';
 
+const STATUS = {
+  done: { color: 'var(--green)', label: 'Done' },
+  'in-progress': { color: 'var(--amber)', label: 'In progress' },
+  todo: { color: 'var(--muted)', label: 'To do' },
+};
+
 export default function AssessmentDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [assessment, setAssessment] = useState(null);
   const [error, setError] = useState('');
+  const [showResult, setShowResult] = useState(false);
 
   useEffect(() => {
     api.getAssessment(id).then((d) => setAssessment(d.assessment)).catch((e) => setError(e.message));
@@ -15,6 +22,8 @@ export default function AssessmentDetail() {
 
   if (error) return <div className="container"><div className="error">{error}</div></div>;
   if (!assessment) return <div className="center spinner">Loading…</div>;
+
+  const journey = assessment.journey;
 
   function exportJson() {
     const blob = new Blob([JSON.stringify(assessment, null, 2)], { type: 'application/json' });
@@ -28,114 +37,84 @@ export default function AssessmentDetail() {
 
   return (
     <div className="container">
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <h1 style={{ flex: 1 }}>{assessment.productName}</h1>
-        <button className="btn secondary" onClick={() => navigate('/assessments')}>Back</button>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <h1 style={{ flex: 1, margin: 0 }}>{assessment.productName}</h1>
+        <button className="btn secondary" onClick={() => navigate('/assessments')}>← Projects</button>
       </div>
       <p className="muted small">
-        Created {new Date(assessment.createdAt).toLocaleString()} · last updated{' '}
-        {new Date(assessment.updatedAt).toLocaleString()}
+        {assessment.result?.tierLabel || (assessment.result?.inScope === false ? 'Out of scope' : '')}
+        {' · updated '}{new Date(assessment.updatedAt).toLocaleString()}
       </p>
-      <ResultView result={assessment.result} />
 
-      <div className="card" style={{ borderColor: 'var(--primary)' }}>
-        <h2>📦 Compliance package</h2>
-        <p className="muted small">
-          One consolidated, printable dossier of everything for this product, with a completeness score.
-        </p>
-        <div className="btn-row">
-          <Link className="btn" to={`/assessments/${assessment.id}/package`}>Open compliance package</Link>
+      {/* progress */}
+      {journey && journey.inScope && (
+        <div className="card" style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <div>
+            <div className="muted small">Compliance journey</div>
+            <div style={{ fontSize: 24, fontWeight: 800 }}>{journey.progress.percent}%</div>
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ height: 8, background: 'var(--border)', borderRadius: 4 }}>
+              <div style={{ width: `${journey.progress.percent}%`, height: '100%', background: 'var(--primary)', borderRadius: 4, transition: 'width .3s' }} />
+            </div>
+            <div className="muted small" style={{ marginTop: 4 }}>{journey.progress.done} of {journey.progress.total} steps complete</div>
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className="card">
-        <h2>Annex I self-assessment</h2>
-        <AnnexReadiness sa={assessment.selfAssessment} />
-        <div className="btn-row">
-          <Link className="btn" to={`/assessments/${assessment.id}/self-assessment`}>
-            {assessment.selfAssessment ? 'Continue self-assessment' : 'Start self-assessment'}
-          </Link>
+      {/* stepper */}
+      {journey ? (
+        <div className="stepper">
+          {journey.steps.map((s, i) => {
+            const st = STATUS[s.status] || STATUS.todo;
+            const isLast = i === journey.steps.length - 1;
+            return (
+              <div className="step" key={s.id}>
+                <div className="step-rail">
+                  <div className="step-dot" style={{ borderColor: st.color, color: st.color }}>
+                    {s.status === 'done' ? '✓' : s.n}
+                  </div>
+                  {!isLast && <div className="step-line" />}
+                </div>
+                <div className="step-body card" style={s.id === 'package' ? { borderColor: 'var(--primary)' } : undefined}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+                    <strong style={{ flex: 1 }}>{s.title}</strong>
+                    <span className="badge" style={{ background: '#1e293b', color: st.color }}>{st.label}</span>
+                  </div>
+                  <div className="muted small" style={{ margin: '4px 0 10px' }}>{s.detail}</div>
+                  {s.route ? (
+                    <Link className={`btn ${s.status === 'done' ? 'secondary' : ''}`} to={`/assessments/${id}/${s.route}`} style={{ padding: '6px 14px' }}>
+                      {s.actionLabel}
+                    </Link>
+                  ) : (
+                    <button className="btn secondary" style={{ padding: '6px 14px' }} onClick={() => setShowResult((v) => !v)}>
+                      {showResult ? 'Hide details' : s.actionLabel}
+                    </button>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </div>
+      ) : (
+        <div className="card"><p className="muted">Refresh to load the guided steps.</p></div>
+      )}
 
-      <div className="card">
-        <h2>EU Declaration of Conformity</h2>
-        <p className="muted small">
-          Generate a CRA Annex V declaration from this assessment — classification and conformity
-          route are filled in automatically. Download or print to PDF.
-        </p>
-        <div className="btn-row">
-          <Link className="btn" to={`/assessments/${assessment.id}/declaration`}>
-            {assessment.declaration ? 'Edit declaration' : 'Generate declaration'}
-          </Link>
-        </div>
-      </div>
+      {/* classification details (toggled from step 1) */}
+      {showResult && <ResultView result={assessment.result} />}
 
+      {/* org-level / ongoing */}
       <div className="card">
-        <h2>Support period</h2>
-        <p className="muted small">
-          Define how long you provide security updates.
-          {assessment.supportPeriod?.end ? ` Ends ${assessment.supportPeriod.end}.` : ''}
-        </p>
+        <h2 style={{ fontSize: 16 }}>Company-wide &amp; ongoing</h2>
+        <p className="muted small">These apply across all your products, not just this one:</p>
         <div className="btn-row">
-          <Link className="btn" to={`/assessments/${assessment.id}/support`}>
-            {assessment.supportPeriod ? 'Edit support period' : 'Set support period'}
-          </Link>
-        </div>
-      </div>
-
-      <div className="card">
-        <h2>SBOM — software bill of materials</h2>
-        <p className="muted small">
-          Track your components (Annex I, Part II) and export a CycloneDX file.
-          {assessment.sbom?.summary ? ` ${assessment.sbom.summary.count} component(s) recorded.` : ''}
-        </p>
-        <div className="btn-row">
-          <Link className="btn" to={`/assessments/${assessment.id}/sbom`}>
-            {assessment.sbom ? 'Edit SBOM' : 'Create SBOM'}
-          </Link>
-        </div>
-      </div>
-
-      <div className="card">
-        <h2>Technical documentation (Annex VII)</h2>
-        <p className="muted small">
-          Aggregates your classification, Annex I self-assessment and declaration, and collects the
-          remaining Annex VII sections into one document.
-        </p>
-        <div className="btn-row">
-          <Link className="btn" to={`/assessments/${assessment.id}/techdoc`}>
-            {assessment.techdoc ? 'Edit technical documentation' : 'Generate technical documentation'}
-          </Link>
+          <Link className="btn secondary" to="/register">Vulnerability &amp; incident register</Link>
+          <Link className="btn secondary" to="/cvd-policy">CVD policy</Link>
         </div>
       </div>
 
       <div className="btn-row">
-        <button className="btn secondary" onClick={exportJson}>Export as JSON</button>
-      </div>
-    </div>
-  );
-}
-
-function AnnexReadiness({ sa }) {
-  if (!sa?.score || sa.score.readiness === null) {
-    return <p className="muted">Not started yet — assess your product against the essential and vulnerability-handling requirements.</p>;
-  }
-  const { readiness, considered, gaps } = sa.score;
-  const color = readiness >= 80 ? 'var(--green)' : readiness >= 50 ? 'var(--amber)' : 'var(--red)';
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-      <div style={{ fontSize: 34, fontWeight: 800, color }}>{readiness}%</div>
-      <div className="muted small">
-        {considered} requirement(s) assessed · {gaps.length} gap(s)
-        {gaps.length > 0 && (
-          <ul className="clean" style={{ marginTop: 8 }}>
-            {gaps.slice(0, 5).map((g) => (
-              <li key={g.id}><strong>{g.id}</strong> ({g.status}){g.note ? ` — ${g.note}` : ''}</li>
-            ))}
-            {gaps.length > 5 && <li>…and {gaps.length - 5} more</li>}
-          </ul>
-        )}
+        <button className="btn secondary" onClick={exportJson}>Export raw data (JSON)</button>
       </div>
     </div>
   );

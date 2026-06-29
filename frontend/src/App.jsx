@@ -27,9 +27,9 @@ function Nav() {
         Comply<span>PS</span>
       </a>
       <a href="../" className="muted small" title="CRA solution page">← CRA</a>
-      <NavLink to="/" end>Classify</NavLink>
       {user && <NavLink to="/overview">Overview</NavLink>}
-      {user && <NavLink to="/assessments">My assessments</NavLink>}
+      {user && <NavLink to="/assessments">Projects</NavLink>}
+      <NavLink to="/" end>New product</NavLink>
       {user && <NavLink to="/register">Register</NavLink>}
       {user && <NavLink to="/cvd-policy">CVD policy</NavLink>}
       <div className="spacer" />

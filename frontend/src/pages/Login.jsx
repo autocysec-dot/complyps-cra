@@ -55,7 +55,7 @@ export default function Login() {
     try {
       if (mode === 'login') await login(form.email, form.password);
       else await register(form.name, form.email, form.password);
-      navigate('/assessments');
+      navigate('/overview');
     } catch (err) {
       setError(err.message);
     } finally {
