@@ -11,6 +11,7 @@ import TechDoc from './pages/TechDoc.jsx';
 import Sbom from './pages/Sbom.jsx';
 import SupportPeriod from './pages/SupportPeriod.jsx';
 import Register from './pages/Register.jsx';
+import CvdPolicy from './pages/CvdPolicy.jsx';
 import Settings from './pages/Settings.jsx';
 
 function Nav() {
@@ -29,6 +30,7 @@ function Nav() {
       {user && <NavLink to="/overview">Overview</NavLink>}
       {user && <NavLink to="/assessments">My assessments</NavLink>}
       {user && <NavLink to="/register">Register</NavLink>}
+      {user && <NavLink to="/cvd-policy">CVD policy</NavLink>}
       <div className="spacer" />
       {user ? (
         <>
@@ -70,6 +72,10 @@ export default function App() {
         <Route
           path="/register"
           element={<RequireAuth><Register /></RequireAuth>}
+        />
+        <Route
+          path="/cvd-policy"
+          element={<RequireAuth><CvdPolicy /></RequireAuth>}
         />
         <Route
           path="/assessments/:id"
