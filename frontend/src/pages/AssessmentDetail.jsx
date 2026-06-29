@@ -97,7 +97,7 @@ export default function AssessmentDetail() {
           })}
         </div>
       ) : (
-        <div className="card"><p className="muted">Refresh to load the guided steps.</p></div>
+        <div className="card"><p className="muted">The guided step view appears once your local backend restarts — this happens automatically the next time you log in to this PC.</p></div>
       )}
 
       {/* classification details (toggled from step 1) */}
