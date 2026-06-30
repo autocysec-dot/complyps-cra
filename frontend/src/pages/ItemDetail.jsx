@@ -1,0 +1,206 @@
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { api } from '../api.js';
+
+const STATE_COLOR = { overdue: 'var(--red)', 'due-soon': 'var(--amber)', pending: 'var(--muted)', submitted: 'var(--green)' };
+const APPROVAL_COLOR = { pending: 'var(--amber)', cleared: 'var(--green)', rejected: 'var(--red)' };
+
+// kind = 'vulnerability' | 'incident'
+export default function ItemDetail({ kind = 'vulnerability' }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [item, setItem] = useState(null);
+  const [stagesDef, setStagesDef] = useState(null);
+  const [error, setError] = useState('');
+  const [appForm, setAppForm] = useState({ name: '', role: '', decision: 'approved', note: '' });
+  const [stage, setStage] = useState('earlyWarning');
+  const [form, setForm] = useState({});
+  const [reportDoc, setReportDoc] = useState(null);
+
+  function load() {
+    api.getRegisterItem(kind, id).then((d) => setItem(d[kind])).catch((e) => setError(e.message));
+  }
+  useEffect(() => {
+    load();
+    api.reportStages(kind).then(setStagesDef).catch(() => {});
+    api.getCvdPolicy().then((p) => {
+      const f = p.policy?.fields;
+      if (f) setForm((s) => ({ manufacturerName: f.orgName || '', manufacturerContact: f.securityEmail || '', ...s }));
+    }).catch(() => {});
+  }, [id, kind]);
+
+  useEffect(() => { if (item) setForm((s) => ({ productName: item.product || '', ...s })); }, [item]);
+
+  if (error) return <div className="container"><div className="error">{error}</div></div>;
+  if (!item || !stagesDef) return <div className="center spinner">Loading…</div>;
+
+  const ap = item.approval;
+  const rep = item.reporting;
+  const noun = kind === 'incident' ? 'incident' : 'vulnerability';
+
+  async function addApproval() {
+    if (!appForm.name) return;
+    await api.addItemApproval(kind, id, appForm);
+    setAppForm({ name: '', role: '', decision: 'approved', note: '' });
+    load();
+  }
+  async function delApproval(aid) { await api.deleteItemApproval(kind, id, aid); load(); }
+
+  async function markStage(stageId) {
+    if (!ap.cleared) { setError(`This ${noun} must be approved (${ap.required} sign-offs) before a report can be marked as submitted.`); return; }
+    const submissions = { ...(item.submissions || {}), [stageId]: new Date().toISOString() };
+    await api.updateRegisterItem(kind, id, { submissions });
+    load();
+  }
+
+  const set = (fid) => (e) => setForm({ ...form, [fid]: e.target.value });
+  async function generate() {
+    setError('');
+    try { const { document } = await api.buildItemReport(kind, id, stage, form); setReportDoc(document); }
+    catch (e) { setError(e.message); }
+  }
+  function printReport() {
+    const w = window.open('', '_blank'); if (!w) return;
+    w.document.write(wrap(renderReportHTML(reportDoc))); w.document.close(); w.focus();
+    setTimeout(() => w.print(), 300);
+  }
+  function downloadReport() {
+    const blob = new Blob([wrap(renderReportHTML(reportDoc))], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = window.document.createElement('a'); a.href = url;
+    a.download = `${(reportDoc.identification.cve || reportDoc.identification.product || noun)}_${reportDoc.stage}_report.html`.replace(/\s+/g, '_');
+    a.click(); URL.revokeObjectURL(url);
+  }
+
+  const stageDef = stagesDef.stages.find((s) => s.id === stage);
+  const allFields = [...stagesDef.common, ...(stageDef?.fields || [])];
+
+  return (
+    <div className="container wide">
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <h1 style={{ flex: 1 }}>{item.title}</h1>
+        <button className="btn secondary" onClick={() => navigate('/register')}>← Register</button>
+      </div>
+      <p className="muted small">
+        {item.cve && <>{item.cve} · </>}{item.product}{item.severity ? ` · ${item.severity}` : ''}{item.cvss ? ` (CVSS ${item.cvss})` : ''}
+        {item.activelyExploited === 'yes' && <span style={{ color: '#fca5a5' }}> · ⚠ actively exploited</span>}
+      </p>
+
+      {error && <div className="error">{error}</div>}
+
+      <div className="card">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <h2 style={{ margin: 0, flex: 1 }}>Approvals to report</h2>
+          <span className="badge" style={{ background: '#1e293b', color: APPROVAL_COLOR[ap.state] }}>
+            {ap.state === 'cleared' ? '✓ Cleared to report' : ap.state === 'rejected' ? '✗ Rejected' : `${ap.approved}/${ap.required} approved`}
+          </span>
+        </div>
+        <p className="muted small">Reporting is blocked until {ap.required} responsible people approve. {ap.remaining > 0 ? `${ap.remaining} more needed.` : ''}</p>
+        {ap.approvals.map((a) => (
+          <div key={a.id} className="list-item" style={{ padding: '8px 12px' }}>
+            <div className="grow">
+              <strong>{a.name}</strong>{a.role ? <span className="muted small"> · {a.role}</span> : ''}
+              <span className="small" style={{ color: a.decision === 'approved' ? 'var(--green)' : 'var(--red)', marginLeft: 8 }}>{a.decision}</span>
+              {a.note && <div className="muted small">{a.note}</div>}
+              <div className="muted" style={{ fontSize: 11 }}>{new Date(a.at).toLocaleString()}</div>
+            </div>
+            <button className="btn danger" style={{ padding: '3px 8px' }} onClick={() => delApproval(a.id)}>×</button>
+          </div>
+        ))}
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'flex-end', marginTop: 10 }}>
+          <div><label>Name *</label><input type="text" value={appForm.name} onChange={(e) => setAppForm({ ...appForm, name: e.target.value })} style={{ width: 150 }} /></div>
+          <div><label>Role</label><input type="text" value={appForm.role} onChange={(e) => setAppForm({ ...appForm, role: e.target.value })} style={{ width: 130 }} /></div>
+          <div><label>Decision</label>
+            <select value={appForm.decision} onChange={(e) => setAppForm({ ...appForm, decision: e.target.value })} className="cps-select" style={{ width: 120 }}>
+              <option value="approved">Approve</option><option value="rejected">Reject</option>
+            </select>
+          </div>
+          <div style={{ flex: 1, minWidth: 120 }}><label>Note</label><input type="text" value={appForm.note} onChange={(e) => setAppForm({ ...appForm, note: e.target.value })} /></div>
+          <button className="btn" onClick={addApproval}>Record decision</button>
+        </div>
+      </div>
+
+      {rep?.required && (
+        <div className="card">
+          <h2 style={{ fontSize: 18 }}>CRA reporting timeline</h2>
+          <p className="muted small">{rep.recipients}</p>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {rep.stages.map((st) => (
+              <div key={st.id} style={{ border: '1px solid var(--border)', borderRadius: 8, padding: '8px 10px', minWidth: 160 }}>
+                <div className="small" style={{ fontWeight: 600 }}>{st.label}</div>
+                <div className="small" style={{ color: STATE_COLOR[st.state] }}>{st.state} · {st.remainingText}</div>
+                <div className="muted" style={{ fontSize: 11 }}>due {new Date(st.dueAtIso).toLocaleString()}</div>
+                {st.state !== 'submitted' && <button className="btn secondary" style={{ padding: '3px 8px', fontSize: 11, marginTop: 4 }} onClick={() => markStage(st.id)}>Mark submitted</button>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="card">
+        <h2 style={{ fontSize: 18 }}>Generate SRP report</h2>
+        <p className="muted small">{stagesDef.recipient}</p>
+        {!ap.cleared && <div className="error">⚠ Not yet cleared — get {ap.required} approvals before submitting. You can still draft the report below.</div>}
+        <div className="btn-row" style={{ marginTop: 4 }}>
+          {stagesDef.stages.map((s) => (
+            <button key={s.id} className={`btn ${stage === s.id ? '' : 'secondary'}`} onClick={() => { setStage(s.id); setReportDoc(null); }}>{s.title}</button>
+          ))}
+        </div>
+        <p className="muted small">{stageDef?.within}</p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 16, alignItems: 'start' }}>
+          <div>
+            {allFields.map((f) => (
+              <div key={f.id}>
+                <label>{f.label}{f.required && <span style={{ color: '#fca5a5' }}> *</span>}</label>
+                {f.type === 'textarea' ? (
+                  <textarea rows={2} value={form[f.id] || ''} onChange={set(f.id)} style={{ width: '100%', padding: '8px 10px', background: 'var(--panel-2)', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text)', fontSize: 13, fontFamily: 'inherit' }} />
+                ) : f.type === 'select' ? (
+                  <select value={form[f.id] || f.options[0]} onChange={set(f.id)} className="cps-select">{f.options.map((o) => <option key={o} value={o}>{o}</option>)}</select>
+                ) : (
+                  <input type="text" value={form[f.id] || ''} onChange={set(f.id)} />
+                )}
+              </div>
+            ))}
+            <div className="btn-row"><button className="btn" onClick={generate}>Generate report</button></div>
+          </div>
+          <div>
+            {reportDoc && (
+              <div className="card" style={{ margin: 0 }}>
+                <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+                  <h3 style={{ margin: 0, flex: 1, fontSize: 15 }}>Preview</h3>
+                  <button className="btn secondary" onClick={downloadReport}>Download</button>
+                  <button className="btn" onClick={printReport}>Print / PDF</button>
+                </div>
+                {!reportDoc.complete && <div className="error">Required: {reportDoc.missing.join(', ')}</div>}
+                <div style={{ background: 'white', color: '#111', borderRadius: 8, padding: 18, fontSize: 12.5, lineHeight: 1.5 }} dangerouslySetInnerHTML={{ __html: renderReportHTML(reportDoc) }} />
+              </div>
+            )}
+            {!reportDoc && <p className="muted">Fill in the fields and click “Generate report”.</p>}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function esc(s) { return String(s || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+function row(l, v) { return v ? `<p style="margin:3px 0"><strong>${esc(l)}:</strong> ${esc(v)}</p>` : ''; }
+function renderReportHTML(d) {
+  const i = d.identification;
+  let h = `<h1 style="font-size:18px;margin:0 0 2px">${esc(d.title)}</h1>`;
+  h += `<p style="color:#555;margin:0 0 8px">To: ${esc(d.recipient)} · ${esc(d.within)}</p>`;
+  if (!d.clearedToReport) h += `<p style="background:#fde2e2;color:#7f1d1d;padding:6px 8px;border-radius:6px;margin:0 0 8px">DRAFT — not yet approved for submission (${d.approval.approved}/${d.approval.required} approvals).</p>`;
+  h += `<h3 style="margin:12px 0 4px">Identification</h3>`;
+  h += row('Manufacturer', i.manufacturer) + row('Contact', i.contact) + row('Product', i.product) + row('Version', i.version) +
+    row(d.kind === 'incident' ? 'Incident' : 'Vulnerability', i.title) + row('CVE', i.cve) + row('Severity', i.severity + (i.cvss ? ` (CVSS ${i.cvss})` : '')) +
+    row('Actively exploited', i.activelyExploited) + row('Became aware', i.awareDate);
+  h += `<h3 style="margin:12px 0 4px">${esc(d.title.replace('EU CRA ', ''))} details</h3>`;
+  for (const c of d.content) h += `<p style="margin:6px 0"><strong>${esc(c.label)}:</strong><br>${esc(c.value) || '<span style="color:#999">—</span>'}</p>`;
+  if (d.approval.signedOffBy.length) h += `<h3 style="margin:12px 0 4px">Approved for reporting by</h3>` + `<ul>${d.approval.signedOffBy.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>`;
+  h += `<p style="margin:18px 0 0;font-size:11px;color:#777">${esc(d.disclaimer)}</p>`;
+  return h;
+}
+function wrap(inner) {
+  return `<!doctype html><html><head><meta charset="utf-8"><title>CRA Report</title><style>body{font-family:Georgia,serif;color:#111;max-width:720px;margin:36px auto;padding:0 24px;line-height:1.5}h3{border-bottom:1px solid #ddd;padding-bottom:2px}</style></head><body>${inner}</body></html>`;
+}

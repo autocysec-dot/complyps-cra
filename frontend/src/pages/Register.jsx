@@ -166,42 +166,22 @@ export default function Register() {
         </div>
       ))}
 
-      {/* Incidents: keep the inline reporting timeline */}
+      {/* Incidents: compact rows linking to the detail/report page */}
       {!isVuln && items.map((it) => (
-        <div className="card" key={it.id}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <strong style={{ flex: 1 }}>{it.title}</strong>
-            {it.severity && <span className="badge" style={{ background: '#1e293b', color: SEV_COLOR[it.severity] || 'var(--text)' }}>{it.severity}</span>}
-            <span className="muted small">{it.status}</span>
-            <button className="btn danger" style={{ padding: '4px 10px' }} onClick={() => remove(it.id)}>Delete</button>
+        <div className="list-item" key={it.id}>
+          <div className="grow">
+            <Link to={`/register/incidents/${it.id}`} style={{ fontWeight: 600 }}>{it.title}</Link>
+            <div className="muted small">{it.product ? `${it.product} · ` : ''}{it.status}</div>
           </div>
-          {it.product && <div className="muted small">Product: {it.product}</div>}
-          {it.description && <p className="small" style={{ margin: '6px 0' }}>{it.description}</p>}
-
-          {it.reporting?.required ? (
-            <div style={{ marginTop: 10, borderTop: '1px solid var(--border)', paddingTop: 10 }}>
-              <div className="small" style={{ marginBottom: 6 }}>
-                <strong>CRA reporting</strong> — <span style={{ color: it.reporting.overall === 'overdue' ? 'var(--red)' : it.reporting.overall === 'complete' ? 'var(--green)' : 'var(--amber)' }}>{it.reporting.overall}</span>
-                <span className="muted"> · {it.reporting.recipients}</span>
-              </div>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                {it.reporting.stages.map((st) => (
-                  <div key={st.id} style={{ border: '1px solid var(--border)', borderRadius: 8, padding: '8px 10px', minWidth: 150 }}>
-                    <div className="small" style={{ fontWeight: 600 }}>{st.label}</div>
-                    <div className="small" style={{ color: STATE_COLOR[st.state] }}>{st.state} · {st.remainingText}</div>
-                    <div className="muted" style={{ fontSize: 11 }}>due {new Date(st.dueAtIso).toLocaleString()}</div>
-                    {st.state !== 'submitted' && (
-                      <button className="btn secondary" style={{ padding: '3px 8px', fontSize: 11, marginTop: 4 }} onClick={() => markStage(it, st.id)}>Mark submitted</button>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="muted small" style={{ marginTop: 8 }}>
-              Not in the mandatory-reporting category (only actively-exploited vulnerabilities and severe incidents must be reported).
-            </div>
+          {it.severity && <span className="badge" style={{ background: '#1e293b', color: SEV_COLOR[it.severity] || 'var(--text)' }}>{it.severity}</span>}
+          {it.reporting?.required && (
+            <span className="badge" style={{ background: '#1e293b', color: STATE_COLOR[it.reporting.overall === 'overdue' ? 'overdue' : it.reporting.overall === 'complete' ? 'submitted' : 'due-soon'] }}>
+              report {it.reporting.overall}
+            </span>
           )}
+          {it.approval && <span className="badge" style={{ background: '#1e293b', color: APPROVAL_COLOR[it.approval.state] }}>{it.approval.state === 'cleared' ? '✓ approved' : `${it.approval.approved}/${it.approval.required}`}</span>}
+          <Link className="btn secondary" style={{ padding: '4px 10px' }} to={`/register/incidents/${it.id}`}>Open</Link>
+          <button className="btn danger" style={{ padding: '4px 10px' }} onClick={() => remove(it.id)}>Delete</button>
         </div>
       ))}
     </div>
