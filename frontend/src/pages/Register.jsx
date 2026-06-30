@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { api } from '../api.js';
+
+const APPROVAL_COLOR = { pending: 'var(--amber)', cleared: 'var(--green)', rejected: 'var(--red)' };
 
 const STATE_COLOR = {
   submitted: 'var(--green)',
@@ -20,6 +23,7 @@ export default function Register() {
   const [error, setError] = useState('');
   const [form, setForm] = useState({});
   const [showForm, setShowForm] = useState(false);
+  const [productFilter, setProductFilter] = useState('');
 
   function reload() {
     api.listVulnerabilities().then((d) => setVulns(d.vulnerabilities)).catch((e) => setError(e.message));
@@ -57,7 +61,9 @@ export default function Register() {
     reload();
   }
 
-  const items = isVuln ? vulns : incidents;
+  const allItems = isVuln ? vulns : incidents;
+  const products = [...new Set([...vulns, ...incidents].map((x) => x.product).filter(Boolean))];
+  const items = productFilter ? allItems.filter((x) => x.product === productFilter) : allItems;
 
   return (
     <div className="container wide">
@@ -127,9 +133,41 @@ export default function Register() {
         </div>
       )}
 
+      {products.length > 0 && (
+        <div style={{ marginBottom: 12 }}>
+          <label className="small">Filter by product</label>
+          <select value={productFilter} onChange={(e) => setProductFilter(e.target.value)} className="cps-select" style={{ maxWidth: 280 }}>
+            <option value="">All products</option>
+            {products.map((p) => <option key={p} value={p}>{p}</option>)}
+          </select>
+        </div>
+      )}
+
       {items.length === 0 && <div className="card"><p className="muted">No entries yet.</p></div>}
 
-      {items.map((it) => (
+      {/* Vulnerabilities: compact rows linking to the detail/report page */}
+      {isVuln && items.map((it) => (
+        <div className="list-item" key={it.id}>
+          <div className="grow">
+            <Link to={`/register/vulnerabilities/${it.id}`} style={{ fontWeight: 600 }}>{it.title}</Link>
+            <div className="muted small">
+              {it.product}{it.cve ? ` · ${it.cve}` : ''}{it.cvss ? ` · CVSS ${it.cvss}` : ''} · {it.status}
+            </div>
+          </div>
+          {it.severity && <span className="badge" style={{ background: '#1e293b', color: SEV_COLOR[it.severity] || 'var(--text)' }}>{it.severity}</span>}
+          {it.reporting?.required && (
+            <span className="badge" style={{ background: '#1e293b', color: STATE_COLOR[it.reporting.overall === 'overdue' ? 'overdue' : it.reporting.overall === 'complete' ? 'submitted' : 'due-soon'] }}>
+              report {it.reporting.overall}
+            </span>
+          )}
+          {it.approval && <span className="badge" style={{ background: '#1e293b', color: APPROVAL_COLOR[it.approval.state] }}>{it.approval.state === 'cleared' ? '✓ approved' : `${it.approval.approved}/${it.approval.required}`}</span>}
+          <Link className="btn secondary" style={{ padding: '4px 10px' }} to={`/register/vulnerabilities/${it.id}`}>Open</Link>
+          <button className="btn danger" style={{ padding: '4px 10px' }} onClick={() => remove(it.id)}>Delete</button>
+        </div>
+      ))}
+
+      {/* Incidents: keep the inline reporting timeline */}
+      {!isVuln && items.map((it) => (
         <div className="card" key={it.id}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <strong style={{ flex: 1 }}>{it.title}</strong>
@@ -137,7 +175,7 @@ export default function Register() {
             <span className="muted small">{it.status}</span>
             <button className="btn danger" style={{ padding: '4px 10px' }} onClick={() => remove(it.id)}>Delete</button>
           </div>
-          {it.product && <div className="muted small">Product: {it.product}{it.cve ? ` · ${it.cve}` : ''}{it.cvss ? ` · CVSS ${it.cvss}` : ''}</div>}
+          {it.product && <div className="muted small">Product: {it.product}</div>}
           {it.description && <p className="small" style={{ margin: '6px 0' }}>{it.description}</p>}
 
           {it.reporting?.required ? (

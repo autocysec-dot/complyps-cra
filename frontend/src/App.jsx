@@ -12,6 +12,7 @@ import Sbom from './pages/Sbom.jsx';
 import SupportPeriod from './pages/SupportPeriod.jsx';
 import Package from './pages/Package.jsx';
 import Register from './pages/Register.jsx';
+import VulnerabilityDetail from './pages/VulnerabilityDetail.jsx';
 import CvdPolicy from './pages/CvdPolicy.jsx';
 import Settings from './pages/Settings.jsx';
 
@@ -73,6 +74,10 @@ export default function App() {
         <Route
           path="/register"
           element={<RequireAuth><Register /></RequireAuth>}
+        />
+        <Route
+          path="/register/vulnerabilities/:id"
+          element={<RequireAuth><VulnerabilityDetail /></RequireAuth>}
         />
         <Route
           path="/cvd-policy"
