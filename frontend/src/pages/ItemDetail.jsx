@@ -192,9 +192,11 @@ function renderReportHTML(d) {
   h += `<p style="color:#555;margin:0 0 8px">To: ${esc(d.recipient)} · ${esc(d.within)}</p>`;
   if (!d.clearedToReport) h += `<p style="background:#fde2e2;color:#7f1d1d;padding:6px 8px;border-radius:6px;margin:0 0 8px">DRAFT — not yet approved for submission (${d.approval.approved}/${d.approval.required} approvals).</p>`;
   h += `<h3 style="margin:12px 0 4px">Identification</h3>`;
-  h += row('Manufacturer', i.manufacturer) + row('Contact', i.contact) + row('Product', i.product) + row('Version', i.version) +
-    row(d.kind === 'incident' ? 'Incident' : 'Vulnerability', i.title) + row('CVE', i.cve) + row('Severity', i.severity + (i.cvss ? ` (CVSS ${i.cvss})` : '')) +
-    row('Actively exploited', i.activelyExploited) + row('Became aware', i.awareDate);
+  h += row('Notification type', i.notificationType) + row('Reporting stage', i.reportingStage) +
+    row('Manufacturer / OSS steward', i.manufacturer) + row('Contact', i.contact) + row('Product', i.product) + row('Version', i.version) +
+    row(d.kind === 'incident' ? 'Incident' : 'Vulnerability', i.title) + row('CVE ID', i.cve) + row('EUVD ID', i.euvd) +
+    row('Severity', i.severity + (i.cvss ? ` (CVSS ${i.cvss})` : '')) +
+    row('Suspected malicious / actively exploited', i.activelyExploited) + row('Became aware', i.awareDate);
   h += `<h3 style="margin:12px 0 4px">${esc(d.title.replace('EU CRA ', ''))} details</h3>`;
   for (const c of d.content) h += `<p style="margin:6px 0"><strong>${esc(c.label)}:</strong><br>${esc(c.value) || '<span style="color:#999">—</span>'}</p>`;
   if (d.approval.signedOffBy.length) h += `<h3 style="margin:12px 0 4px">Approved for reporting by</h3>` + `<ul>${d.approval.signedOffBy.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>`;
