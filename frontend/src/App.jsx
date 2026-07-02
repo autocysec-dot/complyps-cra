@@ -15,9 +15,11 @@ import Register from './pages/Register.jsx';
 import ItemDetail from './pages/ItemDetail.jsx';
 import CvdPolicy from './pages/CvdPolicy.jsx';
 import Settings from './pages/Settings.jsx';
+import RequestAccess from './pages/RequestAccess.jsx';
+import Admin from './pages/Admin.jsx';
 
 function Nav() {
-  const { user, logout } = useAuth();
+  const { user, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
   return (
     <nav className="nav">
@@ -32,6 +34,7 @@ function Nav() {
       <NavLink to="/" end>New product</NavLink>
       {user && <NavLink to="/register">Register</NavLink>}
       {user && <NavLink to="/cvd-policy">CVD policy</NavLink>}
+      {isAdmin && <NavLink to="/admin">Admin</NavLink>}
       <div className="spacer" />
       {user ? (
         <>
@@ -54,6 +57,14 @@ function RequireAuth({ children }) {
   return children;
 }
 
+function RequireAdmin({ children }) {
+  const { user, loading, isAdmin } = useAuth();
+  if (loading) return <div className="center spinner">Loading…</div>;
+  if (!user) return <Navigate to="/login" replace />;
+  if (!isAdmin) return <Navigate to="/overview" replace />;
+  return children;
+}
+
 export default function App() {
   return (
     <>
@@ -61,7 +72,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Classifier />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/request-access" element={<RequestAccess />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
         <Route
           path="/overview"
           element={<RequireAuth><Overview /></RequireAuth>}

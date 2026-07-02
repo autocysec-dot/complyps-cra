@@ -25,18 +25,15 @@ export function AuthProvider({ children }) {
     setToken(d.token);
     setUser(d.user);
   }
-  async function register(name, email, password) {
-    const d = await api.register({ name, email, password });
-    setToken(d.token);
-    setUser(d.user);
-  }
   function logout() {
     setToken(null);
     setUser(null);
   }
 
+  const isAdmin = user?.role === 'admin';
+
   return (
-    <AuthCtx.Provider value={{ user, loading, login, register, logout }}>
+    <AuthCtx.Provider value={{ user, loading, login, logout, isAdmin }}>
       {children}
     </AuthCtx.Provider>
   );

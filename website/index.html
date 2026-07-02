@@ -239,17 +239,68 @@
     </div>
   </section>
 
-  <!-- ============================ FINAL CTA ============================ -->
+  <!-- ============================ FINAL CTA / CONTACT ============================ -->
   <section id="contact" class="hero-gradient text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-      <h2 class="text-3xl lg:text-4xl font-extrabold">Get compliance off your plate</h2>
-      <p class="mt-4 text-lg text-blue-100">Explore the CRA solution today, or talk to us about your product portfolio.</p>
-      <div class="mt-8 flex flex-wrap justify-center gap-4">
-        <a href="complyps-cra/" class="inline-flex items-center justify-center rounded-lg bg-white text-brand-700 font-semibold px-6 py-3 hover:bg-blue-50">Explore the CRA solution</a>
-        <a href="mailto:hello@complyps.com" class="inline-flex items-center justify-center rounded-lg ring-1 ring-white/40 hover:bg-white/10 font-semibold px-6 py-3">Book a Demo</a>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl lg:text-4xl font-extrabold">Get compliance off your plate</h2>
+        <p class="mt-4 text-lg text-blue-100">Explore the CRA solution today, or book a demo and we'll talk through your product portfolio.</p>
+        <div class="mt-8">
+          <a href="complyps-cra/" class="inline-flex items-center justify-center rounded-lg bg-white text-brand-700 font-semibold px-6 py-3 hover:bg-blue-50">Explore the CRA solution</a>
+        </div>
+      </div>
+      <div class="rounded-2xl bg-white text-slate-800 p-6 sm:p-8 shadow-xl">
+        <h3 class="text-xl font-bold">Book a demo</h3>
+        <p class="mt-1 text-sm text-slate-500">Tell us a bit about you and we'll be in touch to arrange a walkthrough.</p>
+        <form id="demoForm" class="mt-5 space-y-3">
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input name="name" required placeholder="Your name *" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400" />
+            <input name="email" type="email" required placeholder="Work email *" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400" />
+          </div>
+          <input name="company" placeholder="Company" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400" />
+          <textarea name="message" rows="3" placeholder="What would you like to see?" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400"></textarea>
+          <button type="submit" class="w-full inline-flex items-center justify-center rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-3">Request a demo</button>
+          <p id="demoMsg" class="text-sm" role="status"></p>
+        </form>
       </div>
     </div>
   </section>
+
+  <script>
+    (function () {
+      var API = 'https://api.complyps.com';
+      var MAILTO = 'complyps@outlook.com';
+      var form = document.getElementById('demoForm');
+      if (!form) return;
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var msg = document.getElementById('demoMsg');
+        var btn = form.querySelector('button[type=submit]');
+        var data = Object.fromEntries(new FormData(form).entries());
+        msg.className = 'text-sm text-slate-500'; msg.textContent = 'Sending…';
+        btn.disabled = true;
+        try {
+          var res = await fetch(API + '/api/demo-request', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
+          });
+          if (!res.ok) throw new Error('bad status');
+          form.reset();
+          msg.className = 'text-sm text-emerald-600 font-medium';
+          msg.textContent = 'Thanks! Your demo request has been sent — we’ll be in touch shortly.';
+        } catch (err) {
+          var body = encodeURIComponent(
+            'Name: ' + (data.name || '') + '\nEmail: ' + (data.email || '') +
+            '\nCompany: ' + (data.company || '') + '\n\n' + (data.message || ''));
+          msg.className = 'text-sm text-slate-600';
+          msg.innerHTML = 'Could not reach us right now. ' +
+            '<a class="text-brand-600 font-semibold underline" href="mailto:' + MAILTO +
+            '?subject=Demo%20request&body=' + body + '">Email us instead →</a>';
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    })();
+  </script>
 
   <!-- ============================ FOOTER ============================ -->
   <footer class="bg-slate-900 text-slate-300">
@@ -280,7 +331,7 @@
       <div>
         <h4 class="text-white font-semibold text-sm">Get in touch</h4>
         <ul class="mt-3 space-y-2 text-sm">
-          <li><a href="mailto:hello@complyps.com" class="hover:text-white">hello@complyps.com</a></li>
+          <li><a href="mailto:complyps@outlook.com" class="hover:text-white">complyps@outlook.com</a></li>
         </ul>
       </div>
     </div>

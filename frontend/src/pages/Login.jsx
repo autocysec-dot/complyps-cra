@@ -1,60 +1,23 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../auth.jsx';
-import { api } from '../api.js';
-
-// Client-side mirror of the backend password rules (also fetched from the API
-// so the displayed checklist always matches what the server enforces).
-const CLIENT_RULES = [
-  { id: 'length', label: 'At least 10 characters', test: (p) => p.length >= 10 },
-  { id: 'lower', label: 'A lowercase letter (a–z)', test: (p) => /[a-z]/.test(p) },
-  { id: 'upper', label: 'An uppercase letter (A–Z)', test: (p) => /[A-Z]/.test(p) },
-  { id: 'digit', label: 'A number (0–9)', test: (p) => /[0-9]/.test(p) },
-  { id: 'special', label: 'A special character (!@#$…)', test: (p) => /[^A-Za-z0-9]/.test(p) },
-];
 
 export default function Login() {
-  const { login, register } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
-  const [mode, setMode] = useState('login');
-  const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' });
+  const [form, setForm] = useState({ email: '', password: '' });
   const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
-  const [policy, setPolicy] = useState(CLIENT_RULES);
-
-  // Pull the authoritative rule labels from the backend (best-effort).
-  useEffect(() => {
-    api.passwordPolicy()
-      .then((p) => {
-        if (p?.rules?.length) {
-          const byId = Object.fromEntries(CLIENT_RULES.map((r) => [r.id, r.test]));
-          setPolicy(p.rules.map((r) => ({ ...r, test: byId[r.id] || (() => true) })));
-        }
-      })
-      .catch(() => {});
-  }, []);
 
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
-
-  const checks = useMemo(
-    () => policy.map((r) => ({ ...r, ok: r.test(form.password) })),
-    [policy, form.password]
-  );
-  const allOk = checks.every((c) => c.ok);
-  const confirmOk = form.password.length > 0 && form.password === form.confirm;
 
   async function submit(e) {
     e.preventDefault();
     setError('');
-    if (mode === 'register') {
-      if (!allOk) { setError('Please meet all the password requirements below.'); return; }
-      if (!confirmOk) { setError('Passwords do not match.'); return; }
-    }
     setBusy(true);
     try {
-      if (mode === 'login') await login(form.email, form.password);
-      else await register(form.name, form.email, form.password);
+      await login(form.email, form.password);
       navigate('/overview');
     } catch (err) {
       setError(err.message);
@@ -66,20 +29,14 @@ export default function Login() {
   return (
     <div className="container" style={{ maxWidth: 460 }}>
       <div className="card">
-        <h1>{mode === 'login' ? 'Log in' : 'Create an account'}</h1>
+        <h1>Log in</h1>
         <p className="muted small">
-          Your ComplyPS account saves your work and lets you revisit past reports. One account works
-          across all ComplyPS regulation tools (CRA today, more coming). The classifier itself works
-          without logging in.
+          Log in to save your work and revisit past reports. Accounts are created by an
+          administrator — you don't sign up yourself. The CRA classifier works without an account;
+          logging in is what lets you save.
         </p>
         {error && <div className="error">{error}</div>}
         <form onSubmit={submit}>
-          {mode === 'register' && (
-            <>
-              <label>Name</label>
-              <input type="text" value={form.name} onChange={set('name')} required />
-            </>
-          )}
           <label>Email</label>
           <input type="email" value={form.email} onChange={set('email')} required autoComplete="email" />
 
@@ -90,7 +47,7 @@ export default function Login() {
               value={form.password}
               onChange={set('password')}
               required
-              autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
+              autoComplete="current-password"
               style={{ paddingRight: 64 }}
             />
             <button
@@ -103,45 +60,17 @@ export default function Login() {
             </button>
           </div>
 
-          {mode === 'register' && (
-            <>
-              <ul className="clean small" style={{ marginTop: 10, listStyle: 'none', paddingLeft: 0 }}>
-                {checks.map((c) => (
-                  <li key={c.id} style={{ color: c.ok ? 'var(--green)' : 'var(--muted)' }}>
-                    {c.ok ? '✓' : '○'} {c.label}
-                  </li>
-                ))}
-              </ul>
-
-              <label>Confirm password</label>
-              <input
-                type={showPw ? 'text' : 'password'}
-                value={form.confirm}
-                onChange={set('confirm')}
-                required
-                autoComplete="new-password"
-              />
-              {form.confirm.length > 0 && (
-                <div className="small" style={{ color: confirmOk ? 'var(--green)' : '#fca5a5', marginTop: 6 }}>
-                  {confirmOk ? '✓ Passwords match' : '✗ Passwords do not match'}
-                </div>
-              )}
-            </>
-          )}
-
           <div className="btn-row">
             <button className="btn" type="submit" disabled={busy}>
-              {busy ? 'Please wait…' : mode === 'login' ? 'Log in' : 'Register'}
-            </button>
-            <button
-              type="button"
-              className="btn secondary"
-              onClick={() => { setMode(mode === 'login' ? 'register' : 'login'); setError(''); }}
-            >
-              {mode === 'login' ? 'Need an account?' : 'Have an account?'}
+              {busy ? 'Please wait…' : 'Log in'}
             </button>
           </div>
         </form>
+        <hr style={{ margin: '18px 0', border: 0, borderTop: '1px solid var(--border)' }} />
+        <p className="muted small" style={{ margin: 0 }}>
+          Don't have an account? <Link to="/request-access">Request access</Link> and an
+          administrator will set one up for you.
+        </p>
       </div>
     </div>
   );

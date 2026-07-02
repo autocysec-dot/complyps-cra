@@ -59,10 +59,26 @@ async function request(path, { method = 'GET', body, auth = false } = {}) {
 
 export const api = {
   health: () => request('/api/health'),
-  register: (payload) => request('/api/auth/register', { method: 'POST', body: payload }),
   login: (payload) => request('/api/auth/login', { method: 'POST', body: payload }),
   passwordPolicy: () => request('/api/auth/password-policy'),
+  authConfig: () => request('/api/auth/config'),
   me: () => request('/api/auth/me', { auth: true }),
+
+  // Public forms (no login): request an account, or book a demo.
+  requestAccess: (payload) => request('/api/access-request', { method: 'POST', body: payload }),
+  bookDemo: (payload) => request('/api/demo-request', { method: 'POST', body: payload }),
+
+  // Admin (role: 'admin' only)
+  adminListUsers: () => request('/api/admin/users', { auth: true }),
+  adminCreateUser: (payload) => request('/api/admin/users', { method: 'POST', body: payload, auth: true }),
+  adminDeleteUser: (id) => request(`/api/admin/users/${id}`, { method: 'DELETE', auth: true }),
+  adminListAccessRequests: () => request('/api/admin/access-requests', { auth: true }),
+  adminSetAccessRequestStatus: (id, status) => request(`/api/admin/access-requests/${id}`, { method: 'PATCH', body: { status }, auth: true }),
+  adminDeleteAccessRequest: (id) => request(`/api/admin/access-requests/${id}`, { method: 'DELETE', auth: true }),
+  adminApproveAccessRequest: (id) => request(`/api/admin/access-requests/${id}/approve`, { method: 'POST', auth: true }),
+  adminListDemoRequests: () => request('/api/admin/demo-requests', { auth: true }),
+  adminSetDemoRequestStatus: (id, status) => request(`/api/admin/demo-requests/${id}`, { method: 'PATCH', body: { status }, auth: true }),
+  adminDeleteDemoRequest: (id) => request(`/api/admin/demo-requests/${id}`, { method: 'DELETE', auth: true }),
 
   questionnaire: () => request('/api/assessments/questionnaire'),
   classify: (answers) => request('/api/assessments/classify', { method: 'POST', body: { answers } }),
