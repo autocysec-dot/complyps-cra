@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A 90-Day CRA Readiness Plan for Small Manufacturers | ComplyPS</title>
+  <meta name="description" content="A practical, phased 90-day plan to get a small or mid-sized manufacturer moving on EU Cyber Resilience Act compliance — from scoping to processes to evidence." />
+  <meta name="keywords" content="CRA readiness plan, CRA compliance steps, small manufacturer CRA, 90 day plan, CRA getting started" />
+  <link rel="canonical" href="https://complyps.com/complyps-cra/blog/cra-90-day-readiness-plan.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="A 90-Day CRA Readiness Plan" />
+  <meta property="og:description" content="A phased, practical plan to get moving on CRA compliance in three months." />
+  <meta property="og:url" content="https://complyps.com/complyps-cra/blog/cra-90-day-readiness-plan.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { brand: { 50:'#eff6ff',100:'#dbeafe',500:'#2563eb',600:'#1d4ed8',700:'#1e40af',900:'#1e3a5f' }, accent: { 500:'#16a34a',600:'#15803d' } },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    } } };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    html { scroll-behavior: smooth; }
+    .prose h2 { font-size:1.5rem; font-weight:800; margin-top:2.25rem; margin-bottom:.75rem; color:#0f172a; }
+    .prose h3 { font-size:1.15rem; font-weight:700; margin-top:1.75rem; margin-bottom:.5rem; color:#1e293b; }
+    .prose p { margin:.9rem 0; line-height:1.75; color:#334155; }
+    .prose ul { margin:.9rem 0; padding-left:1.25rem; list-style:disc; color:#334155; }
+    .prose li { margin:.5rem 0; line-height:1.7; }
+    .prose strong { color:#0f172a; }
+    .prose .callout { background:#eff6ff; border-left:4px solid #2563eb; border-radius:.5rem; padding:1rem 1.25rem; margin:1.5rem 0; }
+    .phase { border:1px solid #e2e8f0; border-radius:.75rem; padding:1.25rem 1.5rem; margin:1.25rem 0; }
+    .phase-tag { display:inline-block; font-size:.75rem; font-weight:800; color:#1d4ed8; background:#eff6ff; border-radius:9999px; padding:.15rem .75rem; }
+  </style>
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased">
+
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <div class="flex items-center gap-3 text-sm font-medium">
+        <a href="../../" class="inline-flex items-center gap-1.5 text-slate-500 hover:text-brand-600" title="Back to ComplyPS">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 12L6 8l4-4"/></svg>
+          ComplyPS
+        </a>
+        <span class="text-slate-300">/</span>
+        <a href="../" class="hover:text-brand-600">ComplyCRA</a>
+        <span class="text-slate-300">/</span>
+        <a href="./" class="hover:text-brand-600">Insights</a>
+      </div>
+      <a href="../app/" class="inline-flex items-center rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-4 py-2">Open ComplyCRA</a>
+    </nav>
+  </header>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs font-bold text-accent-600 uppercase tracking-wide">Practical</p>
+    <h1 class="mt-3 text-4xl font-extrabold leading-tight text-slate-900">A 90-day CRA readiness plan</h1>
+    <p class="mt-4 text-lg text-slate-500">You cannot boil the ocean in a quarter — but you can build real momentum. Here is a pragmatic plan for a small team.</p>
+
+    <div class="prose mt-8">
+      <p>The CRA can feel overwhelming if you look at the whole regulation at once. The trick is to sequence the work so each phase produces something useful and de-risks the next. This 90-day plan is aimed at small and mid-sized manufacturers who need to get moving without a dedicated compliance department. Treat the dates as a rhythm, not a legal deadline — the binding dates are in the regulation.</p>
+
+      <div class="phase">
+        <span class="phase-tag">Days 1–30 · Understand &amp; scope</span>
+        <p>The goal of month one is <strong>clarity</strong>: know what you have and where you stand.</p>
+        <ul>
+          <li><strong>Inventory your products.</strong> List every product with digital elements you place, or plan to place, on the EU market.</li>
+          <li><strong>Determine scope and risk class</strong> for each — Default, Important (Annex III) or Critical (Annex IV).</li>
+          <li><strong>Assign an owner.</strong> Name a person accountable for CRA across the company, even part-time.</li>
+          <li><strong>Run a gap assessment</strong> against the Annex I essential requirements for your top one or two products, and write down where you are weak.</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <span class="phase-tag">Days 31–60 · Stand up the processes</span>
+        <p>Month two is about the <strong>ongoing machinery</strong> the CRA expects — the things that are painful to retrofit later.</p>
+        <ul>
+          <li><strong>Generate an SBOM</strong> for your priority products and start scanning it against known-vulnerability data.</li>
+          <li><strong>Publish a CVD policy</strong> and a security contact — one policy for the whole company.</li>
+          <li><strong>Draft a vulnerability-handling workflow</strong>: how a report becomes a triaged issue, a fix, and an update.</li>
+          <li><strong>Build a reporting runbook</strong> for the 24h / 72h / final duties, including who approves a report and how fast.</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <span class="phase-tag">Days 61–90 · Close gaps &amp; assemble evidence</span>
+        <p>Month three turns effort into <strong>demonstrable readiness</strong>.</p>
+        <ul>
+          <li><strong>Fix the highest-priority Annex I gaps</strong> from your month-one assessment (default passwords, update mechanism, logging, data protection).</li>
+          <li><strong>Start the technical documentation</strong> — risk assessment, how each requirement is met, SBOM, support-period decision.</li>
+          <li><strong>Choose your conformity route</strong> per product (self-assessment vs notified body).</li>
+          <li><strong>Set a support period</strong> for each product and record it, with a plan to deliver updates across it.</li>
+        </ul>
+      </div>
+
+      <h2>What you will have after 90 days</h2>
+      <ul>
+        <li>A clear picture of scope, risk class and gaps for your portfolio.</li>
+        <li>The core processes — SBOM scanning, CVD, vulnerability handling, reporting runbook — actually running.</li>
+        <li>Technical documentation under way and a chosen conformity route.</li>
+      </ul>
+      <p>That is not "done" — full conformity is an ongoing commitment — but it is the hard 20% that unlocks the rest, and it puts you comfortably ahead of the timeline.</p>
+
+      <div class="callout">
+        <strong>ComplyCRA is built around exactly this journey.</strong> It classifies your products, runs the Annex I self-assessment, generates and scans SBOMs, manages CVD and reporting, and rolls it all into a readiness score — so this 90-day plan becomes a guided checklist rather than a research project. <a href="../app/" class="text-brand-600 font-semibold">Open ComplyCRA →</a>
+      </div>
+
+      <p class="text-sm text-slate-400 mt-10">General information, not legal advice. Refer to Regulation (EU) 2024/2847 for binding requirements and dates.</p>
+    </div>
+
+    <div class="mt-12 flex flex-wrap gap-4">
+      <a href="coordinated-vulnerability-disclosure-policy.html" class="text-sm font-semibold text-brand-600">← Setting up a CVD policy</a>
+      <a href="./" class="text-sm font-semibold text-brand-600 ml-auto">All CRA Insights →</a>
+    </div>
+  </article>
+
+  <footer class="bg-slate-900 text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="../../" class="text-lg font-extrabold text-white">Comply<span class="text-brand-500">PS</span></a>
+      <div class="flex gap-6 text-sm">
+        <a href="../" class="hover:text-white">ComplyCRA</a>
+        <a href="./" class="hover:text-white">Insights</a>
+        <a href="../app/" class="hover:text-white">Open ComplyCRA</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
