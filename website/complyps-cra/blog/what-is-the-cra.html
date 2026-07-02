@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is the EU Cyber Resilience Act? A Plain-English Guide | ComplyPS</title>
+  <meta name="description" content="A clear, plain-English guide to the EU Cyber Resilience Act (Regulation (EU) 2024/2847): what it is, who it applies to, what it requires and why it matters for manufacturers of connected products." />
+  <meta name="keywords" content="EU Cyber Resilience Act, what is the CRA, CRA compliance, Regulation (EU) 2024/2847, product security, CE marking" />
+  <link rel="canonical" href="https://complyps.com/complyps-cra/blog/what-is-the-cra.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="What is the EU Cyber Resilience Act? A Plain-English Guide" />
+  <meta property="og:description" content="What the CRA is, who it applies to, and why it matters — explained simply." />
+  <meta property="og:url" content="https://complyps.com/complyps-cra/blog/what-is-the-cra.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { brand: { 50:'#eff6ff',100:'#dbeafe',500:'#2563eb',600:'#1d4ed8',700:'#1e40af',900:'#1e3a5f' }, accent: { 500:'#16a34a',600:'#15803d' } },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    } } };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    html { scroll-behavior: smooth; }
+    .hero-gradient { background: linear-gradient(135deg,#1e3a5f 0%,#1d4ed8 55%,#15803d 130%); }
+    .prose h2 { font-size:1.5rem; font-weight:800; margin-top:2.25rem; margin-bottom:.75rem; color:#0f172a; }
+    .prose h3 { font-size:1.15rem; font-weight:700; margin-top:1.75rem; margin-bottom:.5rem; color:#1e293b; }
+    .prose p { margin:.9rem 0; line-height:1.75; color:#334155; }
+    .prose ul { margin:.9rem 0; padding-left:1.25rem; list-style:disc; color:#334155; }
+    .prose li { margin:.4rem 0; line-height:1.7; }
+    .prose strong { color:#0f172a; }
+    .prose .callout { background:#eff6ff; border-left:4px solid #2563eb; border-radius:.5rem; padding:1rem 1.25rem; margin:1.5rem 0; }
+  </style>
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased">
+
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <div class="flex items-center gap-3 text-sm font-medium">
+        <a href="../../" class="inline-flex items-center gap-1.5 text-slate-500 hover:text-brand-600" title="Back to ComplyPS">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 12L6 8l4-4"/></svg>
+          ComplyPS
+        </a>
+        <span class="text-slate-300">/</span>
+        <a href="../" class="hover:text-brand-600">CRA Solution</a>
+        <span class="text-slate-300">/</span>
+        <a href="./" class="hover:text-brand-600">Insights</a>
+      </div>
+      <a href="../app/" class="inline-flex items-center rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-4 py-2">Open the CRA Compliance tool</a>
+    </nav>
+  </header>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs font-bold text-brand-600 uppercase tracking-wide">Foundations</p>
+    <h1 class="mt-3 text-4xl font-extrabold leading-tight text-slate-900">What is the EU Cyber Resilience Act?</h1>
+    <p class="mt-4 text-lg text-slate-500">A plain-English guide to the CRA — what it is, who it applies to, and why it matters.</p>
+
+    <div class="prose mt-8">
+      <p>The <strong>Cyber Resilience Act (CRA)</strong> — formally Regulation (EU) 2024/2847 — is the European Union's first law that sets <strong>mandatory cybersecurity requirements for products</strong> rather than for organisations or networks. In simple terms: if you sell a product that contains software or connects to a network, the CRA says that product must be secure by design, stay secure through updates, and that you must handle vulnerabilities responsibly.</p>
+
+      <p>It fills a long-standing gap. For years, connected devices and software could be placed on the EU market with little or no security assurance, and buyers had no easy way to tell a well-secured product from a poorly secured one. The CRA changes that by making cybersecurity a condition of putting a product on the market — enforced through the same <strong>CE marking</strong> system used for product safety.</p>
+
+      <h2>What does "products with digital elements" mean?</h2>
+      <p>The CRA applies to <strong>products with digital elements</strong> — a deliberately broad term. It covers any software or hardware product, and its remote data-processing solutions, whose intended purpose includes a direct or indirect connection to a device or network. That includes:</p>
+      <ul>
+        <li>Hardware with software inside — routers, smart cameras, IoT sensors, industrial controllers, wearables, connected appliances.</li>
+        <li>Standalone software — operating systems, mobile apps, desktop applications, firmware.</li>
+        <li>Components placed on the market separately, such as libraries or chips with embedded software.</li>
+      </ul>
+      <p>A handful of categories are carved out because they are already regulated elsewhere (for example certain medical devices, aviation, and cars) or are pure cloud services governed by other rules. But for the vast majority of connected products, the starting assumption is: <strong>you are in scope</strong>.</p>
+
+      <div class="callout">
+        <strong>Not sure whether your product qualifies?</strong> Our companion article, <a href="is-my-product-in-scope.html" class="text-brand-600 font-semibold">"Is my product in scope of the CRA?"</a>, walks through the exclusions and gives you a decision path.
+      </div>
+
+      <h2>Who has obligations?</h2>
+      <p>The CRA places duties on economic operators along the supply chain, with the heaviest responsibilities on the <strong>manufacturer</strong> — the party that develops or has a product developed and markets it under their own name or brand. Manufacturers must:</p>
+      <ul>
+        <li>Design and build the product to meet the <strong>essential cybersecurity requirements</strong> (set out in Annex I).</li>
+        <li>Perform a cybersecurity <strong>risk assessment</strong> and keep it up to date.</li>
+        <li>Handle vulnerabilities throughout a defined <strong>support period</strong>, providing security updates.</li>
+        <li>Produce <strong>technical documentation</strong> and issue an <strong>EU Declaration of Conformity</strong>, then affix the CE marking.</li>
+        <li>Report <strong>actively exploited vulnerabilities</strong> and <strong>severe incidents</strong> to the authorities within tight deadlines.</li>
+      </ul>
+      <p><strong>Importers</strong> and <strong>distributors</strong> have lighter, mostly verification-focused duties — checking that the manufacturer has done its job before a product moves down the chain.</p>
+
+      <h2>The three ideas at the heart of the CRA</h2>
+      <h3>1. Security by design and by default</h3>
+      <p>Products should be built to reduce risk from the start, and ship in a secure configuration out of the box — not rely on the customer to harden them later. That means things like minimising the attack surface, protecting data, and not shipping with well-known default passwords.</p>
+      <h3>2. Security across the whole lifetime</h3>
+      <p>Compliance is not a one-time gate at launch. Manufacturers must keep the product secure for a support period appropriate to the product (with a general expectation of at least five years unless the product is used for less), by identifying and fixing vulnerabilities and delivering updates.</p>
+      <h3>3. Transparency and accountability</h3>
+      <p>Users should get clear information about how to use the product securely and how long it will be supported. And when something goes seriously wrong — an exploited flaw or a severe incident — manufacturers must tell the authorities quickly rather than quietly.</p>
+
+      <h2>How is it enforced?</h2>
+      <p>The CRA rides on the EU's established product-conformity framework. Depending on how the product is classified by risk, the manufacturer either <strong>self-assesses</strong> conformity or must involve an independent <strong>notified body</strong>. Once satisfied, the manufacturer draws up the Declaration of Conformity and applies the CE marking — the same mark you already see on electronics and toys, now also standing for cybersecurity. National market-surveillance authorities can investigate, demand corrective action, order products off the market, and impose significant fines for non-compliance.</p>
+
+      <h2>Why it matters — even before the deadline</h2>
+      <p>The CRA's main obligations apply from <strong>December 2027</strong>, with certain reporting duties starting earlier in 2026. That sounds far off, but security-by-design decisions are made early in a product's life. Retrofitting an update mechanism, an SBOM process, or a vulnerability-handling workflow into a shipped product is far more expensive than building it in now. Manufacturers who start early turn the CRA from a compliance scramble into a competitive advantage — demonstrably secure products that buyers, especially in regulated sectors, will increasingly demand.</p>
+
+      <div class="callout">
+        <strong>Where ComplyPS fits:</strong> our CRA Compliance tool takes you through exactly these steps — classify your product's risk, self-assess against Annex I, generate an SBOM and scan it for known vulnerabilities, and track your readiness — with all of your data processed privately. <a href="../app/" class="text-brand-600 font-semibold">Open the CRA Compliance tool →</a>
+      </div>
+
+      <p class="text-sm text-slate-400 mt-10">This article is general information, not legal advice. Refer to the official text of Regulation (EU) 2024/2847 for authoritative wording.</p>
+    </div>
+
+    <div class="mt-12 flex flex-wrap gap-4">
+      <a href="./" class="text-sm font-semibold text-brand-600">← All CRA Insights</a>
+      <a href="is-my-product-in-scope.html" class="text-sm font-semibold text-brand-600 ml-auto">Next: Is my product in scope? →</a>
+    </div>
+  </article>
+
+  <footer class="bg-slate-900 text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="../../" class="text-lg font-extrabold text-white">Comply<span class="text-brand-500">PS</span></a>
+      <div class="flex gap-6 text-sm">
+        <a href="../" class="hover:text-white">CRA Solution</a>
+        <a href="./" class="hover:text-white">Insights</a>
+        <a href="../app/" class="hover:text-white">Open the CRA Compliance tool</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

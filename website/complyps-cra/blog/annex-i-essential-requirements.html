@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The CRA's Essential Requirements (Annex I), Explained | ComplyPS</title>
+  <meta name="description" content="An engineer-friendly walk-through of Annex I of the EU Cyber Resilience Act: the security-by-design product properties (Part I) and the vulnerability-handling duties (Part II), with practical examples." />
+  <meta name="keywords" content="CRA Annex I, essential cybersecurity requirements, security by design, vulnerability handling, SBOM, Cyber Resilience Act requirements" />
+  <link rel="canonical" href="https://complyps.com/complyps-cra/blog/annex-i-essential-requirements.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The CRA's Essential Requirements (Annex I), Explained" />
+  <meta property="og:description" content="Security-by-design properties and vulnerability-handling duties, in plain terms." />
+  <meta property="og:url" content="https://complyps.com/complyps-cra/blog/annex-i-essential-requirements.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { brand: { 50:'#eff6ff',100:'#dbeafe',500:'#2563eb',600:'#1d4ed8',700:'#1e40af',900:'#1e3a5f' }, accent: { 500:'#16a34a',600:'#15803d' } },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    } } };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    html { scroll-behavior: smooth; }
+    .prose h2 { font-size:1.5rem; font-weight:800; margin-top:2.25rem; margin-bottom:.75rem; color:#0f172a; }
+    .prose h3 { font-size:1.15rem; font-weight:700; margin-top:1.75rem; margin-bottom:.5rem; color:#1e293b; }
+    .prose p { margin:.9rem 0; line-height:1.75; color:#334155; }
+    .prose ul { margin:.9rem 0; padding-left:1.25rem; list-style:disc; color:#334155; }
+    .prose li { margin:.5rem 0; line-height:1.7; }
+    .prose strong { color:#0f172a; }
+    .prose .callout { background:#eff6ff; border-left:4px solid #2563eb; border-radius:.5rem; padding:1rem 1.25rem; margin:1.5rem 0; }
+  </style>
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased">
+
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <div class="flex items-center gap-3 text-sm font-medium">
+        <a href="../../" class="inline-flex items-center gap-1.5 text-slate-500 hover:text-brand-600" title="Back to ComplyPS">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 12L6 8l4-4"/></svg>
+          ComplyPS
+        </a>
+        <span class="text-slate-300">/</span>
+        <a href="../" class="hover:text-brand-600">CRA Solution</a>
+        <span class="text-slate-300">/</span>
+        <a href="./" class="hover:text-brand-600">Insights</a>
+      </div>
+      <a href="../app/" class="inline-flex items-center rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-4 py-2">Open the CRA Compliance tool</a>
+    </nav>
+  </header>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs font-bold text-brand-600 uppercase tracking-wide">Requirements</p>
+    <h1 class="mt-3 text-4xl font-extrabold leading-tight text-slate-900">Annex I: the essential requirements, explained</h1>
+    <p class="mt-4 text-lg text-slate-500">The heart of the CRA in engineer-friendly terms — the security-by-design properties, and the vulnerability-handling duties.</p>
+
+    <div class="prose mt-8">
+      <p>Annex I is where the CRA stops being abstract. It sets out the <strong>essential cybersecurity requirements</strong> every in-scope product must meet, in two parts: <strong>Part I</strong> is about the security <em>properties of the product itself</em>, and <strong>Part II</strong> is about the <em>processes</em> a manufacturer must run to handle vulnerabilities over time. Crucially, the requirements are <strong>risk-based</strong> — you apply them in proportion to your product's cybersecurity risk assessment, so not every clause weighs the same for every product.</p>
+
+      <h2>Part I — Security properties of the product</h2>
+      <p>These describe how a well-secured product should behave. Paraphrased and grouped for clarity, a product should:</p>
+      <h3>Be secure by design and by default</h3>
+      <ul>
+        <li>Ship in a <strong>secure configuration</strong> out of the box, with the ability to reset to that secure state.</li>
+        <li>Reduce the <strong>attack surface</strong> — expose only the interfaces and services actually needed.</li>
+        <li>Not be released with <strong>known exploitable vulnerabilities</strong>.</li>
+      </ul>
+      <h3>Protect access and data</h3>
+      <ul>
+        <li>Enforce <strong>authentication and access control</strong> appropriate to the product — for example, no shared default passwords, and protection of privileged functions.</li>
+        <li>Protect the <strong>confidentiality</strong> of stored and transmitted data, typically with encryption where appropriate.</li>
+        <li>Protect the <strong>integrity</strong> of data, commands, configuration and the software itself against unauthorised change.</li>
+        <li>Practise <strong>data minimisation</strong> — process only the data necessary for the product's purpose.</li>
+      </ul>
+      <h3>Stay available and resilient</h3>
+      <ul>
+        <li>Maintain <strong>availability of essential functions</strong>, including resilience against and mitigation of denial-of-service conditions.</li>
+        <li>Limit the product's own ability to cause harm to the networks or devices around it.</li>
+      </ul>
+      <h3>Be observable and updatable</h3>
+      <ul>
+        <li>Record and monitor relevant <strong>security-related events</strong> (logging), so problems can be detected and investigated.</li>
+        <li>Provide <strong>security updates</strong>, where appropriate automatically, with a clear mechanism to deliver them safely — and let users remove or securely wipe data when they dispose of the product.</li>
+      </ul>
+
+      <div class="callout"><strong>Read it as a checklist, apply it as a risk decision.</strong> For each property, ask: what is the risk here for <em>this</em> product, and what is a proportionate way to satisfy it? Document the reasoning — that record is part of your technical documentation.</div>
+
+      <h2>Part II — Vulnerability handling over the support period</h2>
+      <p>Part II recognises that no product stays secure by itself. Over the product's <strong>support period</strong>, the manufacturer must run an ongoing process. Paraphrased, you must:</p>
+      <ul>
+        <li><strong>Identify and document</strong> the vulnerabilities and components in your product — including producing a <strong>software bill of materials (SBOM)</strong> in a common, machine-readable format.</li>
+        <li><strong>Remediate without delay</strong> — address vulnerabilities promptly, including by providing security updates.</li>
+        <li><strong>Test and review</strong> the security of the product regularly.</li>
+        <li>Once a fix is available, <strong>share information</strong> about fixed vulnerabilities, including a description, severity, and guidance for users.</li>
+        <li>Operate a <strong>coordinated vulnerability disclosure (CVD) policy</strong> so researchers and others can report issues to you responsibly.</li>
+        <li>Provide a <strong>contact point</strong> for reporting vulnerabilities and make it easy to find.</li>
+        <li>Distribute updates <strong>securely and in a timely way</strong>, with mechanisms to ensure updates are authentic and, where relevant, that users are informed.</li>
+      </ul>
+
+      <h2>The SBOM connection</h2>
+      <p>A software bill of materials is the thread that ties much of Part II together. If you do not know what components — and which versions — are inside your product, you cannot tell whether the latest disclosed vulnerability affects you, and you cannot demonstrate that you are managing that risk. A good SBOM lets you answer "are we affected?" in minutes rather than weeks, and it is increasingly what customers and auditors expect to see.</p>
+
+      <h2>How manufacturers usually demonstrate compliance</h2>
+      <p>Annex I states <em>what</em> must be achieved, not the exact <em>how</em>. In practice, manufacturers meet the requirements by leaning on recognised engineering practices and, where available, <strong>harmonised standards</strong>: following these gives a presumption of conformity for the parts they cover. (Note that formal standards documents are themselves copyrighted; you obtain them from the relevant standards bodies — this article describes the requirements in our own words, not the standards' text.)</p>
+
+      <div class="callout">
+        <strong>Turn Annex I into a working plan:</strong> the ComplyPS CRA Compliance tool presents Annex I as a structured self-assessment, records your justification for each requirement, generates and scans your SBOM for known vulnerabilities, and rolls everything into a readiness score. <a href="../app/" class="text-brand-600 font-semibold">Open the CRA Compliance tool →</a>
+      </div>
+
+      <p class="text-sm text-slate-400 mt-10">This article paraphrases the requirements in plain language for orientation and is not legal advice. The binding wording is in Annex I of Regulation (EU) 2024/2847.</p>
+    </div>
+
+    <div class="mt-12 flex flex-wrap gap-4">
+      <a href="cra-timeline-key-dates.html" class="text-sm font-semibold text-brand-600">← CRA timeline & key dates</a>
+      <a href="./" class="text-sm font-semibold text-brand-600 ml-auto">All CRA Insights →</a>
+    </div>
+  </article>
+
+  <footer class="bg-slate-900 text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="../../" class="text-lg font-extrabold text-white">Comply<span class="text-brand-500">PS</span></a>
+      <div class="flex gap-6 text-sm">
+        <a href="../" class="hover:text-white">CRA Solution</a>
+        <a href="./" class="hover:text-white">Insights</a>
+        <a href="../app/" class="hover:text-white">Open the CRA Compliance tool</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
