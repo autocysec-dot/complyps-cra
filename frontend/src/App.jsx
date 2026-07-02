@@ -26,7 +26,7 @@ function Nav() {
           CRA solution page. */}
       <a href="../../" className="muted small" title="Back to ComplyPS">← ComplyPS</a>
       <span className="muted small" style={{ opacity: 0.4 }}>/</span>
-      <a href="../" className="brand" title="CRA Solution page">CRA Solution</a>
+      <a href="../" className="brand" title="ComplyCRA">ComplyCRA</a>
       {user && <NavLink to="/overview">Overview</NavLink>}
       {user && <NavLink to="/assessments">Projects</NavLink>}
       <NavLink to="/" end>New product</NavLink>

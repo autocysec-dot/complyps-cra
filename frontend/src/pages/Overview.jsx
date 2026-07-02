@@ -126,6 +126,38 @@ export default function Overview() {
           <div className="date-pill"><strong>Main obligations</strong>{keyDates.mainObligationsApply}</div>
         </div>
       </div>
+
+      <InsightsStrip />
+    </div>
+  );
+}
+
+const INSIGHTS = [
+  { tag: 'Foundations', title: 'What is the EU Cyber Resilience Act?', href: '../blog/what-is-the-cra.html' },
+  { tag: 'Scope', title: 'Is my product in scope of the CRA?', href: '../blog/is-my-product-in-scope.html' },
+  { tag: 'Timeline', title: 'CRA timeline: the key dates', href: '../blog/cra-timeline-key-dates.html' },
+  { tag: 'Requirements', title: 'Annex I: the essential requirements', href: '../blog/annex-i-essential-requirements.html' },
+];
+
+function InsightsStrip() {
+  return (
+    <div className="card">
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8 }}>
+        <h2 style={{ margin: 0 }}>CRA Insights from our experts</h2>
+        <a href="../blog/" target="_blank" rel="noopener" className="small" style={{ fontWeight: 600 }}>All articles →</a>
+      </div>
+      <p className="muted small" style={{ marginTop: 4 }}>Short, practical reads to sharpen your CRA know-how — written by the ComplyPS team.</p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12, marginTop: 12 }}>
+        {INSIGHTS.map((a) => (
+          <a key={a.href} href={a.href} target="_blank" rel="noopener"
+             className="insight-card"
+             style={{ display: 'block', padding: 14, border: '1px solid var(--border)', borderRadius: 10, textDecoration: 'none' }}>
+            <span className="badge" style={{ background: 'var(--primary)', color: '#fff', fontSize: 11 }}>{a.tag}</span>
+            <div style={{ marginTop: 8, fontWeight: 600, color: 'var(--text)' }}>{a.title}</div>
+            <div className="small" style={{ marginTop: 6, color: 'var(--primary)', fontWeight: 600 }}>Read →</div>
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
