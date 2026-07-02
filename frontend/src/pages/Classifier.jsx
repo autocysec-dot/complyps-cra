@@ -5,7 +5,7 @@ import { useAuth } from '../auth.jsx';
 import ResultView from '../components/ResultView.jsx';
 
 export default function Classifier() {
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
   const navigate = useNavigate();
   const [questionnaire, setQuestionnaire] = useState(null);
   const [loadError, setLoadError] = useState('');
@@ -99,7 +99,15 @@ export default function Classifier() {
         <ResultView result={result} />
         <div className="card">
           <h2>Save this assessment</h2>
-          {user ? (
+          {isDemo ? (
+            <>
+              <p className="muted">This is a read-only demo — saving is disabled. Request your own account to save assessments.</p>
+              <div className="btn-row">
+                <button className="btn" onClick={() => navigate('/request-access')}>Request access</button>
+                <button className="btn secondary" onClick={restart}>Start over</button>
+              </div>
+            </>
+          ) : user ? (
             <>
               <label>Product name</label>
               <input

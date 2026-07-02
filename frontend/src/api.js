@@ -63,6 +63,8 @@ export const api = {
   passwordPolicy: () => request('/api/auth/password-policy'),
   authConfig: () => request('/api/auth/config'),
   me: () => request('/api/auth/me', { auth: true }),
+  changePassword: (currentPassword, newPassword) =>
+    request('/api/auth/change-password', { method: 'POST', body: { currentPassword, newPassword }, auth: true }),
 
   // Public forms (no login): request an account, or book a demo.
   requestAccess: (payload) => request('/api/access-request', { method: 'POST', body: payload }),
@@ -72,6 +74,7 @@ export const api = {
   adminListUsers: () => request('/api/admin/users', { auth: true }),
   adminCreateUser: (payload) => request('/api/admin/users', { method: 'POST', body: payload, auth: true }),
   adminDeleteUser: (id) => request(`/api/admin/users/${id}`, { method: 'DELETE', auth: true }),
+  adminResetPassword: (id) => request(`/api/admin/users/${id}/reset-password`, { method: 'POST', auth: true }),
   adminListAccessRequests: () => request('/api/admin/access-requests', { auth: true }),
   adminSetAccessRequestStatus: (id, status) => request(`/api/admin/access-requests/${id}`, { method: 'PATCH', body: { status }, auth: true }),
   adminDeleteAccessRequest: (id) => request(`/api/admin/access-requests/${id}`, { method: 'DELETE', auth: true }),

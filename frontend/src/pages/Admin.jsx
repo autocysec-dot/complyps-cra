@@ -66,12 +66,24 @@ function UsersTab({ currentUserId }) {
   }
 
   async function remove(id) {
-    if (!confirm('Delete this account? This cannot be undone.')) return;
+    if (!confirm('Delete this account and all its data? This cannot be undone.')) return;
     setError('');
     try { await api.adminDeleteUser(id); load(); } catch (err) { setError(err.message); }
   }
 
+  async function resetPw(id) {
+    if (!confirm('Reset this user\'s password to a new one?')) return;
+    setError(''); setCreated(null);
+    try { const d = await api.adminResetPassword(id); setCreated({ email: d.user.email, password: d.generatedPassword }); }
+    catch (err) { setError(err.message); }
+  }
+
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+  const ROLE_META = {
+    admin: { label: 'Admins', hint: 'Manage accounts and everything in the tool', color: 'var(--amber)' },
+    user: { label: 'Users', hint: 'Full access to use the tool', color: 'var(--green)' },
+    demo: { label: 'Demo / visitor', hint: 'Read-only, sample project only', color: '#38bdf8' },
+  };
 
   return (
     <>
@@ -86,8 +98,9 @@ function UsersTab({ currentUserId }) {
             <div><label>Password (optional)</label><input value={form.password} onChange={set('password')} placeholder="auto-generate if blank" /></div>
             <div><label>Role</label>
               <select value={form.role} onChange={set('role')}>
-                <option value="user">User (full tool access)</option>
-                <option value="admin">Admin</option>
+                <option value="user">User — full tool access</option>
+                <option value="admin">Admin — manages accounts</option>
+                <option value="demo">Demo — read-only visitor</option>
               </select>
             </div>
           </div>
@@ -96,21 +109,32 @@ function UsersTab({ currentUserId }) {
         {created && <Credential email={created.email} password={created.password} />}
       </div>
 
-      <div className="card">
-        <h2>Accounts</h2>
-        {!users && <p className="muted">Loading…</p>}
-        {users && users.length === 0 && <p className="muted">No accounts yet.</p>}
-        {users && users.map((u) => (
-          <div key={u.id} className="list-item">
-            <div className="grow">
-              <strong>{u.name}</strong> <span className="muted small">{u.email}</span>
-              <div className="muted small">{u.role === 'admin' ? 'Admin' : 'User'} · created {new Date(u.createdAt).toLocaleDateString()}</div>
-            </div>
-            <span className="badge" style={{ background: '#1e293b', color: u.role === 'admin' ? 'var(--amber)' : 'var(--green)' }}>{u.role}</span>
-            {u.id !== currentUserId && <button className="btn secondary" onClick={() => remove(u.id)}>Delete</button>}
+      {!users && <div className="card"><p className="muted">Loading…</p></div>}
+      {users && users.length === 0 && <div className="card"><p className="muted">No accounts yet.</p></div>}
+      {users && ['admin', 'user', 'demo'].map((role) => {
+        const rows = users.filter((u) => (u.role || 'user') === role);
+        const meta = ROLE_META[role];
+        return (
+          <div key={role} className="card">
+            <h2 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              {meta.label}
+              <span className="badge" style={{ background: '#1e293b', color: meta.color }}>{rows.length}</span>
+            </h2>
+            <p className="muted small" style={{ marginTop: -4 }}>{meta.hint}</p>
+            {rows.length === 0 && <p className="muted small">None.</p>}
+            {rows.map((u) => (
+              <div key={u.id} className="list-item">
+                <div className="grow">
+                  <strong>{u.name}</strong> <span className="muted small">{u.email}</span>
+                  <div className="muted small">created {new Date(u.createdAt).toLocaleDateString()}{u.id === currentUserId ? ' · you' : ''}</div>
+                </div>
+                <button className="btn secondary" onClick={() => resetPw(u.id)}>Reset password</button>
+                {u.id !== currentUserId && <button className="btn secondary" onClick={() => remove(u.id)}>Delete</button>}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        );
+      })}
     </>
   );
 }

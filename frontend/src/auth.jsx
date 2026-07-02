@@ -31,9 +31,10 @@ export function AuthProvider({ children }) {
   }
 
   const isAdmin = user?.role === 'admin';
+  const isDemo = user?.role === 'demo';
 
   return (
-    <AuthCtx.Provider value={{ user, loading, login, logout, isAdmin }}>
+    <AuthCtx.Provider value={{ user, loading, login, logout, isAdmin, isDemo, setUser }}>
       {children}
     </AuthCtx.Provider>
   );

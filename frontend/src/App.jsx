@@ -17,9 +17,10 @@ import CvdPolicy from './pages/CvdPolicy.jsx';
 import Settings from './pages/Settings.jsx';
 import RequestAccess from './pages/RequestAccess.jsx';
 import Admin from './pages/Admin.jsx';
+import Account from './pages/Account.jsx';
 
 function Nav() {
-  const { user, logout, isAdmin } = useAuth();
+  const { user, logout, isAdmin, isDemo } = useAuth();
   const navigate = useNavigate();
   return (
     <nav className="nav">
@@ -38,7 +39,8 @@ function Nav() {
       <div className="spacer" />
       {user ? (
         <>
-          <span className="muted small">{user.name}</span>
+          {isDemo && <span className="badge" style={{ background: 'var(--amber)', color: '#1e293b' }}>demo · read-only</span>}
+          <NavLink to="/account" className="muted small" title="Account & password">{user.name}</NavLink>
           <button className="btn secondary" onClick={() => { logout(); navigate('/'); }}>
             Log out
           </button>
@@ -47,6 +49,17 @@ function Nav() {
         <NavLink to="/login">Log in</NavLink>
       )}
     </nav>
+  );
+}
+
+function DemoBanner() {
+  const { isDemo } = useAuth();
+  if (!isDemo) return null;
+  return (
+    <div style={{ background: '#fef3c7', color: '#92400e', textAlign: 'center', padding: '8px 12px', fontSize: 14 }}>
+      You're exploring a <strong>read-only demo</strong> with a sample project. Changes are disabled.{' '}
+      <a href="#/request-access" style={{ color: '#92400e', fontWeight: 600, textDecoration: 'underline' }}>Request your own account →</a>
+    </div>
   );
 }
 
@@ -69,11 +82,13 @@ export default function App() {
   return (
     <>
       <Nav />
+      <DemoBanner />
       <Routes>
         <Route path="/" element={<Classifier />} />
         <Route path="/login" element={<Login />} />
         <Route path="/request-access" element={<RequestAccess />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/account" element={<RequireAuth><Account /></RequireAuth>} />
         <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
         <Route
           path="/overview"
