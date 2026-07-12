@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== SEO ===== -->
+  <title>ComplyPS — EU Cyber Resilience Act (CRA) Compliance Made Easy</title>
+  <meta name="description" content="ComplyPS (Comply Product Security) helps manufacturers comply with the EU Cyber Resilience Act. Classify your product, self-assess against Annex I, and stay audit-ready. Your all-in-one CRA solution: easy, fast, complete." />
+  <meta name="keywords" content="EU Cyber Resilience Act, CRA compliance, CRA, product security, Annex I, conformity assessment, CE marking, cybersecurity, Regulation (EU) 2024/2847" />
+  <meta name="author" content="ComplyPS" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://complyps.com/complyps-cra/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ComplyPS — EU Cyber Resilience Act (CRA) Compliance Made Easy" />
+  <meta property="og:description" content="Your all-in-one CRA solution: easy, fast, complete. Classify, self-assess and stay audit-ready for the EU Cyber Resilience Act." />
+  <meta property="og:url" content="https://complyps.com/complyps-cra/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- ===== Tailwind (CDN) ===== -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand palette: security/tech feel — blues, greens, white.
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff', 100: '#dbeafe', 500: '#2563eb', 600: '#1d4ed8', 700: '#1e40af', 900: '#1e3a5f',
+            },
+            accent: { 500: '#16a34a', 600: '#15803d' },
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+
+  <!-- ===== Custom CSS ===== -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    html { scroll-behavior: smooth; }
+    .hero-gradient { background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 55%, #15803d 130%); }
+    .text-gradient { background: linear-gradient(90deg, #2563eb, #16a34a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -12px rgba(37,99,235,.25); }
+    /* subtle grid pattern for the hero background */
+    .grid-pattern { background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 40px 40px; }
+  </style>
+</head>
+
+<body class="font-sans text-slate-800 bg-white antialiased">
+
+  <!-- ============================================================= -->
+  <!-- 1. NAVBAR                                                      -->
+  <!-- ============================================================= -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <!-- Left: back to ComplyPS + section label -->
+      <div class="flex items-center gap-3">
+        <a href="../" class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-brand-600" title="Back to ComplyPS">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 12L6 8l4-4"/></svg>
+          ComplyPS
+        </a>
+        <span class="text-slate-300">/</span>
+        <a href="./" class="flex items-center gap-2">
+          <img src="/favicon.svg" alt="CPS" class="w-8 h-8 rounded-lg" />
+          <span class="text-lg font-extrabold tracking-tight">ComplyCRA</span>
+        </a>
+      </div>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+        <a href="#product" class="hover:text-brand-500">Product</a>
+        <a href="#cra" class="hover:text-brand-500">What is the CRA</a>
+        <a href="#solutions" class="hover:text-brand-500">Why us</a>
+        <a href="blog/" class="hover:text-brand-500">Insights</a>
+        <a href="#pricing" class="hover:text-brand-500">Get started</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="app/#/login" class="hidden sm:inline-flex text-sm font-semibold text-slate-600 hover:text-brand-600">Log in</a>
+        <a href="app/" class="hidden sm:inline-flex text-sm font-semibold text-brand-600 hover:text-brand-700">Open ComplyCRA</a>
+        <a href="#contact" class="inline-flex items-center rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-4 py-2">Book a Demo</a>
+        <!-- Mobile menu toggle -->
+        <button id="menuBtn" class="md:hidden p-2 text-slate-600" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white px-4 py-3 space-y-2 text-sm font-medium text-slate-600">
+      <a href="../" class="block py-1">← Back to ComplyPS</a>
+      <a href="#product" class="block py-1">Product</a>
+      <a href="#cra" class="block py-1">What is the CRA</a>
+      <a href="#solutions" class="block py-1">Why us</a>
+      <a href="blog/" class="block py-1">Insights</a>
+      <a href="#pricing" class="block py-1">Get started</a>
+      <a href="app/#/login" class="block py-1">Log in</a>
+      <a href="app/" class="block py-1 text-brand-600 font-semibold">Open ComplyCRA</a>
+    </div>
+  </header>
+
+  <!-- ============================================================= -->
+  <!-- 2. HERO                                                        -->
+  <!-- ============================================================= -->
+  <section id="home" class="hero-gradient text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-pattern opacity-60"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+      <!-- Left: message + CTAs -->
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-medium mb-5">
+          <span class="w-2 h-2 rounded-full bg-accent-500"></span> Regulation (EU) 2024/2847 · effective Dec 2027
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+          ComplyCRA — your all-in-one
+          <span class="block mt-2 bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent">CRA compliance solution</span>
+        </h1>
+        <p class="mt-5 text-lg text-blue-100">
+          From working out whether your product is in scope, to self-assessing Annex I, to an AI gap
+          assessment and audit-ready reports — with all of your data processed privately.
+        </p>
+        <a href="app/#/demo" class="mt-6 group inline-flex items-center gap-3 rounded-xl bg-accent-500 hover:bg-accent-600 text-white font-semibold pl-5 pr-4 py-3 shadow-lg shadow-emerald-900/30">
+          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-white/25 text-sm">▶</span>
+          Request a live demo
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </a>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a href="app/" class="inline-flex items-center justify-center rounded-lg bg-white text-brand-700 font-semibold px-5 py-2.5 hover:bg-blue-50">Open ComplyCRA</a>
+          <a href="#contact" class="inline-flex items-center justify-center rounded-lg ring-1 ring-white/40 hover:bg-white/10 font-semibold px-5 py-2.5">Book a demo</a>
+        </div>
+        <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-blue-100">
+          <span class="flex items-center gap-2">✓ Scope &amp; risk classification</span>
+          <span class="flex items-center gap-2">✓ Annex I self-assessment</span>
+          <span class="flex items-center gap-2">✓ AI gap assessment</span>
+        </div>
+      </div>
+
+      <!-- Right: dashboard preview -->
+      <div class="relative">
+        <div class="absolute -inset-3 bg-white/10 rounded-3xl blur-xl"></div>
+        <svg class="relative w-full rounded-xl shadow-2xl ring-1 ring-white/20" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ComplyCRA compliance dashboard preview">
+          <defs><clipPath id="winCra"><rect x="0" y="0" width="1000" height="600" rx="16"/></clipPath></defs>
+          <g clip-path="url(#winCra)">
+            <rect width="1000" height="600" fill="#ffffff"/>
+            <rect width="1000" height="44" fill="#f1f5f9"/>
+            <circle cx="26" cy="22" r="6" fill="#f87171"/><circle cx="50" cy="22" r="6" fill="#fbbf24"/><circle cx="74" cy="22" r="6" fill="#34d399"/>
+            <rect x="120" y="12" width="560" height="20" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+            <text x="140" y="26" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8">complyps.com/complyps-cra/app</text>
+            <rect x="0" y="44" width="1000" height="556" fill="#f8fafc"/>
+            <text x="40" y="86" font-family="Inter, sans-serif" font-size="24" font-weight="800" fill="#0f172a">Compliance overview</text>
+            <text x="40" y="108" font-family="Inter, sans-serif" font-size="13" fill="#64748b">Your CRA posture across all products, with open reporting deadlines.</text>
+            <g font-family="Inter, sans-serif">
+              <rect x="40" y="124" width="215" height="92" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+              <circle cx="82" cy="170" r="22" fill="none" stroke="#e2e8f0" stroke-width="8"/>
+              <circle cx="82" cy="170" r="22" fill="none" stroke="#16a34a" stroke-width="8" stroke-linecap="round" stroke-dasharray="108 138" transform="rotate(-90 82 170)"/>
+              <text x="82" y="174" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">78%</text>
+              <text x="120" y="165" font-size="12" fill="#64748b">Overall</text>
+              <text x="120" y="182" font-size="12" fill="#64748b">coverage</text>
+              <rect x="275" y="124" width="215" height="92" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+              <text x="291" y="150" font-size="12" fill="#64748b">Products</text>
+              <text x="291" y="188" font-size="30" font-weight="800" fill="#0f172a">6</text>
+              <text x="330" y="188" font-size="11" fill="#94a3b8">5 in scope</text>
+              <rect x="510" y="124" width="215" height="92" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+              <text x="526" y="150" font-size="12" fill="#64748b">Avg Annex I readiness</text>
+              <text x="526" y="190" font-size="30" font-weight="800" fill="#16a34a">82%</text>
+              <rect x="745" y="124" width="215" height="92" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+              <text x="761" y="150" font-size="12" fill="#64748b">Reporting overdue</text>
+              <text x="761" y="188" font-size="26" font-weight="800" fill="#16a34a">0</text>
+            </g>
+            <g font-family="Inter, sans-serif">
+              <rect x="40" y="232" width="920" height="196" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+              <text x="60" y="264" font-size="15" font-weight="700" fill="#0f172a">Products</text>
+              <text x="60" y="298" font-size="13" fill="#0f172a">ACME Router X1</text>
+              <rect x="330" y="286" width="92" height="18" rx="9" fill="#dcfce7"/><text x="376" y="299" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">Default</text>
+              <rect x="560" y="291" width="300" height="8" rx="4" fill="#e2e8f0"/><rect x="560" y="291" width="276" height="8" rx="4" fill="#16a34a"/>
+              <text x="872" y="299" font-size="12" fill="#475569">92%</text>
+              <text x="60" y="336" font-size="13" fill="#0f172a">SmartHub Gateway</text>
+              <rect x="330" y="324" width="92" height="18" rx="9" fill="#fef3c7"/><text x="376" y="337" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">Important II</text>
+              <rect x="560" y="329" width="300" height="8" rx="4" fill="#e2e8f0"/><rect x="560" y="329" width="234" height="8" rx="4" fill="#f59e0b"/>
+              <text x="872" y="337" font-size="12" fill="#475569">78%</text>
+              <text x="60" y="374" font-size="13" fill="#0f172a">SecureCam Pro</text>
+              <rect x="330" y="362" width="92" height="18" rx="9" fill="#fee2e2"/><text x="376" y="375" text-anchor="middle" font-size="10" font-weight="700" fill="#b91c1c">Critical</text>
+              <rect x="560" y="367" width="300" height="8" rx="4" fill="#e2e8f0"/><rect x="560" y="367" width="192" height="8" rx="4" fill="#ef4444"/>
+              <text x="872" y="375" font-size="12" fill="#475569">64%</text>
+              <text x="60" y="412" font-size="13" fill="#0f172a">Edge Controller</text>
+              <rect x="330" y="400" width="92" height="18" rx="9" fill="#dbeafe"/><text x="376" y="413" text-anchor="middle" font-size="10" font-weight="700" fill="#1d4ed8">Important I</text>
+              <rect x="560" y="405" width="300" height="8" rx="4" fill="#e2e8f0"/><rect x="560" y="405" width="264" height="8" rx="4" fill="#16a34a"/>
+              <text x="872" y="413" font-size="12" fill="#475569">88%</text>
+            </g>
+            <g font-family="Inter, sans-serif">
+              <rect x="40" y="444" width="920" height="120" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+              <text x="60" y="476" font-size="15" font-weight="700" fill="#0f172a">Key CRA dates</text>
+              <rect x="60" y="490" width="280" height="56" rx="10" fill="#f1f5f9"/>
+              <text x="78" y="514" font-size="11" fill="#64748b">Reporting obligations</text><text x="78" y="534" font-size="15" font-weight="700" fill="#0f172a">11 Sep 2026</text>
+              <rect x="360" y="490" width="280" height="56" rx="10" fill="#eff6ff"/>
+              <text x="378" y="514" font-size="11" fill="#1d4ed8">Main obligations</text><text x="378" y="534" font-size="15" font-weight="700" fill="#1d4ed8">11 Dec 2027</text>
+              <rect x="660" y="490" width="280" height="56" rx="10" fill="#f1f5f9"/>
+              <text x="678" y="514" font-size="11" fill="#64748b">Support periods</text><text x="678" y="534" font-size="15" font-weight="700" fill="#16a34a">OK</text>
+            </g>
+          </g>
+          <rect x="0.5" y="0.5" width="999" height="599" rx="16" fill="none" stroke="#e2e8f0"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 2a. TRUST STRIP                                                -->
+  <!-- ============================================================= -->
+  <section class="border-b border-slate-100 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <div><div class="text-sm font-bold text-slate-800">Reg. (EU) 2024/2847</div><div class="text-xs text-slate-500">Built on the official CRA text</div></div>
+      <div><div class="text-sm font-bold text-slate-800">Offline &amp; private</div><div class="text-xs text-slate-500">Your data never leaves your control</div></div>
+      <div><div class="text-sm font-bold text-slate-800">Ready before Dec 2027</div><div class="text-xs text-slate-500">Beat the compliance deadline</div></div>
+      <div><div class="text-sm font-bold text-slate-800">Classify in minutes</div><div class="text-xs text-slate-500">No account needed to start</div></div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 2b. PRODUCT SHOWCASE — "See it in action" (dashboard mockup)   -->
+  <!-- ============================================================= -->
+  <section id="product" class="py-20 lg:py-28 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full bg-brand-100 text-brand-700 px-3 py-1 text-xs font-bold">WHAT'S INSIDE</span>
+          <h2 class="mt-4 text-3xl lg:text-4xl font-extrabold">Everything you need to get CRA-ready</h2>
+          <p class="mt-4 text-lg text-slate-600">Coverage across every product, open reporting deadlines, SBOM vulnerabilities and an AI gap assessment — one guided workflow, with your data kept private.</p>
+          <ul class="mt-6 space-y-3 text-slate-700 text-left inline-block">
+            <li class="flex items-start gap-3"><span class="text-accent-600 font-bold">✓</span> <span><strong>Overall coverage %</strong> rolled up across all products</span></li>
+            <li class="flex items-start gap-3"><span class="text-accent-600 font-bold">✓</span> <span><strong>Offline SBOM scanning</strong> against known CVEs &amp; exploited-vuln status</span></li>
+            <li class="flex items-start gap-3"><span class="text-accent-600 font-bold">✓</span> <span><strong>Approval-gated reporting</strong> with 24h / 72h / final templates</span></li>
+            <li class="flex items-start gap-3"><span class="text-accent-600 font-bold">✓</span> <span><strong>Your data stays private</strong> — processed on your own infrastructure</span></li>
+          </ul>
+          <div class="mt-8 flex flex-wrap gap-4 justify-center">
+            <a href="app/#/demo" class="inline-flex items-center justify-center rounded-lg bg-accent-500 hover:bg-accent-600 text-white font-semibold px-6 py-3">Request a live demo</a>
+            <a href="app/" class="inline-flex items-center justify-center rounded-lg ring-1 ring-slate-300 hover:ring-brand-400 font-semibold px-6 py-3">Try the classifier free</a>
+            <a href="ComplyCRA-Brochure.pdf" download class="inline-flex items-center gap-2 justify-center rounded-lg ring-1 ring-slate-300 hover:ring-brand-400 font-semibold px-6 py-3">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8m0 0l-3-3m3 3l3-3M2 12h12"/></svg>
+              Download brochure (PDF)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 3. WHAT IS THE EU CRA?                                         -->
+  <!-- ============================================================= -->
+  <section id="cra" class="py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl lg:text-4xl font-extrabold">What is the EU Cyber Resilience Act?</h2>
+        <p class="mt-4 text-lg text-slate-600">
+          The CRA (Regulation (EU) 2024/2847) sets mandatory cybersecurity requirements for almost any
+          <strong>product with digital elements</strong> placed on the EU market — hardware or software that
+          connects to a device or network. Non-compliance can mean fines and market withdrawal.
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="mt-16 grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl border border-slate-100 p-6 bg-slate-50">
+          <div class="text-brand-500 font-bold text-sm">10 Dec 2024</div>
+          <h3 class="mt-2 font-semibold">Entered into force</h3>
+          <p class="mt-2 text-sm text-slate-600">The regulation is law; the compliance clock starts ticking.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 p-6 bg-slate-50">
+          <div class="text-brand-500 font-bold text-sm">11 Sep 2026</div>
+          <h3 class="mt-2 font-semibold">Reporting obligations</h3>
+          <p class="mt-2 text-sm text-slate-600">Actively exploited vulnerabilities &amp; severe incidents must be reported (24h / 72h).</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 p-6 bg-slate-50">
+          <div class="text-accent-500 font-bold text-sm">11 Dec 2027</div>
+          <h3 class="mt-2 font-semibold">Main obligations apply</h3>
+          <p class="mt-2 text-sm text-slate-600">Full requirements, conformity assessment and CE marking become mandatory.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 4. WHY COMPLYPS — Easy / Fast / Complete                       -->
+  <!-- ============================================================= -->
+  <section id="solutions" class="py-20 lg:py-28 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-extrabold">Why ComplyPS for CRA?</h2>
+        <p class="mt-4 text-lg text-slate-600">Compliance shouldn't need a team of consultants. We make it <span class="text-gradient font-semibold">easy, fast and complete</span>.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-3 gap-8">
+        <!-- Easy -->
+        <div class="card-hover rounded-2xl bg-white border border-slate-100 p-8 text-center">
+          <div class="mx-auto w-14 h-14 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center text-2xl">🧭</div>
+          <h3 class="mt-5 text-xl font-bold">Easy</h3>
+          <p class="mt-3 text-slate-600">Plain-language questions replace dense legal text. Answer a short wizard and get a clear verdict.</p>
+        </div>
+        <!-- Fast -->
+        <div class="card-hover rounded-2xl bg-white border border-slate-100 p-8 text-center">
+          <div class="mx-auto w-14 h-14 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center text-2xl">⚡</div>
+          <h3 class="mt-5 text-xl font-bold">Fast</h3>
+          <p class="mt-3 text-slate-600">Classify a product in minutes, not weeks. Instant risk-class and conformity-route guidance.</p>
+        </div>
+        <!-- Complete -->
+        <div class="card-hover rounded-2xl bg-white border border-slate-100 p-8 text-center">
+          <div class="mx-auto w-14 h-14 rounded-xl bg-accent-500/10 text-accent-500 flex items-center justify-center text-2xl">✅</div>
+          <h3 class="mt-5 text-xl font-bold">Complete</h3>
+          <p class="mt-3 text-slate-600">From scope to Annex I self-assessment to readiness scoring — the whole journey in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 5. KEY FEATURES                                                -->
+  <!-- ============================================================= -->
+  <section class="py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-extrabold">Key features</h2>
+        <p class="mt-4 text-lg text-slate-600">Purpose-built for the Cyber Resilience Act.</p>
+      </div>
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Feature cards -->
+        <div class="rounded-2xl border border-slate-100 p-6 card-hover">
+          <div class="text-2xl">🎯</div>
+          <h3 class="mt-3 font-bold">Scope &amp; risk classifier</h3>
+          <p class="mt-2 text-sm text-slate-600">Determine if your product is in scope and its class — default, important (Annex III, I &amp; II) or critical (Annex IV).</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 p-6 card-hover">
+          <div class="text-2xl">📋</div>
+          <h3 class="mt-3 font-bold">Annex I self-assessment</h3>
+          <p class="mt-2 text-sm text-slate-600">Rate every essential and vulnerability-handling requirement, capture evidence, and see your gaps.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 p-6 card-hover">
+          <div class="text-2xl">📈</div>
+          <h3 class="mt-3 font-bold">Readiness scoring</h3>
+          <p class="mt-2 text-sm text-slate-600">A live readiness percentage per product so you always know how close you are.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 p-6 card-hover">
+          <div class="text-2xl">🛤️</div>
+          <h3 class="mt-3 font-bold">Conformity routes</h3>
+          <p class="mt-2 text-sm text-slate-600">The right conformity-assessment path (Module A, B+C, H or certification) for your risk class.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 p-6 card-hover">
+          <div class="text-2xl">🗂️</div>
+          <h3 class="mt-3 font-bold">Multi-product workspace</h3>
+          <p class="mt-2 text-sm text-slate-600">Save assessments per product and revisit them as your portfolio grows.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 p-6 card-hover">
+          <div class="text-2xl">🔒</div>
+          <h3 class="mt-3 font-bold">Your data stays yours</h3>
+          <p class="mt-2 text-sm text-slate-600">Secure accounts and private assessments — built for confidentiality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 6. HOW IT WORKS                                                -->
+  <!-- ============================================================= -->
+  <section class="py-20 lg:py-28 bg-brand-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-extrabold">How it works</h2>
+        <p class="mt-4 text-lg text-blue-100">Four steps from uncertainty to audit-ready.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-4 gap-6">
+        <div class="relative rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+          <div class="text-3xl font-extrabold text-emerald-300">1</div>
+          <h3 class="mt-3 font-bold">Classify</h3>
+          <p class="mt-2 text-sm text-blue-100">Answer a short wizard to find your scope and risk class.</p>
+        </div>
+        <div class="relative rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+          <div class="text-3xl font-extrabold text-emerald-300">2</div>
+          <h3 class="mt-3 font-bold">Self-assess</h3>
+          <p class="mt-2 text-sm text-blue-100">Work through the Annex I requirements and record evidence.</p>
+        </div>
+        <div class="relative rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+          <div class="text-3xl font-extrabold text-emerald-300">3</div>
+          <h3 class="mt-3 font-bold">Close gaps</h3>
+          <p class="mt-2 text-sm text-blue-100">See your readiness score and prioritise the gaps that matter.</p>
+        </div>
+        <div class="relative rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+          <div class="text-3xl font-extrabold text-emerald-300">4</div>
+          <h3 class="mt-3 font-bold">Stay ready</h3>
+          <p class="mt-2 text-sm text-blue-100">Keep documentation current as products and the regulation evolve.</p>
+        </div>
+      </div>
+      <div class="mt-12 text-center">
+        <a href="app/" class="inline-flex items-center justify-center rounded-lg bg-white text-brand-700 font-semibold px-6 py-3 hover:bg-blue-50">Open ComplyCRA</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 7. RESOURCES / GET STARTED                                     -->
+  <!-- ============================================================= -->
+  <section id="pricing" class="py-20 lg:py-28">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-slate-100 bg-gradient-to-br from-brand-50 to-emerald-50 p-10 lg:p-14 text-center">
+        <h2 class="text-3xl lg:text-4xl font-extrabold">See where your product stands</h2>
+        <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+          Run a guided CRA scope &amp; risk check, then go deeper with the Annex I self-assessment.
+          Talk to us for a tailored walkthrough and access to the full platform.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href="app/" class="inline-flex items-center justify-center rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-3">Open ComplyCRA</a>
+          <a href="#contact" class="inline-flex items-center justify-center rounded-lg ring-1 ring-brand-200 hover:bg-white font-semibold px-6 py-3 text-brand-700">Book a demo</a>
+        </div>
+        <p class="mt-4 text-xs text-slate-500">Detailed pricing available on request.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 8. TESTIMONIALS                                                -->
+  <!-- ============================================================= -->
+  <section id="blog" class="py-20 lg:py-28 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-extrabold">Trusted by product teams</h2>
+        <p class="mt-4 text-lg text-slate-600">What early users say about getting CRA-ready with ComplyPS.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-3 gap-6">
+        <figure class="rounded-2xl bg-white border border-slate-100 p-7">
+          <blockquote class="text-slate-700">“We went from 'where do we even start' to a clear risk class and gap list in an afternoon.”</blockquote>
+          <figcaption class="mt-5 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold">A</div>
+            <div><div class="font-semibold text-sm">Product Security Lead</div><div class="text-xs text-slate-500">IoT manufacturer</div></div>
+          </figcaption>
+        </figure>
+        <figure class="rounded-2xl bg-white border border-slate-100 p-7">
+          <blockquote class="text-slate-700">“The Annex I self-assessment finally made the essential requirements concrete for our engineers.”</blockquote>
+          <figcaption class="mt-5 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">M</div>
+            <div><div class="font-semibold text-sm">Compliance Manager</div><div class="text-xs text-slate-500">Industrial software vendor</div></div>
+          </figcaption>
+        </figure>
+        <figure class="rounded-2xl bg-white border border-slate-100 p-7">
+          <blockquote class="text-slate-700">“A readiness percentage we can show leadership — that alone was worth it.”</blockquote>
+          <figcaption class="mt-5 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold">R</div>
+            <div><div class="font-semibold text-sm">CTO</div><div class="text-xs text-slate-500">Connected-device startup</div></div>
+          </figcaption>
+        </figure>
+      </div>
+      <p class="mt-6 text-center text-xs text-slate-400">Illustrative testimonials shown as placeholders.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 8b. LATEST INSIGHTS (blog)                                     -->
+  <!-- ============================================================= -->
+  <section id="insights" class="py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-slate-50 ring-1 ring-slate-100 p-8 lg:p-12">
+        <div class="flex flex-col lg:flex-row lg:items-center gap-8">
+          <div class="lg:max-w-md">
+            <p class="text-sm font-bold text-brand-600 uppercase tracking-wide">CRA Insights</p>
+            <h2 class="mt-2 text-3xl lg:text-4xl font-extrabold">Guidance from people who know the CRA</h2>
+            <p class="mt-3 text-lg text-slate-600">Nine plain-English articles — scope, risk classes, Annex I, SBOMs, reporting, CVD and more — written from the regulation and security best practice.</p>
+            <a href="blog/" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-3">
+              Browse all 9 articles
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 4l6 5-6 5"/></svg>
+            </a>
+          </div>
+          <div class="flex-1 flex flex-wrap gap-2.5 content-start">
+            <a href="blog/what-is-the-cra.html" class="rounded-full bg-white ring-1 ring-slate-200 hover:ring-brand-400 hover:text-brand-600 px-4 py-2 text-sm font-medium">What is the CRA?</a>
+            <a href="blog/is-my-product-in-scope.html" class="rounded-full bg-white ring-1 ring-slate-200 hover:ring-brand-400 hover:text-brand-600 px-4 py-2 text-sm font-medium">Is my product in scope?</a>
+            <a href="blog/cra-timeline-key-dates.html" class="rounded-full bg-white ring-1 ring-slate-200 hover:ring-brand-400 hover:text-brand-600 px-4 py-2 text-sm font-medium">Timeline &amp; key dates</a>
+            <a href="blog/annex-i-essential-requirements.html" class="rounded-full bg-white ring-1 ring-slate-200 hover:ring-brand-400 hover:text-brand-600 px-4 py-2 text-sm font-medium">Annex I requirements</a>
+            <a href="blog/cra-conformity-assessment-routes.html" class="rounded-full bg-white ring-1 ring-slate-200 hover:ring-brand-400 hover:text-brand-600 px-4 py-2 text-sm font-medium">Conformity routes</a>
+            <a href="blog/sbom-and-the-cra.html" class="rounded-full bg-white ring-1 ring-slate-200 hover:ring-brand-400 hover:text-brand-600 px-4 py-2 text-sm font-medium">SBOMs &amp; the CRA</a>
+            <a href="blog/cra-incident-vulnerability-reporting.html" class="rounded-full bg-white ring-1 ring-slate-200 hover:ring-brand-400 hover:text-brand-600 px-4 py-2 text-sm font-medium">24h / 72h / final report</a>
+            <a href="blog/coordinated-vulnerability-disclosure-policy.html" class="rounded-full bg-white ring-1 ring-slate-200 hover:ring-brand-400 hover:text-brand-600 px-4 py-2 text-sm font-medium">CVD policy</a>
+            <a href="blog/cra-90-day-readiness-plan.html" class="rounded-full bg-white ring-1 ring-slate-200 hover:ring-brand-400 hover:text-brand-600 px-4 py-2 text-sm font-medium">90-day readiness plan</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 9. FINAL CTA                                                   -->
+  <!-- ============================================================= -->
+  <section id="contact" class="hero-gradient text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl lg:text-4xl font-extrabold">Get CRA-ready with ComplyPS</h2>
+        <p class="mt-4 text-lg text-blue-100">Open ComplyCRA now, or book a demo and we'll walk you through the whole platform.</p>
+        <div class="mt-8">
+          <a href="app/" class="inline-flex items-center justify-center rounded-lg bg-white text-brand-700 font-semibold px-6 py-3 hover:bg-blue-50">Open ComplyCRA</a>
+        </div>
+      </div>
+      <!-- Book a Demo form -> posts to the backend admin inbox -->
+      <div class="rounded-2xl bg-white text-slate-800 p-6 sm:p-8 shadow-xl">
+        <h3 class="text-xl font-bold">Book a demo</h3>
+        <p class="mt-1 text-sm text-slate-500">Tell us a bit about you and we'll be in touch to arrange a walkthrough.</p>
+        <form id="demoForm" class="mt-5 space-y-3">
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input name="name" required placeholder="Your name *" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400" />
+            <input name="email" type="email" required placeholder="Work email *" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400" />
+          </div>
+          <input name="company" placeholder="Company" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400" />
+          <textarea name="message" rows="3" placeholder="What would you like to see?" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400"></textarea>
+          <label class="flex items-start gap-2 text-xs text-slate-500">
+            <input type="checkbox" name="consent" required class="mt-0.5" />
+            <span>I agree that ComplyPS may store my name and email to respond to this request, as described in the <a href="/privacy.html" target="_blank" class="text-brand-600 underline">Privacy Policy</a>.</span>
+          </label>
+          <button type="submit" class="w-full inline-flex items-center justify-center rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-3">Request a demo</button>
+          <p id="demoMsg" class="text-sm" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book-a-demo form handler: POST to the backend; fall back to email. -->
+  <script>
+    (function () {
+      var API = 'https://api.complyps.com';
+      var MAILTO = 'complyps@outlook.com';
+      var form = document.getElementById('demoForm');
+      if (!form) return;
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var msg = document.getElementById('demoMsg');
+        var btn = form.querySelector('button[type=submit]');
+        var data = Object.fromEntries(new FormData(form).entries());
+        if (!form.querySelector('[name=consent]').checked) {
+          msg.className = 'text-sm text-red-600'; msg.textContent = 'Please agree to the privacy policy to continue.';
+          return;
+        }
+        data.consent = true;
+        msg.className = 'text-sm text-slate-500'; msg.textContent = 'Sending…';
+        btn.disabled = true;
+        try {
+          var res = await fetch(API + '/api/demo-request', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
+          });
+          if (!res.ok) throw new Error('bad status');
+          form.reset();
+          msg.className = 'text-sm text-emerald-600 font-medium';
+          msg.textContent = 'Thanks! Your demo request has been sent — we’ll be in touch shortly.';
+        } catch (err) {
+          // Fallback: open the visitor's email client addressed to us.
+          var body = encodeURIComponent(
+            'Name: ' + (data.name || '') + '\nEmail: ' + (data.email || '') +
+            '\nCompany: ' + (data.company || '') + '\n\n' + (data.message || ''));
+          msg.className = 'text-sm text-slate-600';
+          msg.innerHTML = 'Could not reach us right now. ' +
+            '<a class="text-brand-600 font-semibold underline" href="mailto:' + MAILTO +
+            '?subject=Demo%20request&body=' + body + '">Email us instead →</a>';
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    })();
+  </script>
+
+  <!-- ============================================================= -->
+  <!-- 10. FOOTER                                                     -->
+  <!-- ============================================================= -->
+  <footer class="bg-slate-900 text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-2">
+          <img src="/favicon.svg" alt="CPS" class="w-8 h-8 rounded-lg" />
+          <span class="text-lg font-extrabold text-white">Comply<span class="text-brand-500">PS</span></span>
+        </div>
+        <p class="mt-3 text-sm text-slate-400">Compliance for Product Security. Practical tooling for EU product-cybersecurity regulations.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold text-sm">Solutions</h4>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="app/" class="hover:text-white">Open ComplyCRA</a></li>
+          <li><a href="app/#/login" class="hover:text-white">Log in</a></li>
+          <li><span class="text-slate-500">NIS2 (coming soon)</span></li>
+          <li><span class="text-slate-500">RED / more (coming soon)</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold text-sm">Company</h4>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="#cra" class="hover:text-white">About CRA</a></li>
+          <li><a href="blog/" class="hover:text-white">Insights (blog)</a></li>
+          <li><a href="ComplyCRA-Brochure.pdf" download class="hover:text-white">Brochure (PDF)</a></li>
+          <li><a href="#contact" class="hover:text-white">Contact</a></li>
+          <li><a href="/privacy.html" class="hover:text-white">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold text-sm">Get in touch</h4>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="mailto:complyps@outlook.com" class="hover:text-white">complyps@outlook.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <p>© <span id="year"></span> ComplyPS. All rights reserved.</p>
+        <p>Decision-support only — not legal advice. The official text of Regulation (EU) 2024/2847 prevails.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Minimal JS: mobile menu + year ===== -->
+  <script>
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="/js/cookie-notice.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Is My Product in Scope of the CRA? A Decision Guide | ComplyPS</title>
+  <meta name="description" content="A step-by-step guide to deciding whether your product falls under the EU Cyber Resilience Act: what 'products with digital elements' means, the main exclusions, and how to reason about scope." />
+  <meta name="keywords" content="CRA scope, is my product in scope, products with digital elements, CRA exclusions, Cyber Resilience Act" />
+  <link rel="canonical" href="https://complyps.com/complyps-cra/blog/is-my-product-in-scope.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Is My Product in Scope of the CRA?" />
+  <meta property="og:description" content="A step-by-step decision guide to CRA scope and exclusions." />
+  <meta property="og:url" content="https://complyps.com/complyps-cra/blog/is-my-product-in-scope.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { brand: { 50:'#eff6ff',100:'#dbeafe',500:'#2563eb',600:'#1d4ed8',700:'#1e40af',900:'#1e3a5f' }, accent: { 500:'#16a34a',600:'#15803d' } },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    } } };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    html { scroll-behavior: smooth; }
+    .prose h2 { font-size:1.5rem; font-weight:800; margin-top:2.25rem; margin-bottom:.75rem; color:#0f172a; }
+    .prose h3 { font-size:1.15rem; font-weight:700; margin-top:1.75rem; margin-bottom:.5rem; color:#1e293b; }
+    .prose p { margin:.9rem 0; line-height:1.75; color:#334155; }
+    .prose ul { margin:.9rem 0; padding-left:1.25rem; list-style:disc; color:#334155; }
+    .prose li { margin:.4rem 0; line-height:1.7; }
+    .prose strong { color:#0f172a; }
+    .prose .callout { background:#eff6ff; border-left:4px solid #2563eb; border-radius:.5rem; padding:1rem 1.25rem; margin:1.5rem 0; }
+  </style>
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased">
+
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <div class="flex items-center gap-3 text-sm font-medium">
+        <a href="../../" class="inline-flex items-center gap-1.5 text-slate-500 hover:text-brand-600" title="Back to ComplyPS">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 12L6 8l4-4"/></svg>
+          ComplyPS
+        </a>
+        <span class="text-slate-300">/</span>
+        <a href="../" class="hover:text-brand-600">ComplyCRA</a>
+        <span class="text-slate-300">/</span>
+        <a href="./" class="hover:text-brand-600">Insights</a>
+      </div>
+      <a href="../app/" class="inline-flex items-center rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-4 py-2">Open ComplyCRA</a>
+    </nav>
+  </header>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs font-bold text-brand-600 uppercase tracking-wide">Scope</p>
+    <h1 class="mt-3 text-4xl font-extrabold leading-tight text-slate-900">Is my product in scope of the CRA?</h1>
+    <p class="mt-4 text-lg text-slate-500">"Products with digital elements", the main exclusions, and a step-by-step way to decide.</p>
+
+    <div class="prose mt-8">
+      <p>The single most common CRA question is also the first one you need to answer: <strong>does this regulation even apply to my product?</strong> Get it wrong in one direction and you waste effort; get it wrong in the other and you ship something non-compliant. This guide gives you a structured way to reason about it. It is a starting point, not a substitute for reading Regulation (EU) 2024/2847 or getting professional advice on edge cases.</p>
+
+      <h2>Step 1 — Does it have "digital elements"?</h2>
+      <p>The CRA applies to <strong>products with digital elements</strong>: any software or hardware product, plus its remote data-processing solutions, whose intended purpose includes a direct or indirect data connection to a device or network. Ask yourself:</p>
+      <ul>
+        <li>Does the product contain software or firmware?</li>
+        <li>Can it connect — directly or indirectly — to another device or to a network (wired, Wi-Fi, Bluetooth, cellular, etc.)?</li>
+      </ul>
+      <p>If the answer is yes, it is very likely a product with digital elements. This is intentionally wide: a smart thermostat, a mobile app, an operating system, a networked printer, a firmware image, and a software library can all qualify. Even indirect connectivity counts — a component that connects through another device is included.</p>
+
+      <div class="callout"><strong>Rule of thumb:</strong> if it has code and can talk to anything, assume it is in scope until you find a specific reason it is not.</div>
+
+      <h2>Step 2 — Is it placed on the EU market in the course of a commercial activity?</h2>
+      <p>The CRA covers products <strong>made available on the EU market</strong> as part of a commercial activity — sold, licensed, or otherwise supplied to customers in the Union. A purely internal tool you build and use only inside your own company, and never place on the market, is a different situation. Whether something is "made available" can be subtle (for example, monetised or professionally supported offerings), so treat borderline cases carefully.</p>
+
+      <h2>Step 3 — Free and open-source software: a nuanced case</h2>
+      <p>The CRA is designed <strong>not</strong> to burden genuine open-source development done outside a commercial activity. Non-commercial open-source software, and individual contributors who are not monetising their work, are largely outside the manufacturer obligations. However, once open-source software is <strong>supplied commercially</strong> — for instance sold, or offered with paid support as part of a business — the party doing so can take on obligations. There is also a lighter, tailored role introduced for "open-source software stewards". If your product <em>includes</em> open-source components, you remain responsible for the security of the product you place on the market, including those components.</p>
+
+      <h2>Step 4 — Check the explicit exclusions</h2>
+      <p>Some products are carved out because they are already covered by sector-specific EU cybersecurity rules, or otherwise addressed. At a high level, products excluded or handled elsewhere include categories such as:</p>
+      <ul>
+        <li>Certain <strong>medical devices</strong> covered by the medical device regulations;</li>
+        <li><strong>Motor vehicles</strong> covered by their own type-approval cybersecurity rules;</li>
+        <li><strong>Civil aviation</strong> products under aviation safety rules;</li>
+        <li>Certain <strong>marine equipment</strong>;</li>
+        <li>Products developed exclusively for <strong>national security or defence</strong> purposes, and certain products processing classified information.</li>
+      </ul>
+      <p>Pure <strong>SaaS / cloud services</strong> are generally addressed by other frameworks (such as NIS2) rather than the CRA — but the "remote data-processing solutions" that are <em>necessary for a product to perform its function</em> are pulled back into the product's scope. So a cloud back-end that your device cannot work without is treated as part of the product.</p>
+
+      <h2>Step 5 — If in scope, find your risk class</h2>
+      <p>Being in scope is only the first fork. The CRA then sorts products by risk, which determines how you can demonstrate conformity:</p>
+      <ul>
+        <li><strong>Default</strong> products — the majority — can typically use self-assessment.</li>
+        <li><strong>Important</strong> products (Annex III), split into class I and class II, face stricter routes.</li>
+        <li><strong>Critical</strong> products (Annex IV) face the highest expectations, potentially including mandatory certification.</li>
+      </ul>
+      <p>Examples of "important" categories include things like password managers, network management systems, and certain security-sensitive components — products whose compromise could cause wider harm. Our separate article on risk classes goes into detail.</p>
+
+      <h2>A quick decision recap</h2>
+      <ul>
+        <li><strong>Has code + can connect?</strong> → likely a product with digital elements.</li>
+        <li><strong>Placed on the EU market commercially?</strong> → obligations likely apply.</li>
+        <li><strong>Falls under a listed sector exclusion?</strong> → may be governed elsewhere instead.</li>
+        <li><strong>Still in?</strong> → determine Default / Important / Critical and pick your conformity route.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Let the tool do the reasoning:</strong> ComplyCRA asks you a short set of questions and tells you whether your product is in scope, flags relevant exclusions, and assigns a risk class — then takes you straight into the matching self-assessment. <a href="../app/" class="text-brand-600 font-semibold">Open ComplyCRA →</a>
+      </div>
+
+      <p class="text-sm text-slate-400 mt-10">This article is general information, not legal advice. Scope and exclusions have precise legal wording — always check Regulation (EU) 2024/2847 and seek advice for borderline cases.</p>
+    </div>
+
+    <div class="mt-12 flex flex-wrap gap-4">
+      <a href="what-is-the-cra.html" class="text-sm font-semibold text-brand-600">← What is the CRA?</a>
+      <a href="cra-timeline-key-dates.html" class="text-sm font-semibold text-brand-600 ml-auto">Next: CRA timeline & key dates →</a>
+    </div>
+  </article>
+
+  <footer class="bg-slate-900 text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="../../" class="text-lg font-extrabold text-white">Comply<span class="text-brand-500">PS</span></a>
+      <div class="flex gap-6 text-sm">
+        <a href="../" class="hover:text-white">ComplyCRA</a>
+        <a href="./" class="hover:text-white">Insights</a>
+        <a href="../app/" class="hover:text-white">Open ComplyCRA</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/cookie-notice.js" defer></script>
+</body>
+</html>
