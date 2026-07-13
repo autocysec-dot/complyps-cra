@@ -106,6 +106,16 @@ export default function SelfAssessment() {
                 <div style={{ fontSize: 14, marginBottom: 8 }}>
                   <strong style={{ color: '#93c5fd' }}>{req.id}</strong> · {req.label}
                 </div>
+                {(req.help || req.example) && (
+                  <div style={{ borderLeft: '2px solid var(--border)', paddingLeft: 10, margin: '0 0 10px' }}>
+                    {req.help && <div className="muted small" style={{ lineHeight: 1.5 }}>{req.help}</div>}
+                    {req.example && (
+                      <div className="small" style={{ color: 'var(--muted)', marginTop: 4, lineHeight: 1.5 }}>
+                        <strong style={{ color: 'var(--text)' }}>Example:</strong> {req.example}
+                      </div>
+                    )}
+                  </div>
+                )}
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
                   {catalog.statusOptions.map((opt) => (
                     <button
