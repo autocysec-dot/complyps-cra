@@ -192,3 +192,17 @@ ul.clean li { margin-bottom: 8px; }
   .container [style*="minmax(0,1fr) minmax(0,1fr)"],
   .container [style*="minmax(0, 1fr) minmax(0, 1fr)"] { grid-template-columns: 1fr !important; }
 }
+
+/* In-app user guide (Help page) */
+.help-content { color: var(--text); line-height: 1.7; }
+.help-content h1 { font-size: 22px; margin: 0 0 8px; }
+.help-content h2 { font-size: 18px; margin: 26px 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.help-content h3 { font-size: 15px; margin: 20px 0 6px; color: #93c5fd; }
+.help-content p { margin: 10px 0; }
+.help-content ul, .help-content ol { margin: 10px 0; padding-left: 22px; }
+.help-content li { margin: 5px 0; }
+.help-content strong { color: #fff; }
+.help-content code { background: var(--panel-2); border: 1px solid var(--border); border-radius: 5px; padding: 1px 5px; font-size: 13px; }
+.help-content hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+.help-content .note { color: var(--muted); font-size: 13px; font-style: italic; }
+.help-content a { color: #60a5fa; }

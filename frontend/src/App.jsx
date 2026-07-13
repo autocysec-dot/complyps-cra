@@ -20,6 +20,7 @@ import Admin from './pages/Admin.jsx';
 import Account from './pages/Account.jsx';
 import GapAssessment from './pages/GapAssessment.jsx';
 import Demo from './pages/Demo.jsx';
+import Help from './pages/Help.jsx';
 
 function Nav() {
   const { user, logout, isAdmin, isDemo } = useAuth();
@@ -38,6 +39,7 @@ function Nav() {
       {user && <NavLink to="/register">Register</NavLink>}
       {user && <NavLink to="/cvd-policy">CVD policy</NavLink>}
       {isAdmin && <NavLink to="/admin">Administration</NavLink>}
+      {user && <NavLink to="/help">Help</NavLink>}
       <div className="spacer" />
       {user ? (
         <>
@@ -92,6 +94,7 @@ export default function App() {
         <Route path="/demo" element={<Demo />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/account" element={<RequireAuth><Account /></RequireAuth>} />
+        <Route path="/help" element={<RequireAuth><Help /></RequireAuth>} />
         <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
         <Route
           path="/overview"

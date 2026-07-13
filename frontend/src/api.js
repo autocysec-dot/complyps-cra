@@ -154,6 +154,10 @@ export const api = {
     return res.blob();
   },
 
+  // In-app help (login only). Content is served from the private backend,
+  // never bundled into this static site.
+  helpUserGuide: () => request('/api/help/user-guide', { auth: true }),
+
   dashboard: () => request('/api/dashboard', { auth: true }),
   cvdFields: () => request('/api/cvd/fields'),
   getCvdPolicy: () => request('/api/cvd', { auth: true }),
