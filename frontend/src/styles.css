@@ -193,16 +193,46 @@ ul.clean li { margin-bottom: 8px; }
   .container [style*="minmax(0, 1fr) minmax(0, 1fr)"] { grid-template-columns: 1fr !important; }
 }
 
-/* In-app user guide (Help page) */
-.help-content { color: var(--text); line-height: 1.7; }
-.help-content h1 { font-size: 22px; margin: 0 0 8px; }
-.help-content h2 { font-size: 18px; margin: 26px 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
-.help-content h3 { font-size: 15px; margin: 20px 0 6px; color: #93c5fd; }
-.help-content p { margin: 10px 0; }
-.help-content ul, .help-content ol { margin: 10px 0; padding-left: 22px; }
-.help-content li { margin: 5px 0; }
-.help-content strong { color: #fff; }
-.help-content code { background: var(--panel-2); border: 1px solid var(--border); border-radius: 5px; padding: 1px 5px; font-size: 13px; }
-.help-content hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
-.help-content .note { color: var(--muted); font-size: 13px; font-style: italic; }
+/* ===== In-app user guide (Help page) — docs-style layout ===== */
+.help-hero { margin-bottom: 18px; }
+.help-hero h1 { margin: 0 0 4px; }
+
+.help-layout { display: grid; grid-template-columns: 216px minmax(0, 1fr); gap: 32px; align-items: start; }
+
+/* Sticky table of contents with scroll-spy */
+.help-toc { position: sticky; top: 80px; }
+.help-toc-title { text-transform: uppercase; letter-spacing: .05em; font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 10px; }
+.help-toc nav { display: flex; flex-direction: column; border-left: 1px solid var(--border); }
+.help-toc a { color: var(--muted); text-decoration: none; font-size: 13px; line-height: 1.35; padding: 6px 0 6px 14px; margin-left: -1px; border-left: 2px solid transparent; transition: color .12s ease, border-color .12s ease; }
+.help-toc a:hover { color: var(--text); }
+.help-toc a.active { color: #93c5fd; border-left-color: var(--primary); font-weight: 600; }
+.help-toc-meta { margin-top: 16px; padding-left: 14px; font-size: 12px; color: var(--muted); }
+
+/* Content */
+.help-content { color: var(--text); line-height: 1.72; font-size: 15px; }
+.help-content > :first-child { margin-top: 0; }
+.help-content h1 { display: none; } /* the guide's own H1 duplicates the page title */
+.help-content h2 { font-size: 20px; font-weight: 800; margin: 34px 0 14px; scroll-margin-top: 80px; }
+.help-content h2::after { content: ""; display: block; height: 1px; background: var(--border); margin-top: 12px; }
+.help-content h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 8px; color: #93c5fd; }
+.help-content p { margin: 12px 0; }
+.help-content ul, .help-content ol { margin: 12px 0; padding-left: 22px; }
+.help-content li { margin: 7px 0; }
+.help-content li::marker { color: var(--muted); }
+.help-content strong { color: #fff; font-weight: 600; }
+.help-content code { background: var(--panel-2); border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; font-size: 13px; }
+.help-content hr { border: none; border-top: 1px solid var(--border); margin: 26px 0; }
 .help-content a { color: #60a5fa; }
+/* Italic note lines become soft info callouts */
+.help-content .note { display: block; background: rgba(37,99,235,.08); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 8px; padding: 10px 14px; margin: 16px 0; color: var(--muted); font-size: 13.5px; font-style: normal; }
+
+.help-footer { margin-top: 18px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); color: var(--muted); font-size: 14px; }
+.help-footer a { color: #60a5fa; }
+
+@media (max-width: 860px) {
+  .help-layout { grid-template-columns: 1fr; gap: 16px; }
+  .help-toc { position: static; }
+  .help-toc nav { flex-direction: row; flex-wrap: wrap; gap: 8px; border-left: none; }
+  .help-toc a { border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; margin-left: 0; }
+  .help-toc a.active { border-color: var(--primary); }
+}
