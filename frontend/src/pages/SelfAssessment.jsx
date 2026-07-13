@@ -106,12 +106,18 @@ export default function SelfAssessment() {
                 <div style={{ fontSize: 14, marginBottom: 8 }}>
                   <strong style={{ color: '#93c5fd' }}>{req.id}</strong> · {req.label}
                 </div>
-                {(req.help || req.example) && (
-                  <div style={{ borderLeft: '2px solid var(--border)', paddingLeft: 10, margin: '0 0 10px' }}>
-                    {req.help && <div className="muted small" style={{ lineHeight: 1.5 }}>{req.help}</div>}
-                    {req.example && (
-                      <div className="small" style={{ color: 'var(--muted)', marginTop: 4, lineHeight: 1.5 }}>
-                        <strong style={{ color: 'var(--text)' }}>Example:</strong> {req.example}
+                {(req.help || req.examples?.length) && (
+                  <div className="req-guide">
+                    {req.help && <div className="req-help">{req.help}</div>}
+                    {req.examples?.length > 0 && (
+                      <div className="req-examples">
+                        <div className="req-examples-title">Examples by product type</div>
+                        {req.examples.map((ex, i) => (
+                          <div key={i} className="req-example">
+                            <span className="req-example-icon" aria-hidden="true">{ex.icon}</span>
+                            <span><strong>{ex.kind}:</strong> {ex.text}</span>
+                          </div>
+                        ))}
                       </div>
                     )}
                   </div>
