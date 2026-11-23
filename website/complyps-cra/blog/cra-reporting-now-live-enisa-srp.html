@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRA Reporting Is Now Live: the ENISA Single Reporting Platform Explained | ComplyPS</title>
+  <meta name="description" content="Since 11 September 2026, manufacturers must report actively exploited vulnerabilities and severe incidents under the CRA through the ENISA Single Reporting Platform. What changed, who must report, and how to get ready." />
+  <meta name="keywords" content="CRA reporting live, ENISA Single Reporting Platform, CRA SRP, 11 September 2026, actively exploited vulnerability, severe incident, CRA Article 14" />
+  <link rel="canonical" href="https://complyps.com/complyps-cra/blog/cra-reporting-now-live-enisa-srp.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="CRA Reporting Is Now Live: the ENISA SRP Explained" />
+  <meta property="og:description" content="Reporting duties have applied since 11 September 2026. What the ENISA Single Reporting Platform is and how to be ready." />
+  <meta property="og:url" content="https://complyps.com/complyps-cra/blog/cra-reporting-now-live-enisa-srp.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { brand: { 50:'#eff6ff',100:'#dbeafe',500:'#2563eb',600:'#1d4ed8',700:'#1e40af',900:'#1e3a5f' }, accent: { 500:'#16a34a',600:'#15803d' } },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    } } };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    html { scroll-behavior: smooth; }
+    .prose h2 { font-size:1.5rem; font-weight:800; margin-top:2.25rem; margin-bottom:.75rem; color:#0f172a; }
+    .prose h3 { font-size:1.15rem; font-weight:700; margin-top:1.75rem; margin-bottom:.5rem; color:#1e293b; }
+    .prose p { margin:.9rem 0; line-height:1.75; color:#334155; }
+    .prose ul, .prose ol { margin:.9rem 0; padding-left:1.25rem; color:#334155; }
+    .prose ul { list-style:disc; } .prose ol { list-style:decimal; }
+    .prose li { margin:.5rem 0; line-height:1.7; }
+    .prose strong { color:#0f172a; }
+    .prose a { color:#1d4ed8; }
+    .prose .callout { background:#eff6ff; border-left:4px solid #2563eb; border-radius:.5rem; padding:1rem 1.25rem; margin:1.5rem 0; }
+    .stage { display:flex; gap:1rem; padding:1rem 0; border-bottom:1px solid #e2e8f0; }
+    .stage-badge { flex:none; width:4.5rem; font-weight:800; color:#1d4ed8; }
+  </style>
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased">
+
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <div class="flex items-center gap-3 text-sm font-medium">
+        <a href="../../" class="inline-flex items-center gap-1.5 text-slate-500 hover:text-brand-600" title="Back to ComplyPS">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 12L6 8l4-4"/></svg>
+          ComplyPS
+        </a>
+        <span class="text-slate-300">/</span>
+        <a href="../" class="hover:text-brand-600">ComplyCRA</a>
+        <span class="text-slate-300">/</span>
+        <a href="./" class="hover:text-brand-600">Insights</a>
+      </div>
+      <a href="../app/" class="inline-flex items-center rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-4 py-2">Open ComplyCRA</a>
+    </nav>
+  </header>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <p class="text-xs font-bold text-accent-600 uppercase tracking-wide">News · November 2026</p>
+    <h1 class="mt-3 text-4xl font-extrabold leading-tight text-slate-900">CRA reporting is now live: the ENISA Single Reporting Platform explained</h1>
+    <p class="mt-4 text-lg text-slate-500">The first CRA obligations are no longer on the horizon. Since 11 September 2026, manufacturers have to report — here is what that means in practice.</p>
+
+    <div class="prose mt-8">
+      <p>For most of the Cyber Resilience Act, December 2027 is the date everyone talks about. But one part of the regulation has already arrived: the duty to <strong>report actively exploited vulnerabilities and severe incidents</strong> (Article 14) has applied since <strong>11 September 2026</strong>. On the same day, ENISA launched the <strong>CRA Single Reporting Platform (SRP)</strong> — the one place where those reports go.</p>
+
+      <div class="callout"><strong>The key point:</strong> reporting applies to products with digital elements that are on the EU market <em>now</em> — not just to products designed after 2027. If you sell connected products or software in the EU, you are already in scope for this part of the CRA.</div>
+
+      <h2>What is the Single Reporting Platform?</h2>
+      <p>The SRP is ENISA's portal for CRA notifications. Instead of working out which national authority to contact, a manufacturer submits <strong>one report</strong>. It is received by the CSIRT of the Member State where the manufacturer has its main establishment, made available to ENISA, and shared onward with other relevant CSIRTs so they can warn and protect users.</p>
+      <ul>
+        <li><strong>Portal:</strong> <a href="https://portal.cra-srp.enisa.europa.eu/" target="_blank" rel="noopener">portal.cra-srp.enisa.europa.eu</a></li>
+        <li><strong>Status:</strong> operational since 11 September 2026 (initial operating capability), and upgraded to <strong>version 1.4 on 17 November 2026</strong>.</li>
+        <li><strong>Help:</strong> ENISA publishes an FAQ, a glossary, a user manual, a tutorial video and a factsheet alongside the platform.</li>
+      </ul>
+
+      <h2>What must be reported — and when</h2>
+      <p>Two kinds of events trigger a report: an <strong>actively exploited vulnerability</strong> in your product (there is evidence a malicious actor is exploiting it), and a <strong>severe incident</strong> that affects the security of your product. Each follows a staged timeline:</p>
+      <div class="stage"><div class="stage-badge">24 hours</div><div><strong>Early warning</strong> — as soon as possible and within 24 hours of becoming aware.</div></div>
+      <div class="stage"><div class="stage-badge">72 hours</div><div><strong>Notification</strong> — a fuller report with an initial assessment and any mitigations users can apply.</div></div>
+      <div class="stage"><div class="stage-badge">Final</div><div><strong>Final report</strong> — for an exploited vulnerability, no later than 14 days after a corrective or mitigating measure is available; for a severe incident, within one month of the 72-hour notification.</div></div>
+
+      <h2>Who has to report?</h2>
+      <ul>
+        <li><strong>Manufacturers</strong> of products with digital elements made available on the EU market — today.</li>
+        <li><strong>Open-source stewards</strong> — organisations that provide sustained support for free and open-source software intended for commercial use — take on reporting duties from <strong>11 December 2027</strong>.</li>
+        <li>Importers and distributors have their own duties to act when they learn of a vulnerability, but the Article 14 notifications are the manufacturer's responsibility.</li>
+      </ul>
+
+      <h2>A five-step readiness checklist</h2>
+      <ol>
+        <li><strong>Register on the SRP</strong> and set up your organisation's access before an incident — not during one.</li>
+        <li><strong>Name a decision-maker</strong> (with backups) who can authorise a report at any hour.</li>
+        <li><strong>Define "actively exploited" for your team</strong> — what evidence (threat intelligence, customer reports, CSIRT alerts) triggers the clock.</li>
+        <li><strong>Template the three reports</strong> so the 24-hour early warning is a five-minute task.</li>
+        <li><strong>Know your products.</strong> An up-to-date SBOM lets you answer "are we affected?" in minutes when a new exploited vulnerability is announced.</li>
+      </ol>
+
+      <div class="callout">
+        <strong>ComplyCRA is built for this.</strong> It scans your SBOM against known-exploited vulnerability data, flags what is reportable under the CRA, and prepares the 24h / 72h / final reports in a structure aligned to the SRP — with sign-off from your responsible approvers. <a href="../app/" class="font-semibold">Open ComplyCRA →</a>
+      </div>
+
+      <p class="text-sm text-slate-400 mt-10">General information as of November 2026, not legal advice. Exact triggers, deadlines and content are defined in Regulation (EU) 2024/2847 and ENISA's Single Reporting Platform documentation — always follow the official sources.</p>
+    </div>
+
+    <div class="mt-12 flex flex-wrap gap-4">
+      <a href="cra-incident-vulnerability-reporting.html" class="text-sm font-semibold text-brand-600">← The 24h, 72h and final report</a>
+      <a href="cra-commission-guidance-2026.html" class="text-sm font-semibold text-brand-600 ml-auto">Next: The Commission's CRA guidance →</a>
+    </div>
+  </article>
+
+  <footer class="bg-slate-900 text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="../../" class="text-lg font-extrabold text-white">Comply<span class="text-brand-500">PS</span></a>
+      <div class="flex gap-6 text-sm">
+        <a href="../" class="hover:text-white">ComplyCRA</a>
+        <a href="./" class="hover:text-white">Insights</a>
+        <a href="../app/" class="hover:text-white">Open ComplyCRA</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/cookie-notice.js" defer></script>
+</body>
+</html>
