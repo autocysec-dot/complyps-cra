@@ -13,10 +13,12 @@ export default function Admin() {
         <TabBtn id="users" tab={tab} setTab={setTab}>Users</TabBtn>
         <TabBtn id="access" tab={tab} setTab={setTab}>Access requests</TabBtn>
         <TabBtn id="demo" tab={tab} setTab={setTab}>Demo requests</TabBtn>
+        <TabBtn id="training" tab={tab} setTab={setTab}>Training enquiries</TabBtn>
       </div>
       {tab === 'users' && <UsersTab currentUserId={user?.id} />}
       {tab === 'access' && <AccessTab />}
       {tab === 'demo' && <DemoTab />}
+      {tab === 'training' && <TrainingTab />}
     </div>
   );
 }
@@ -178,11 +180,14 @@ function RequestList({ listFn, onApprove, approveLabel = 'Approve → create', s
       {items && items.map((it) => (
         <div key={it.id} className="list-item">
           <div className="grow">
-            <strong>{it.name}</strong> <a href={`mailto:${it.email}`} className="small">{it.email}</a>
+            <strong>{it.name || 'No name given'}</strong>{' '}
+            {it.email && <a href={`mailto:${it.email}`} className="small">{it.email}</a>}
+            {it.phone && <a href={`tel:${it.phone.replace(/[^+0-9]/g, '')}`} className="small" style={{ marginLeft: 8 }}>{it.phone}</a>}
             {it.status !== 'new' && <span className="badge" style={{ marginLeft: 8, background: '#1e293b', color: it.status === 'approved' ? 'var(--green)' : 'var(--muted)' }}>{it.status}</span>}
             <div className="muted small">
               {it.company ? `${it.company} · ` : ''}{new Date(it.createdAt).toLocaleString()}
             </div>
+            {it.trainingLabel && <div className="small" style={{ marginTop: 4, color: '#93c5fd' }}>{it.trainingLabel}</div>}
             {it.message && <div className="small" style={{ marginTop: 4 }}>{it.message}</div>}
           </div>
           {onApprove && <button className="btn" onClick={() => approve(it.id)}>{it.status === 'approved' ? 'Re-issue link' : approveLabel}</button>}
@@ -222,6 +227,20 @@ function DemoTab() {
         approveLabel="Approve → send link"
         statusFn={api.adminSetDemoRequestStatus}
         deleteFn={api.adminDeleteDemoRequest}
+      />
+    </>
+  );
+}
+
+function TrainingTab() {
+  return (
+    <>
+      <p className="muted small">Enquiries from the training page's chat assistant. Send each person the course prospectus by email or WhatsApp, then mark it handled.</p>
+      <RequestList
+        kindLabel="training enquiries"
+        listFn={api.adminListTrainingEnquiries}
+        statusFn={api.adminSetTrainingEnquiryStatus}
+        deleteFn={api.adminDeleteTrainingEnquiry}
       />
     </>
   );

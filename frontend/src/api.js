@@ -97,6 +97,9 @@ export const api = {
   adminApproveDemoRequest: (id) => request(`/api/admin/demo-requests/${id}/approve`, { method: 'POST', auth: true }),
   adminSetDemoRequestStatus: (id, status) => request(`/api/admin/demo-requests/${id}`, { method: 'PATCH', body: { status }, auth: true }),
   adminDeleteDemoRequest: (id) => request(`/api/admin/demo-requests/${id}`, { method: 'DELETE', auth: true }),
+  adminListTrainingEnquiries: () => request('/api/admin/training-enquiries', { auth: true }),
+  adminSetTrainingEnquiryStatus: (id, status) => request(`/api/admin/training-enquiries/${id}`, { method: 'PATCH', body: { status }, auth: true }),
+  adminDeleteTrainingEnquiry: (id) => request(`/api/admin/training-enquiries/${id}`, { method: 'DELETE', auth: true }),
 
   questionnaire: () => request('/api/assessments/questionnaire'),
   classify: (answers) => request('/api/assessments/classify', { method: 'POST', body: { answers } }),

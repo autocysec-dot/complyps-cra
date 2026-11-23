@@ -3,45 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ===== SEO ===== -->
-  <title>CRA for Beginners — Live Online Training | ComplyPS</title>
-  <meta name="description" content="Cyber Resilience Act (CRA) for Beginners — a live, small-batch online training. Learn the EU CRA in plain language on a realistic product. Open to participants in India. ₹10,000 · 8 hours over two sessions." />
-  <meta name="keywords" content="CRA training, Cyber Resilience Act course, CRA for beginners, EU CRA online training, product security training India" />
+  <title>CRA for Beginners — Live, Instructor-Led Online Training | ComplyPS</title>
+  <meta name="description" content="Cyber Resilience Act (CRA) for Beginners: a live, instructor-led online training in small batches. Learn the EU CRA in plain language and how to implement it on a realistic product. 8 hours over two sessions — Weekend batch 19th &amp; 20th December 2026, Weekday batch 7th &amp; 8th January 2027." />
+  <meta name="keywords" content="CRA training, Cyber Resilience Act course, CRA for beginners, EU CRA online training, live instructor-led training, product security training India" />
   <meta name="author" content="ComplyPS" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://complyps.com/training.html" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="CRA for Beginners — Live Online Training | ComplyPS" />
-  <meta property="og:description" content="Learn the EU Cyber Resilience Act from scratch on a realistic product. Live online · 8 hours over two days · ₹10,000. Weekend &amp; weekday batches." />
+  <meta property="og:title" content="CRA for Beginners — Live, Instructor-Led Online Training | ComplyPS" />
+  <meta property="og:description" content="Learn the EU Cyber Resilience Act from scratch on a realistic product. Live, instructor-led · 8 hours over two sessions · Weekend and weekday batches." />
   <meta property="og:url" content="https://complyps.com/training.html" />
 
-  <!-- ===== Tailwind (CDN) ===== -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#2563eb', 600: '#1d4ed8', 700: '#1e40af', 900: '#1e3a5f' },
-            accent: { 500: '#16a34a', 600: '#15803d' },
-            wa: { 500: '#25D366', 600: '#1ebe57' },
-          },
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-        },
-      },
-    };
+    tailwind.config = { theme: { extend: {
+      colors: { brand: { 50:'#eff6ff',100:'#dbeafe',500:'#2563eb',600:'#1d4ed8',700:'#1e40af',900:'#1e3a5f' }, accent: { 500:'#16a34a',600:'#15803d' } },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    } } };
   </script>
-
-  <!-- ===== Custom CSS ===== -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
     html { scroll-behavior: smooth; }
-    .hero-gradient { background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 55%, #15803d 130%); }
+    .hero-gradient { background: linear-gradient(135deg, #0b1f3a 0%, #1e3a8a 50%, #1d4ed8 75%, #059669 130%); }
     .grid-pattern { background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 40px 40px; }
     .card-hover { transition: transform .2s ease, box-shadow .2s ease; }
     .card-hover:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -12px rgba(37,99,235,.25); }
+    /* One consistent call-to-action style across the page */
+    .btn-primary { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; border-radius:.75rem; background:linear-gradient(135deg,#16a34a,#059669); color:#fff; font-weight:700; padding:.8rem 1.5rem; box-shadow:0 10px 24px -10px rgba(5,150,105,.6); transition:transform .15s ease, box-shadow .15s ease; }
+    .btn-primary:hover { transform:translateY(-1px); box-shadow:0 14px 28px -10px rgba(5,150,105,.7); }
+    .btn-primary:disabled { opacity:.7; transform:none; }
+    .btn-secondary { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; border-radius:.75rem; font-weight:700; padding:.8rem 1.5rem; border:1px solid rgba(255,255,255,.4); color:#fff; }
+    .btn-secondary:hover { background:rgba(255,255,255,.1); }
+    .btn-nav { display:inline-flex; align-items:center; gap:.4rem; border-radius:.6rem; background:#2563eb; color:#fff; font-weight:600; font-size:.875rem; padding:.55rem 1rem; }
+    .btn-nav:hover { background:#1d4ed8; }
+    /* Chat assistant */
+    #chatLauncher { position:fixed; right:20px; bottom:20px; z-index:10000; display:flex; align-items:center; gap:.6rem; background:linear-gradient(135deg,#2563eb,#059669); color:#fff; border-radius:999px; padding:.8rem 1.15rem .8rem .9rem; font-weight:700; font-size:.9rem; box-shadow:0 16px 34px -12px rgba(37,99,235,.7); }
+    #chatLauncher .dot { width:10px; height:10px; border-radius:50%; background:#4ade80; box-shadow:0 0 0 4px rgba(74,222,128,.3); }
+    #chatPanel { position:fixed; right:20px; bottom:20px; z-index:10001; width:min(380px, calc(100vw - 24px)); max-height:min(620px, calc(100vh - 40px)); display:none; flex-direction:column; background:#fff; border-radius:1.1rem; overflow:hidden; box-shadow:0 30px 60px -20px rgba(15,23,42,.45); border:1px solid #e2e8f0; }
+    #chatPanel.open { display:flex; }
+    .chat-head { background:linear-gradient(135deg,#1e3a8a,#2563eb 60%,#059669); color:#fff; padding:14px 16px; display:flex; align-items:center; gap:10px; }
+    .chat-av { width:36px; height:36px; border-radius:10px; background:rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; }
+    .chat-body { padding:14px; overflow-y:auto; flex:1; background:#f8fafc; display:flex; flex-direction:column; gap:10px; }
+    .bub { max-width:88%; padding:10px 12px; border-radius:14px; font-size:14px; line-height:1.45; }
+    .bub.bot { background:#fff; border:1px solid #e2e8f0; color:#0f172a; border-top-left-radius:4px; }
+    .bub.me { background:#2563eb; color:#fff; align-self:flex-end; border-top-right-radius:4px; }
+    .opt { display:block; width:100%; text-align:left; background:#fff; border:1px solid #bfdbfe; color:#1e40af; border-radius:12px; padding:10px 12px; font-size:13.5px; font-weight:600; margin-top:6px; }
+    .opt:hover { background:#eff6ff; border-color:#2563eb; }
+    .opt small { display:block; font-weight:500; color:#64748b; margin-top:2px; }
+    .chat-form input[type=text], .chat-form input[type=email], .chat-form input[type=tel] { width:100%; border:1px solid #cbd5e1; border-radius:10px; padding:9px 11px; font-size:14px; margin-top:6px; }
+    .chat-form input:focus { outline:none; border-color:#2563eb; box-shadow:0 0 0 3px rgba(37,99,235,.15); }
   </style>
 </head>
 
@@ -62,12 +73,7 @@
         <a href="/#contact" class="hover:text-brand-500">Contact</a>
       </div>
       <div class="flex items-center gap-3">
-        <a href="https://wa.me/917411889838?text=Hi%2C%20I%27d%20like%20to%20enroll%20in%20the%20CRA%20for%20Beginners%20training."
-           target="_blank" rel="noopener"
-           class="inline-flex items-center gap-2 rounded-lg bg-wa-500 hover:bg-wa-600 text-white text-sm font-semibold px-4 py-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.26l-.999 3.648 3.969-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-          Enroll on WhatsApp
-        </a>
+        <button type="button" class="btn-nav" data-enquire>Enquire now</button>
         <button id="menuBtn" class="md:hidden p-2 text-slate-600" aria-label="Open menu">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
@@ -86,100 +92,77 @@
   <section class="hero-gradient text-white relative overflow-hidden">
     <div class="absolute inset-0 grid-pattern opacity-60"></div>
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 grid lg:grid-cols-5 gap-10 items-center">
-      <!-- Left: title + CTAs -->
       <div class="lg:col-span-3">
-        <span class="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-medium mb-5">
-          <span class="w-2 h-2 rounded-full bg-accent-500"></span> Live online training · Beginner
+        <span class="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold tracking-wide mb-5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> LIVE, INSTRUCTOR-LED ONLINE TRAINING · BEGINNER
         </span>
         <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
           Cyber Resilience Act (CRA)
-          <span class="block mt-2 bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent">for Beginners</span>
+          <span class="block mt-2 bg-gradient-to-r from-emerald-200 to-amber-100 bg-clip-text text-transparent">for Beginners</span>
         </h1>
         <p class="mt-5 text-lg text-blue-100">
-          Everything you need to know about the EU CRA and its implementation on a realistic product.
+          Everything you need to know about the EU Cyber Resilience Act — and how to implement it, step by step, on a realistic product. No legal background needed.
         </p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-3 max-w-xl">
+          <div class="rounded-xl bg-white/10 ring-1 ring-white/20 px-4 py-3">
+            <div class="text-xs font-semibold text-emerald-200 uppercase tracking-wide">Weekend batch</div>
+            <div class="mt-1 font-bold">Saturday 19th &amp; Sunday 20th December 2026</div>
+          </div>
+          <div class="rounded-xl bg-white/10 ring-1 ring-white/20 px-4 py-3">
+            <div class="text-xs font-semibold text-emerald-200 uppercase tracking-wide">Weekday batch</div>
+            <div class="mt-1 font-bold">Thursday 7th &amp; Friday 8th January 2027</div>
+          </div>
+        </div>
         <div class="mt-7 flex flex-wrap gap-3">
-          <a href="#enroll" class="inline-flex items-center justify-center rounded-lg bg-accent-500 hover:bg-accent-600 text-white font-semibold px-6 py-3 shadow-lg shadow-emerald-900/30">Reserve your seat</a>
-          <a href="#curriculum" class="inline-flex items-center justify-center rounded-lg ring-1 ring-white/40 hover:bg-white/10 font-semibold px-6 py-3">See what you'll learn</a>
+          <button type="button" class="btn-primary" data-enquire>Enquire &amp; get the prospectus <span aria-hidden="true">→</span></button>
+          <a href="#agenda" class="btn-secondary">View the agenda</a>
         </div>
       </div>
 
-      <!-- Right: at-a-glance card -->
       <div class="lg:col-span-2">
         <div class="rounded-2xl bg-white text-slate-800 p-6 shadow-xl">
-          <h3 class="text-sm font-bold uppercase tracking-wide text-slate-400">At a glance</h3>
+          <h3 class="text-sm font-bold uppercase tracking-wide text-slate-400">Course at a glance</h3>
           <dl class="mt-4 space-y-3 text-sm">
-            <div class="flex items-center justify-between"><dt class="text-slate-500">Format</dt><dd class="font-semibold">Live online (instructor-led)</dd></div>
-            <div class="flex items-center justify-between"><dt class="text-slate-500">Duration</dt><dd class="font-semibold">8 hours (2 × 4h sessions)</dd></div>
-            <div class="flex items-center justify-between"><dt class="text-slate-500">Timing</dt><dd class="font-semibold">4:00 – 8:00 PM IST</dd></div>
-            <div class="flex items-center justify-between"><dt class="text-slate-500">Batch size</dt><dd class="font-semibold">Small · limited seats</dd></div>
-            <div class="flex items-center justify-between"><dt class="text-slate-500">Open to</dt><dd class="font-semibold">Participants in India</dd></div>
-            <div class="flex items-center justify-between border-t border-slate-100 pt-3">
-              <dt class="text-slate-500">Fee</dt>
-              <dd><span class="text-slate-400 line-through text-base">₹12,500</span> <span class="text-xl font-extrabold text-brand-600">₹10,000</span> <span class="text-accent-600 text-xs font-semibold">20% off</span></dd>
-            </div>
+            <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Format</dt><dd class="font-semibold text-right">Live online, instructor-led</dd></div>
+            <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Duration</dt><dd class="font-semibold text-right">8 hours · two 4-hour sessions</dd></div>
+            <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Timing</dt><dd class="font-semibold text-right">4:00 – 8:00 PM IST</dd></div>
+            <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Level</dt><dd class="font-semibold text-right">Beginner</dd></div>
+            <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Batch size</dt><dd class="font-semibold text-right">Small · limited seats</dd></div>
+            <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Certificate</dt><dd class="font-semibold text-right">Certificate of completion</dd></div>
+            <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Open to</dt><dd class="font-semibold text-right">Participants in India</dd></div>
           </dl>
-          <div class="mt-4 grid grid-cols-2 gap-2 text-center">
-            <div class="rounded-lg bg-brand-50 p-2">
-              <div class="text-xs text-slate-500">Weekend batch</div>
-              <div class="font-bold text-brand-700">19 &amp; 20 Dec</div>
-            </div>
-            <div class="rounded-lg bg-brand-50 p-2">
-              <div class="text-xs text-slate-500">Weekday batch</div>
-              <div class="font-bold text-brand-700">7 &amp; 8 Jan</div>
-            </div>
-          </div>
-          <a href="#enroll" class="mt-4 w-full inline-flex items-center justify-center rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold px-5 py-2.5">Enroll now</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ WHY TAKE THIS (highlighted) ============================ -->
+  <!-- ============================ WHY ATTEND ============================ -->
   <section class="bg-brand-900 text-white">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="text-center">
-      <span class="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-200">Why take this training</span>
-      <h2 class="mt-4 text-3xl font-extrabold">Not a recorded video you watch alone</h2>
-      <p class="mt-3 text-blue-100 max-w-2xl mx-auto">A live, small-batch session built around you and your product.</p>
-    </div>
-    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6">
-        <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">👥</div>
-        <h3 class="mt-4 font-bold">Small batch, limited seats</h3>
-        <p class="mt-2 text-sm text-blue-100">We deliberately keep each batch small so it stays interactive and never feels like a webinar crowd.</p>
+      <div class="text-center">
+        <span class="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-200">Why attend</span>
+        <h2 class="mt-4 text-3xl font-extrabold">Live, instructor-led training</h2>
+        <p class="mt-3 text-blue-100 max-w-2xl mx-auto">Small-batch sessions led by an industry expert — built around your questions and your product.</p>
       </div>
-      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6">
-        <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">🎯</div>
-        <h3 class="mt-4 font-bold">Individual attention</h3>
-        <p class="mt-2 text-sm text-blue-100">Ask about <em>your</em> product. The instructor works with every participant, not just the room.</p>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6"><div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">👥</div><h3 class="mt-4 font-bold">Small batch, limited seats</h3><p class="mt-2 text-sm text-blue-100">Each batch is deliberately kept small so the sessions stay interactive and focused.</p></div>
+        <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6"><div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">🎯</div><h3 class="mt-4 font-bold">Individual attention</h3><p class="mt-2 text-sm text-blue-100">Bring questions about <em>your</em> product — the instructor works with every participant.</p></div>
+        <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6"><div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">🧑‍🏫</div><h3 class="mt-4 font-bold">Live &amp; interactive</h3><p class="mt-2 text-sm text-blue-100">Real-time discussion, Q&amp;A and feedback across two focused sessions.</p></div>
+        <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6"><div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">🛠️</div><h3 class="mt-4 font-bold">Hands-on, not theory</h3><p class="mt-2 text-sm text-blue-100">Every step is shown on one realistic product, with a workbook, simulations and short quizzes.</p></div>
+        <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6"><div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">🎓</div><h3 class="mt-4 font-bold">Expert instructor</h3><p class="mt-2 text-sm text-blue-100">An industrial product-security expert with more than 15 years of hands-on regulatory experience.</p></div>
+        <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6"><div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">⚡</div><h3 class="mt-4 font-bold">Relevant right now</h3><p class="mt-2 text-sm text-blue-100">CRA reporting duties have applied since 11th September 2026; full requirements follow on 11th December 2027.</p></div>
       </div>
-      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6">
-        <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">🧑‍🏫</div>
-        <h3 class="mt-4 font-bold">Live &amp; interactive</h3>
-        <p class="mt-2 text-sm text-blue-100">Real-time Q&amp;A, discussion and feedback across two focused sessions — ask as you go.</p>
-      </div>
-      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6">
-        <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">🛠️</div>
-        <h3 class="mt-4 font-bold">Hands-on, not theory</h3>
-        <p class="mt-2 text-sm text-blue-100">Everything is shown on one realistic product, with a workbook, simulations and short quizzes.</p>
-      </div>
-      <div class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6">
-        <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">🎓</div>
-        <h3 class="mt-4 font-bold">Expert instructor</h3>
-        <p class="mt-2 text-sm text-blue-100">Learn from an industrial product-security expert with 15+ years and hands-on regulatory experience.</p>
-      </div>
-    </div>
     </div>
   </section>
 
   <!-- ============================ ABOUT ============================ -->
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h2 class="text-3xl font-extrabold text-slate-900">About this course</h2>
+    <p class="text-sm font-bold text-brand-600 uppercase tracking-wide">About the course</p>
+    <h2 class="mt-2 text-3xl font-extrabold text-slate-900">The CRA in plain language — then put into practice</h2>
     <div class="mt-5 space-y-4 text-slate-600 text-lg leading-relaxed">
-      <p>The EU Cyber Resilience Act (CRA) sets cybersecurity rules for connected products and software sold in the EU. Its reporting duties have applied since <strong>11 September 2026</strong>, and the full requirements apply from <strong>11 December 2027</strong>.</p>
+      <p>The EU Cyber Resilience Act (CRA) sets cybersecurity rules for connected products and software sold in the EU. Its reporting duties have applied since <strong>11th September 2026</strong>, and the full requirements apply from <strong>11th December 2027</strong>.</p>
       <p>This beginner course explains the CRA in plain language, then shows how it can be implemented step by step, using one fictional company as a running example.</p>
-      <p>You'll start with a short foundation: why the CRA exists, who has duties, which products are covered and how strict the rules are. Then you'll follow the implementation in two parts: the reporting duties that already apply, and the steps that bring a product to compliance — from classification and risk assessment to the security requirements, vulnerability handling and conformity.</p>
+      <p>You start with a short foundation — why the CRA exists, who has duties, which products are covered and how strict the rules are. You then follow the implementation in two parts: the reporting duties that already apply, and the steps that bring a product to compliance, from classification and risk assessment to the security requirements, vulnerability handling and conformity.</p>
       <p>Along the way, simple simulations, a workbook and short quizzes help you check your understanding.</p>
     </div>
   </section>
@@ -187,49 +170,89 @@
   <!-- ============================ WHAT YOU'LL LEARN ============================ -->
   <section id="curriculum" class="bg-slate-50 border-y border-slate-100">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <h2 class="text-3xl font-extrabold text-slate-900">What you'll learn</h2>
+      <p class="text-sm font-bold text-accent-600 uppercase tracking-wide">Learning outcomes</p>
+      <h2 class="mt-2 text-3xl font-extrabold text-slate-900">What you will learn</h2>
       <div class="mt-8 grid md:grid-cols-2 gap-4">
-        <!-- bullets -->
-        <div class="flex gap-3 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="text-accent-500 mt-0.5">✔</span><p>Understand what the EU Cyber Resilience Act is, why it exists and the timeline every product team must plan for.</p></div>
-        <div class="flex gap-3 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="text-accent-500 mt-0.5">✔</span><p>Find out if the CRA applies to your product, and whether you are the manufacturer, importer, distributor or open-source steward.</p></div>
-        <div class="flex gap-3 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="text-accent-500 mt-0.5">✔</span><p>Classify your product as default, important or critical, and choose the right conformity route: self-assessment or notified body.</p></div>
-        <div class="flex gap-3 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="text-accent-500 mt-0.5">✔</span><p>Build the essential cybersecurity requirements into design and development, including vulnerability handling, SBOM and security updates.</p></div>
-        <div class="flex gap-3 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="text-accent-500 mt-0.5">✔</span><p>Report actively exploited vulnerabilities and severe incidents on time (24 h, 72 h, 14 days) through the EU single reporting platform.</p></div>
-        <div class="flex gap-3 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="text-accent-500 mt-0.5">✔</span><p>Take a realistic product from identification to CE marking, and finish with a checklist of every output you need for compliance.</p></div>
+        <div class="flex gap-4 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="shrink-0 w-8 h-8 rounded-lg bg-brand-500 text-white font-bold flex items-center justify-center">1</span><p>Understand what the EU Cyber Resilience Act is, why it exists and the timeline every product team must plan for.</p></div>
+        <div class="flex gap-4 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="shrink-0 w-8 h-8 rounded-lg bg-violet-600 text-white font-bold flex items-center justify-center">2</span><p>Find out whether the CRA applies to your product, and whether you are the manufacturer, importer, distributor or open-source steward.</p></div>
+        <div class="flex gap-4 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="shrink-0 w-8 h-8 rounded-lg bg-cyan-600 text-white font-bold flex items-center justify-center">3</span><p>Classify your product as default, important or critical, and choose the right conformity route: self-assessment or notified body.</p></div>
+        <div class="flex gap-4 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="shrink-0 w-8 h-8 rounded-lg bg-accent-500 text-white font-bold flex items-center justify-center">4</span><p>Build the essential cybersecurity requirements into design and development, including vulnerability handling, SBOM and security updates.</p></div>
+        <div class="flex gap-4 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="shrink-0 w-8 h-8 rounded-lg bg-amber-500 text-white font-bold flex items-center justify-center">5</span><p>Report actively exploited vulnerabilities and severe incidents on time (24 hours, 72 hours, final report) through the EU single reporting platform.</p></div>
+        <div class="flex gap-4 rounded-xl bg-white p-5 ring-1 ring-slate-100"><span class="shrink-0 w-8 h-8 rounded-lg bg-rose-500 text-white font-bold flex items-center justify-center">6</span><p>Take a realistic product from identification to CE marking, and finish with a checklist of every output you need for compliance.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ REQUIREMENTS + AUDIENCE ============================ -->
-  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid md:grid-cols-2 gap-10">
-    <div>
-      <h2 class="text-2xl font-extrabold text-slate-900">Requirements</h2>
-      <ul class="mt-5 space-y-3 text-slate-600">
-        <li class="flex gap-3"><span class="text-brand-500 mt-0.5">•</span> No legal background needed.</li>
-        <li class="flex gap-3"><span class="text-brand-500 mt-0.5">•</span> Basic familiarity with software or connected products helps.</li>
-      </ul>
+  <!-- ============================ AGENDA ============================ -->
+  <section id="agenda" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <p class="text-sm font-bold text-brand-600 uppercase tracking-wide">Course agenda</p>
+    <h2 class="mt-2 text-3xl font-extrabold text-slate-900">Two focused sessions · 8 hours · 4:00 – 8:00 PM IST</h2>
+    <div class="mt-8 grid lg:grid-cols-2 gap-6">
+      <div class="rounded-2xl ring-1 ring-slate-200 overflow-hidden">
+        <div class="px-5 py-4 text-white" style="background:linear-gradient(90deg,#1e3a8a,#2563eb)"><div class="text-xs font-bold tracking-widest opacity-80">SESSION 1 · DAY 1</div><div class="text-lg font-extrabold">Foundations &amp; the duties that already apply</div></div>
+        <ul class="divide-y divide-slate-100 text-sm">
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">4:00 – 4:15</span><span class="text-slate-700">Welcome and how the training works</span></li>
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">4:15 – 5:00</span><span class="text-slate-700">The CRA in plain language: why it exists and the timeline</span></li>
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">5:00 – 5:45</span><span class="text-slate-700">Who has duties and which products are covered</span></li>
+          <li class="flex gap-4 px-5 py-3 bg-amber-50"><span class="w-24 shrink-0 font-bold text-amber-700">5:45 – 6:00</span><span class="text-amber-800">Short break</span></li>
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">6:00 – 6:50</span><span class="text-slate-700">Scope and risk classification; conformity routes</span></li>
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">6:50 – 7:40</span><span class="text-slate-700">Reporting duties in force today — 24h / 72h / final, the ENISA platform (simulation)</span></li>
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">7:40 – 8:00</span><span class="text-slate-700">Recap, quiz and Q&amp;A</span></li>
+        </ul>
+      </div>
+      <div class="rounded-2xl ring-1 ring-slate-200 overflow-hidden">
+        <div class="px-5 py-4 text-white" style="background:linear-gradient(90deg,#065f46,#059669)"><div class="text-xs font-bold tracking-widest opacity-80">SESSION 2 · DAY 2</div><div class="text-lg font-extrabold">Bringing a product to compliance</div></div>
+        <ul class="divide-y divide-slate-100 text-sm">
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">4:00 – 4:10</span><span class="text-slate-700">Recap of Session 1</span></li>
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">4:10 – 5:00</span><span class="text-slate-700">Risk assessment for a product (running example)</span></li>
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">5:00 – 5:50</span><span class="text-slate-700">Essential cybersecurity requirements (Annex I, Part I)</span></li>
+          <li class="flex gap-4 px-5 py-3 bg-amber-50"><span class="w-24 shrink-0 font-bold text-amber-700">5:50 – 6:05</span><span class="text-amber-800">Short break</span></li>
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">6:05 – 6:55</span><span class="text-slate-700">Vulnerability handling, SBOM and security updates (Annex I, Part II)</span></li>
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">6:55 – 7:35</span><span class="text-slate-700">Technical documentation, conformity assessment and CE marking</span></li>
+          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">7:35 – 8:00</span><span class="text-slate-700">Compliance checklist, final quiz, certificate and Q&amp;A</span></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <h2 class="text-2xl font-extrabold text-slate-900">Who this is for</h2>
-      <ul class="mt-5 space-y-3 text-slate-600">
-        <li class="flex gap-3"><span class="text-brand-500 mt-0.5">•</span> Students and beginners who want to learn the EU CRA from scratch, with no legal background needed.</li>
-        <li class="flex gap-3"><span class="text-brand-500 mt-0.5">•</span> Engineers, developers and testers who build connected devices or software and want to know what the CRA means for their work.</li>
-        <li class="flex gap-3"><span class="text-brand-500 mt-0.5">•</span> Security, quality and compliance professionals who want a practical CRA skill to grow their career.</li>
-        <li class="flex gap-3"><span class="text-brand-500 mt-0.5">•</span> Product owners, managers and founders who need a clear picture of what the CRA asks of their products.</li>
-        <li class="flex gap-3"><span class="text-brand-500 mt-0.5">•</span> Anyone who wants to sell or import connected products or software on the EU market — as a manufacturer, importer or distributor — and needs to meet the CRA.</li>
-      </ul>
+  </section>
+
+  <!-- ============================ AUDIENCE + REQUIREMENTS ============================ -->
+  <section class="bg-slate-50 border-y border-slate-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid md:grid-cols-2 gap-10">
+      <div>
+        <h2 class="text-2xl font-extrabold text-slate-900">Who this course is for</h2>
+        <ul class="mt-5 space-y-3 text-slate-600">
+          <li class="flex gap-3"><span class="text-accent-500">✔</span> Students and beginners who want to learn the EU CRA from scratch.</li>
+          <li class="flex gap-3"><span class="text-accent-500">✔</span> Engineers, developers and testers who build connected devices or software.</li>
+          <li class="flex gap-3"><span class="text-accent-500">✔</span> Security, quality and compliance professionals building a practical CRA skill.</li>
+          <li class="flex gap-3"><span class="text-accent-500">✔</span> Product owners, managers and founders who need a clear picture of what the CRA asks.</li>
+          <li class="flex gap-3"><span class="text-accent-500">✔</span> Anyone who sells or imports connected products or software into the EU market.</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-2xl font-extrabold text-slate-900">Requirements</h2>
+        <ul class="mt-5 space-y-3 text-slate-600">
+          <li class="flex gap-3"><span class="text-brand-500">•</span> No legal background needed.</li>
+          <li class="flex gap-3"><span class="text-brand-500">•</span> Basic familiarity with software or connected products is helpful.</li>
+          <li class="flex gap-3"><span class="text-brand-500">•</span> A laptop and a stable internet connection.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- ============================ INSTRUCTOR ============================ -->
-  <section class="bg-slate-50 border-y border-slate-100">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      <div class="rounded-2xl bg-white p-6 sm:p-8 ring-1 ring-slate-100 flex items-start gap-5">
-        <div class="shrink-0 w-14 h-14 rounded-full bg-brand-500 text-white flex items-center justify-center text-xl font-bold">CPS</div>
-        <div>
-          <h2 class="text-xl font-bold text-slate-900">Your instructor</h2>
-          <p class="mt-2 text-slate-600">An <strong>industrial product security expert</strong> with more than <strong>15 years</strong> in the design, development and security of connected and embedded products. The instructor leads product cybersecurity at a global automotive Tier-1 supplier — security architecture and requirements, PSIRT and vulnerability handling, and customer/supplier compliance — mapping directly to what the CRA asks for.</p>
-          <p class="mt-3 text-slate-600">Hands-on with modern product-security regulations and standards (ISO/SAE&nbsp;21434, UNECE&nbsp;R155/R156, ISO&nbsp;26262). <strong>CISSP</strong>, TÜV-certified in automotive cybersecurity and functional safety, with an <strong>MSc in Cybersecurity</strong>, and a university lecturer in cybersecurity and software engineering.</p>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="rounded-2xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-start gap-5" style="background:linear-gradient(135deg,#0b1f3a,#1e3a8a)">
+      <div class="shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#34d399,#2563eb)">🛡️</div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-emerald-300">Your instructor</p>
+        <h2 class="mt-1 text-xl font-extrabold">Industrial product security expert · 15+ years</h2>
+        <p class="mt-3 text-blue-100">An industrial product security expert with more than 15 years in the design, development and security of connected and embedded products. The instructor leads product cybersecurity at a global automotive Tier-1 supplier — security architecture and requirements, PSIRT and vulnerability handling, and customer and supplier compliance — which maps directly to what the CRA asks for.</p>
+        <div class="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="rounded-full bg-white/15 ring-1 ring-white/20 px-3 py-1">CISSP</span>
+          <span class="rounded-full bg-white/15 ring-1 ring-white/20 px-3 py-1">TÜV-certified cybersecurity &amp; functional safety</span>
+          <span class="rounded-full bg-white/15 ring-1 ring-white/20 px-3 py-1">MSc Cybersecurity</span>
+          <span class="rounded-full bg-white/15 ring-1 ring-white/20 px-3 py-1">ISO/SAE 21434 · UNECE R155/R156 · ISO 26262</span>
+          <span class="rounded-full bg-white/15 ring-1 ring-white/20 px-3 py-1">University lecturer</span>
         </div>
       </div>
     </div>
@@ -239,7 +262,7 @@
   <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="text-center">
       <h2 class="text-3xl font-extrabold text-slate-900">Earn a certificate of completion</h2>
-      <p class="mt-3 text-slate-600 max-w-2xl mx-auto">Finish the live sessions and receive a ComplyPS certificate you can add to your CV and LinkedIn. Here's a sample:</p>
+      <p class="mt-3 text-slate-600 max-w-2xl mx-auto">Complete both live sessions and receive a ComplyPS certificate of completion for your CV and LinkedIn profile. A sample is shown below.</p>
     </div>
 
     <div class="mt-8 rounded-2xl ring-1 ring-slate-200 shadow-xl overflow-hidden bg-white">
@@ -293,47 +316,55 @@
     <p class="mt-3 text-center text-xs text-slate-400">Specimen only. The certificate is issued on successful completion of the live training; it is a certificate of attendance/completion, not a regulatory qualification.</p>
   </section>
 
-  <!-- ============================ ENROLL ============================ -->
+  
+  <!-- ============================ BATCHES ============================ -->
   <section id="enroll" class="hero-gradient text-white">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <div class="text-center">
-        <h2 class="text-3xl lg:text-4xl font-extrabold">Pick a batch &amp; reserve your seat</h2>
-        <p class="mt-4 text-lg text-blue-100">Two live online batches — same 8-hour course across two sessions. Small groups, limited seats.</p>
+        <p class="text-sm font-bold uppercase tracking-widest text-emerald-200">Upcoming batches</p>
+        <h2 class="mt-2 text-3xl lg:text-4xl font-extrabold">Choose the dates that suit you</h2>
+        <p class="mt-4 text-lg text-blue-100">Both batches cover the same complete 8-hour course across two live sessions. Seats are limited.</p>
       </div>
-
       <div class="mt-10 grid sm:grid-cols-2 gap-6">
-        <!-- Weekend batch -->
-        <div class="rounded-2xl bg-white text-slate-800 p-6 shadow-xl card-hover">
-          <div class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1">Weekend batch</div>
-          <h3 class="mt-3 text-2xl font-extrabold">Sat 19 &amp; Sun 20 December</h3>
-          <p class="mt-1 text-slate-500">Two days · 4:00–8:00 PM IST each · 8 hours total · live online</p>
-          <div class="mt-4 flex items-center gap-2"><span class="text-slate-400 line-through text-xl">₹12,500</span><span class="text-3xl font-extrabold text-brand-600">₹10,000</span><span class="inline-flex items-center rounded-full bg-emerald-100 text-accent-600 text-xs font-semibold px-2 py-0.5">20% OFF</span></div>
-          <a href="https://wa.me/917411889838?text=Hi%2C%20I%27d%20like%20to%20enroll%20in%20the%20CRA%20for%20Beginners%20training%20%E2%80%94%20Weekend%20batch%20(19%20%26%2020%20December)."
-             target="_blank" rel="noopener"
-             class="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-lg bg-wa-500 hover:bg-wa-600 text-white font-semibold px-5 py-3">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.26l-.999 3.648 3.969-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            Enroll — Weekend batch
-          </a>
+        <div class="rounded-2xl bg-white text-slate-800 p-7 shadow-xl card-hover flex flex-col">
+          <span class="self-start rounded-full bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1">WEEKEND BATCH</span>
+          <h3 class="mt-4 text-2xl font-extrabold leading-snug">Saturday 19th &amp; Sunday 20th December 2026</h3>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>🕓 4:00 – 8:00 PM IST on both days</li>
+            <li>⏱️ 8 hours · two 4-hour sessions</li>
+            <li>💻 Live online, instructor-led</li>
+          </ul>
+          <button type="button" class="btn-primary mt-6 w-full" data-enquire="cra-beginners-weekend-2026-12">Enquire about this batch <span aria-hidden="true">→</span></button>
         </div>
-        <!-- Weekday batch -->
-        <div class="rounded-2xl bg-white text-slate-800 p-6 shadow-xl card-hover">
-          <div class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1">Weekday batch</div>
-          <h3 class="mt-3 text-2xl font-extrabold">Thu 7 &amp; Fri 8 January</h3>
-          <p class="mt-1 text-slate-500">Two days · 4:00–8:00 PM IST each · 8 hours total · live online</p>
-          <div class="mt-4 flex items-center gap-2"><span class="text-slate-400 line-through text-xl">₹12,500</span><span class="text-3xl font-extrabold text-brand-600">₹10,000</span><span class="inline-flex items-center rounded-full bg-emerald-100 text-accent-600 text-xs font-semibold px-2 py-0.5">20% OFF</span></div>
-          <a href="https://wa.me/917411889838?text=Hi%2C%20I%27d%20like%20to%20enroll%20in%20the%20CRA%20for%20Beginners%20training%20%E2%80%94%20Weekday%20batch%20(7%20%26%208%20January)."
-             target="_blank" rel="noopener"
-             class="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-lg bg-wa-500 hover:bg-wa-600 text-white font-semibold px-5 py-3">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.26l-.999 3.648 3.969-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            Enroll — Weekday batch
-          </a>
+        <div class="rounded-2xl bg-white text-slate-800 p-7 shadow-xl card-hover flex flex-col">
+          <span class="self-start rounded-full bg-emerald-50 text-accent-600 text-xs font-bold px-3 py-1">WEEKDAY BATCH</span>
+          <h3 class="mt-4 text-2xl font-extrabold leading-snug">Thursday 7th &amp; Friday 8th January 2027</h3>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>🕓 4:00 – 8:00 PM IST on both days</li>
+            <li>⏱️ 8 hours · two 4-hour sessions</li>
+            <li>💻 Live online, instructor-led</li>
+          </ul>
+          <button type="button" class="btn-primary mt-6 w-full" data-enquire="cra-beginners-weekday-2027-01">Enquire about this batch <span aria-hidden="true">→</span></button>
         </div>
       </div>
+    </div>
+  </section>
 
-      <p class="mt-8 text-center text-blue-100">
-        Questions before you book? Message us on WhatsApp at
-        <a href="https://wa.me/917411889838" target="_blank" rel="noopener" class="font-semibold text-white underline">+91 74118 89838</a>.
-      </p>
+  <!-- ============================ FAQ ============================ -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <p class="text-sm font-bold text-brand-600 uppercase tracking-wide">FAQ</p>
+    <h2 class="mt-2 text-3xl font-extrabold text-slate-900">Frequently asked questions</h2>
+    <div class="mt-6 divide-y divide-slate-200 border-y border-slate-200">
+      <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">Do I need a legal background?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">No. Everything is explained in plain language and illustrated on a realistic product.</p></details>
+      <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">Are both batches the same?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">Yes. Both cover the same complete 8-hour course — choose the dates that suit you best.</p></details>
+      <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">Can I ask questions about my own product?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">Yes. Batches are kept small so there is time for every participant's questions.</p></details>
+      <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">Will I receive a certificate?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">Yes. You receive a ComplyPS certificate of completion after attending both sessions.</p></details>
+      <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">How do I enrol?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">Send an enquiry with your preferred batch. We will send you the full prospectus, confirm your seat and share the joining details.</p></details>
+      <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">What is the course fee?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">₹10,000 per participant (introductory fee; regularly ₹12,500). Payment details are shared when we confirm your seat.</p></details>
+    </div>
+    <div class="mt-10 rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div><h3 class="text-xl font-extrabold text-slate-900">Have a question or want the prospectus?</h3><p class="text-slate-600 mt-1">Leave your email or mobile number and we will get back to you.</p></div>
+      <button type="button" class="btn-primary shrink-0" data-enquire>Enquire now <span aria-hidden="true">→</span></button>
     </div>
   </section>
 
@@ -341,34 +372,12 @@
   <footer class="bg-slate-900 text-slate-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-4 gap-8">
       <div>
-        <div class="flex items-center gap-2">
-          <img src="/favicon.svg" alt="CPS" class="w-8 h-8 rounded-lg" />
-          <span class="text-lg font-extrabold text-white">Comply<span class="text-brand-500">PS</span></span>
-        </div>
+        <div class="flex items-center gap-2"><img src="/favicon.svg" alt="CPS" class="w-8 h-8 rounded-lg" /><span class="text-lg font-extrabold text-white">Comply<span class="text-brand-500">PS</span></span></div>
         <p class="mt-3 text-sm text-slate-400">Compliance for Product Security. Practical tooling and training for EU product-cybersecurity regulations.</p>
       </div>
-      <div>
-        <h4 class="text-white font-semibold text-sm">Solutions</h4>
-        <ul class="mt-3 space-y-2 text-sm">
-          <li><a href="/complyps-cra/" class="hover:text-white">EU CRA</a></li>
-          <li><a href="/training.html" class="hover:text-white">CRA Training</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-white font-semibold text-sm">Company</h4>
-        <ul class="mt-3 space-y-2 text-sm">
-          <li><a href="/#why" class="hover:text-white">Why ComplyPS</a></li>
-          <li><a href="/#contact" class="hover:text-white">Contact</a></li>
-          <li><a href="/privacy.html" class="hover:text-white">Privacy Policy</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-white font-semibold text-sm">Get in touch</h4>
-        <ul class="mt-3 space-y-2 text-sm">
-          <li><a href="mailto:complyps@outlook.com" class="hover:text-white">complyps@outlook.com</a></li>
-          <li><a href="https://wa.me/917411889838" target="_blank" rel="noopener" class="hover:text-white">WhatsApp: +91 74118 89838</a></li>
-        </ul>
-      </div>
+      <div><h4 class="text-white font-semibold text-sm">Solutions</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="/complyps-cra/" class="hover:text-white">EU CRA</a></li><li><a href="/training.html" class="hover:text-white">CRA Training</a></li></ul></div>
+      <div><h4 class="text-white font-semibold text-sm">Company</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="/#why" class="hover:text-white">Why ComplyPS</a></li><li><a href="/#contact" class="hover:text-white">Contact</a></li><li><a href="/privacy.html" class="hover:text-white">Privacy Policy</a></li></ul></div>
+      <div><h4 class="text-white font-semibold text-sm">Get in touch</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="mailto:complyps@outlook.com" class="hover:text-white">complyps@outlook.com</a></li><li><button type="button" class="hover:text-white" data-enquire>Send a training enquiry</button></li></ul></div>
     </div>
     <div class="border-t border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
@@ -378,11 +387,121 @@
     </div>
   </footer>
 
+  <!-- ============================ CHAT ASSISTANT ============================ -->
+  <button id="chatLauncher" type="button" data-enquire aria-label="Open the training enquiry assistant"><span class="dot"></span> Questions? Get the prospectus</button>
+  <div id="chatPanel" role="dialog" aria-label="Training enquiry assistant">
+    <div class="chat-head">
+      <div class="chat-av">CPS</div>
+      <div class="flex-1"><div class="font-bold text-sm">ComplyPS Training Assistant</div><div class="text-xs text-blue-100">We usually reply within one working day</div></div>
+      <button type="button" id="chatClose" class="text-white/80 hover:text-white text-2xl leading-none" aria-label="Close">×</button>
+    </div>
+    <div class="chat-body" id="chatBody" aria-live="polite"></div>
+  </div>
+
   <script>
-    document.getElementById('menuBtn').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
+    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('hidden'));
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ---------- Training enquiry assistant ----------
+    // Collects a training choice + email or mobile and posts it to the backend
+    // inbox (Admin → Training enquiries). Falls back to email if unreachable.
+    (function () {
+      var API = 'https://api.complyps.com';
+      var MAILTO = 'complyps@outlook.com';
+      var TRAININGS = [
+        { id: 'cra-beginners-weekend-2026-12', title: 'Weekend batch', when: 'Saturday 19th & Sunday 20th December 2026' },
+        { id: 'cra-beginners-weekday-2027-01', title: 'Weekday batch', when: 'Thursday 7th & Friday 8th January 2027' },
+        { id: 'cra-beginners-undecided', title: 'Not sure yet', when: 'Help me choose a batch' },
+      ];
+      var panel = document.getElementById('chatPanel');
+      var body = document.getElementById('chatBody');
+      var launcher = document.getElementById('chatLauncher');
+      var chosen = null;
+
+      function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+      function bot(text) { var b = el('div', 'bub bot', text); body.appendChild(b); body.scrollTop = body.scrollHeight; return b; }
+      function me(text) { body.appendChild(el('div', 'bub me', text)); body.scrollTop = body.scrollHeight; }
+      function find(id) { for (var i = 0; i < TRAININGS.length; i++) if (TRAININGS[i].id === id) return TRAININGS[i]; return null; }
+
+      function start(preselect) {
+        body.innerHTML = '';
+        chosen = null;
+        bot('Hello 👋 Thank you for your interest in “Cyber Resilience Act (CRA) for Beginners” — a live, instructor-led online training.');
+        if (preselect && find(preselect)) { pick(find(preselect)); return; }
+        var b = bot('Which training would you like more information about?');
+        TRAININGS.forEach(function (t) {
+          var o = el('button', 'opt'); o.type = 'button';
+          o.appendChild(document.createTextNode('CRA for Beginners — ' + t.title));
+          o.appendChild(el('small', null, t.when));
+          o.addEventListener('click', function () { pick(t); });
+          b.appendChild(o);
+        });
+      }
+
+      function pick(t) {
+        chosen = t;
+        me('CRA for Beginners — ' + t.title + (t.id.indexOf('undecided') < 0 ? ' (' + t.when + ')' : ''));
+        bot('Great choice! Leave your email address or mobile number and we will send you the full prospectus and enrolment details.');
+        form();
+      }
+
+      function form() {
+        var wrap = el('div', 'bub bot chat-form');
+        wrap.style.maxWidth = '100%';
+        wrap.innerHTML =
+          '<form novalidate>' +
+          '<input type="text" name="name" placeholder="Your name (optional)" autocomplete="name">' +
+          '<input type="email" name="email" placeholder="Email address" autocomplete="email">' +
+          '<div style="text-align:center;font-size:12px;color:#94a3b8;margin-top:6px">— or —</div>' +
+          '<input type="tel" name="phone" placeholder="Mobile number, e.g. +91 98765 43210" autocomplete="tel">' +
+          '<input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">' +
+          '<label style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#64748b;margin-top:10px"><input type="checkbox" name="consent" style="margin-top:2px"> <span>I agree that ComplyPS may store my details to send me information about this training, as described in the <a href="/privacy.html" target="_blank" style="color:#1d4ed8;text-decoration:underline">Privacy Policy</a>.</span></label>' +
+          '<div class="err" style="color:#dc2626;font-size:12.5px;margin-top:8px;display:none"></div>' +
+          '<button type="submit" class="btn-primary" style="width:100%;margin-top:10px;padding:.65rem 1rem">Send me the prospectus</button>' +
+          '</form>';
+        body.appendChild(wrap); body.scrollTop = body.scrollHeight;
+        var f = wrap.querySelector('form');
+        var err = wrap.querySelector('.err');
+        f.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          var d = { training: chosen.id, name: f.name.value.trim(), email: f.email.value.trim(), phone: f.phone.value.trim(), website: f.website.value, consent: f.consent.checked };
+          function fail(m) { err.textContent = m; err.style.display = 'block'; }
+          err.style.display = 'none';
+          if (!d.email && !d.phone) return fail('Please enter an email address or a mobile number.');
+          if (d.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return fail('Please enter a valid email address.');
+          if (d.phone && !/^\+?[0-9][0-9\s\-()]{6,18}$/.test(d.phone)) return fail('Please enter a valid mobile number.');
+          if (!d.consent) return fail('Please agree to the privacy policy to continue.');
+          var btn = f.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
+          try {
+            var res = await fetch(API + '/api/training-enquiry', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
+            var j = await res.json().catch(function () { return {}; });
+            if (res.status === 400) { btn.disabled = false; btn.textContent = 'Send me the prospectus'; return fail(j.error || 'Please check your details and try again.'); }
+            if (!res.ok) throw new Error('server ' + res.status); // unavailable -> email fallback below
+            wrap.remove();
+            me(d.email || d.phone);
+            bot('Thank you' + (d.name ? ', ' + d.name : '') + '! 🎉 We have received your enquiry and will send you the prospectus and enrolment details shortly.');
+            var again = el('button', 'opt', 'Ask about another batch'); again.type = 'button';
+            again.addEventListener('click', function () { start(); });
+            bot('Is there anything else I can help with?').appendChild(again);
+          } catch (x) {
+            btn.disabled = false; btn.textContent = 'Send me the prospectus';
+            var mail = 'mailto:' + MAILTO + '?subject=' + encodeURIComponent('Training enquiry: CRA for Beginners — ' + chosen.title) +
+              '&body=' + encodeURIComponent('Batch: ' + chosen.title + ' (' + chosen.when + ')\nName: ' + d.name + '\nEmail: ' + d.email + '\nMobile: ' + d.phone);
+            err.textContent = 'We could not reach our server just now. ';
+            var a = el('a', null, 'Email your enquiry instead →'); a.href = mail; a.style.cssText = 'color:#1d4ed8;font-weight:600;text-decoration:underline';
+            err.appendChild(a); err.style.display = 'block';
+          }
+        });
+      }
+
+      function open(preselect) { panel.classList.add('open'); launcher.style.display = 'none'; start(preselect); }
+      function close() { panel.classList.remove('open'); launcher.style.display = ''; }
+      document.querySelectorAll('[data-enquire]').forEach(function (b) {
+        b.addEventListener('click', function () { open(b.getAttribute('data-enquire') || null); });
+      });
+      document.getElementById('chatClose').addEventListener('click', close);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('open')) close(); });
+    })();
   </script>
   <script src="/js/cookie-notice.js" defer></script>
 </body>
