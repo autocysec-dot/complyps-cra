@@ -37,6 +37,11 @@
     .btn-secondary:hover { background:rgba(255,255,255,.1); }
     .btn-nav { display:inline-flex; align-items:center; gap:.4rem; border-radius:.6rem; background:#2563eb; color:#fff; font-weight:600; font-size:.875rem; padding:.55rem 1rem; }
     .btn-nav:hover { background:#1d4ed8; }
+    .btn-wa { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; border-radius:.75rem; background:#fff; color:#075E54; font-weight:700; padding:.8rem 1.5rem; border:1.5px solid #25D366; transition:background .15s ease; }
+    .btn-wa:hover { background:#f0fdf4; }
+    .btn-wa-sm { display:inline-flex; align-items:center; gap:.4rem; border-radius:.6rem; background:#fff; color:#075E54; font-weight:600; font-size:.875rem; padding:.5rem .85rem; border:1.5px solid #25D366; }
+    .btn-wa-sm:hover { background:#f0fdf4; }
+    .wa-ico { width:18px; height:18px; fill:#25D366; flex:none; }
     /* Chat assistant */
     #chatLauncher { position:fixed; right:20px; bottom:20px; z-index:10000; display:flex; align-items:center; gap:.6rem; background:linear-gradient(135deg,#2563eb,#059669); color:#fff; border-radius:999px; padding:.8rem 1.15rem .8rem .9rem; font-weight:700; font-size:.9rem; box-shadow:0 16px 34px -12px rgba(37,99,235,.7); }
     #chatLauncher .dot { width:10px; height:10px; border-radius:50%; background:#4ade80; box-shadow:0 0 0 4px rgba(74,222,128,.3); }
@@ -57,6 +62,7 @@
 </head>
 
 <body class="font-sans text-slate-800 bg-white antialiased">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.26l-.999 3.648 3.969-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></symbol></svg>
 
   <!-- ============================ NAVBAR ============================ -->
   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
@@ -73,6 +79,7 @@
         <a href="/#contact" class="hover:text-brand-500">Contact</a>
       </div>
       <div class="flex items-center gap-3">
+        <a href="https://wa.me/917411889838?text=Hi%2C%20I%27d%20like%20to%20enrol%20in%20the%20CRA%20for%20Beginners%20training." target="_blank" rel="noopener" class="btn-wa-sm hidden sm:inline-flex" aria-label="Enrol on WhatsApp"><svg class="wa-ico" aria-hidden="true"><use href="#wa-icon"/></svg> WhatsApp</a>
         <button type="button" class="btn-nav" data-enquire>Enquire now</button>
         <button id="menuBtn" class="md:hidden p-2 text-slate-600" aria-label="Open menu">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -115,8 +122,9 @@
         </div>
         <div class="mt-7 flex flex-wrap gap-3">
           <button type="button" class="btn-primary" data-enquire>Enquire &amp; get the prospectus <span aria-hidden="true">→</span></button>
-          <a href="#agenda" class="btn-secondary">View the agenda</a>
+          <a href="https://wa.me/917411889838?text=Hi%2C%20I%27d%20like%20to%20enrol%20in%20the%20CRA%20for%20Beginners%20training." target="_blank" rel="noopener" class="btn-wa"><svg class="wa-ico" aria-hidden="true"><use href="#wa-icon"/></svg> Enrol on WhatsApp</a>
         </div>
+        <a href="#agenda" class="mt-4 inline-block text-sm font-semibold text-blue-100 underline underline-offset-4 hover:text-white">View the course agenda ↓</a>
       </div>
 
       <div class="lg:col-span-2">
@@ -125,7 +133,7 @@
           <dl class="mt-4 space-y-3 text-sm">
             <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Format</dt><dd class="font-semibold text-right">Live online, instructor-led</dd></div>
             <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Duration</dt><dd class="font-semibold text-right">8 hours · two 4-hour sessions</dd></div>
-            <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Timing</dt><dd class="font-semibold text-right">4:00 – 8:00 PM IST</dd></div>
+            <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Timing</dt><dd class="font-semibold text-right">4 PM – 8 PM IST</dd></div>
             <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Level</dt><dd class="font-semibold text-right">Beginner</dd></div>
             <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Batch size</dt><dd class="font-semibold text-right">Small · limited seats</dd></div>
             <div class="flex items-start justify-between gap-4"><dt class="text-slate-500">Certificate</dt><dd class="font-semibold text-right">Certificate of completion</dd></div>
@@ -186,35 +194,33 @@
   <!-- ============================ AGENDA ============================ -->
   <section id="agenda" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <p class="text-sm font-bold text-brand-600 uppercase tracking-wide">Course agenda</p>
-    <h2 class="mt-2 text-3xl font-extrabold text-slate-900">Two focused sessions · 8 hours · 4:00 – 8:00 PM IST</h2>
+    <h2 class="mt-2 text-3xl font-extrabold text-slate-900">Two live sessions · 4 PM – 8 PM IST each day · 8 hours in total</h2>
     <div class="mt-8 grid lg:grid-cols-2 gap-6">
       <div class="rounded-2xl ring-1 ring-slate-200 overflow-hidden">
-        <div class="px-5 py-4 text-white" style="background:linear-gradient(90deg,#1e3a8a,#2563eb)"><div class="text-xs font-bold tracking-widest opacity-80">SESSION 1 · DAY 1</div><div class="text-lg font-extrabold">Foundations &amp; the duties that already apply</div></div>
+        <div class="px-5 py-4 text-white" style="background:linear-gradient(90deg,#1e3a8a,#2563eb)"><div class="text-xs font-bold tracking-widest opacity-80">SESSION 1 · DAY 1 · 4 PM – 8 PM IST</div><div class="text-lg font-extrabold">Foundations &amp; the duties that already apply</div></div>
         <ul class="divide-y divide-slate-100 text-sm">
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">4:00 – 4:15</span><span class="text-slate-700">Welcome and how the training works</span></li>
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">4:15 – 5:00</span><span class="text-slate-700">The CRA in plain language: why it exists and the timeline</span></li>
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">5:00 – 5:45</span><span class="text-slate-700">Who has duties and which products are covered</span></li>
-          <li class="flex gap-4 px-5 py-3 bg-amber-50"><span class="w-24 shrink-0 font-bold text-amber-700">5:45 – 6:00</span><span class="text-amber-800">Short break</span></li>
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">6:00 – 6:50</span><span class="text-slate-700">Scope and risk classification; conformity routes</span></li>
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">6:50 – 7:40</span><span class="text-slate-700">Reporting duties in force today — 24h / 72h / final, the ENISA platform (simulation)</span></li>
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-brand-600">7:40 – 8:00</span><span class="text-slate-700">Recap, quiz and Q&amp;A</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Welcome and how the training works</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">The CRA in plain language: why it exists and the timeline</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Who has duties and which products are covered</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Scope and risk classification; conformity routes</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Reporting duties in force today — 24h / 72h / final, the ENISA platform (simulation)</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Recap, quiz and Q&amp;A</span></li>
         </ul>
       </div>
       <div class="rounded-2xl ring-1 ring-slate-200 overflow-hidden">
-        <div class="px-5 py-4 text-white" style="background:linear-gradient(90deg,#065f46,#059669)"><div class="text-xs font-bold tracking-widest opacity-80">SESSION 2 · DAY 2</div><div class="text-lg font-extrabold">Bringing a product to compliance</div></div>
+        <div class="px-5 py-4 text-white" style="background:linear-gradient(90deg,#065f46,#059669)"><div class="text-xs font-bold tracking-widest opacity-80">SESSION 2 · DAY 2 · 4 PM – 8 PM IST</div><div class="text-lg font-extrabold">Bringing a product to compliance</div></div>
         <ul class="divide-y divide-slate-100 text-sm">
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">4:00 – 4:10</span><span class="text-slate-700">Recap of Session 1</span></li>
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">4:10 – 5:00</span><span class="text-slate-700">Risk assessment for a product (running example)</span></li>
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">5:00 – 5:50</span><span class="text-slate-700">Essential cybersecurity requirements (Annex I, Part I)</span></li>
-          <li class="flex gap-4 px-5 py-3 bg-amber-50"><span class="w-24 shrink-0 font-bold text-amber-700">5:50 – 6:05</span><span class="text-amber-800">Short break</span></li>
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">6:05 – 6:55</span><span class="text-slate-700">Vulnerability handling, SBOM and security updates (Annex I, Part II)</span></li>
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">6:55 – 7:35</span><span class="text-slate-700">Technical documentation, conformity assessment and CE marking</span></li>
-          <li class="flex gap-4 px-5 py-3"><span class="w-24 shrink-0 font-bold text-accent-600">7:35 – 8:00</span><span class="text-slate-700">Compliance checklist, final quiz, certificate and Q&amp;A</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Recap of Session 1</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Risk assessment for a product (running example)</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Essential cybersecurity requirements (Annex I, Part I)</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Vulnerability handling, SBOM and security updates (Annex I, Part II)</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Technical documentation, conformity assessment and CE marking</span></li>
+          <li class="flex gap-3 px-5 py-3"><span class="text-accent-500">✔</span><span class="text-slate-700">Compliance checklist, final quiz, certificate and Q&amp;A</span></li>
         </ul>
       </div>
     </div>
   </section>
-
+  
   <!-- ============================ AUDIENCE + REQUIREMENTS ============================ -->
   <section class="bg-slate-50 border-y border-slate-100">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid md:grid-cols-2 gap-10">
@@ -323,28 +329,30 @@
       <div class="text-center">
         <p class="text-sm font-bold uppercase tracking-widest text-emerald-200">Upcoming batches</p>
         <h2 class="mt-2 text-3xl lg:text-4xl font-extrabold">Choose the dates that suit you</h2>
-        <p class="mt-4 text-lg text-blue-100">Both batches cover the same complete 8-hour course across two live sessions. Seats are limited.</p>
+        <p class="mt-4 text-lg text-blue-100">Both batches cover the same complete 8-hour course across two live sessions. Send an enquiry, or enrol directly on WhatsApp. Seats are limited.</p>
       </div>
       <div class="mt-10 grid sm:grid-cols-2 gap-6">
         <div class="rounded-2xl bg-white text-slate-800 p-7 shadow-xl card-hover flex flex-col">
           <span class="self-start rounded-full bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1">WEEKEND BATCH</span>
           <h3 class="mt-4 text-2xl font-extrabold leading-snug">Saturday 19th &amp; Sunday 20th December 2026</h3>
           <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>🕓 4:00 – 8:00 PM IST on both days</li>
+            <li>🕓 4 PM – 8 PM IST on both days</li>
             <li>⏱️ 8 hours · two 4-hour sessions</li>
             <li>💻 Live online, instructor-led</li>
           </ul>
           <button type="button" class="btn-primary mt-6 w-full" data-enquire="cra-beginners-weekend-2026-12">Enquire about this batch <span aria-hidden="true">→</span></button>
+          <a href="https://wa.me/917411889838?text=Hi%2C%20I%27d%20like%20to%20enrol%20in%20the%20CRA%20for%20Beginners%20training%20%E2%80%94%20Weekend%20batch%20%28Saturday%2019th%20%26%20Sunday%2020th%20December%202026%29." target="_blank" rel="noopener" class="btn-wa mt-3 w-full"><svg class="wa-ico" aria-hidden="true"><use href="#wa-icon"/></svg> Enrol via WhatsApp</a>
         </div>
         <div class="rounded-2xl bg-white text-slate-800 p-7 shadow-xl card-hover flex flex-col">
           <span class="self-start rounded-full bg-emerald-50 text-accent-600 text-xs font-bold px-3 py-1">WEEKDAY BATCH</span>
           <h3 class="mt-4 text-2xl font-extrabold leading-snug">Thursday 7th &amp; Friday 8th January 2027</h3>
           <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>🕓 4:00 – 8:00 PM IST on both days</li>
+            <li>🕓 4 PM – 8 PM IST on both days</li>
             <li>⏱️ 8 hours · two 4-hour sessions</li>
             <li>💻 Live online, instructor-led</li>
           </ul>
           <button type="button" class="btn-primary mt-6 w-full" data-enquire="cra-beginners-weekday-2027-01">Enquire about this batch <span aria-hidden="true">→</span></button>
+          <a href="https://wa.me/917411889838?text=Hi%2C%20I%27d%20like%20to%20enrol%20in%20the%20CRA%20for%20Beginners%20training%20%E2%80%94%20Weekday%20batch%20%28Thursday%207th%20%26%20Friday%208th%20January%202027%29." target="_blank" rel="noopener" class="btn-wa mt-3 w-full"><svg class="wa-ico" aria-hidden="true"><use href="#wa-icon"/></svg> Enrol via WhatsApp</a>
         </div>
       </div>
     </div>
@@ -359,12 +367,15 @@
       <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">Are both batches the same?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">Yes. Both cover the same complete 8-hour course — choose the dates that suit you best.</p></details>
       <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">Can I ask questions about my own product?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">Yes. Batches are kept small so there is time for every participant's questions.</p></details>
       <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">Will I receive a certificate?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">Yes. You receive a ComplyPS certificate of completion after attending both sessions.</p></details>
-      <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">How do I enrol?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">Send an enquiry with your preferred batch. We will send you the full prospectus, confirm your seat and share the joining details.</p></details>
+      <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">How do I enrol?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">Either send an enquiry using the chat assistant on this page, or message us directly on WhatsApp at +91 74118 89838 with your preferred batch. We will send you the full prospectus, confirm your seat and share the joining details.</p></details>
       <details class="py-4 group"><summary class="font-semibold cursor-pointer list-none flex justify-between gap-4">What is the course fee?<span class="text-slate-400 group-open:rotate-45 transition">+</span></summary><p class="mt-2 text-slate-600">₹10,000 per participant (introductory fee; regularly ₹12,500). Payment details are shared when we confirm your seat.</p></details>
     </div>
     <div class="mt-10 rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div><h3 class="text-xl font-extrabold text-slate-900">Have a question or want the prospectus?</h3><p class="text-slate-600 mt-1">Leave your email or mobile number and we will get back to you.</p></div>
-      <button type="button" class="btn-primary shrink-0" data-enquire>Enquire now <span aria-hidden="true">→</span></button>
+      <div><h3 class="text-xl font-extrabold text-slate-900">Have a question or want the prospectus?</h3><p class="text-slate-600 mt-1">Send us an enquiry, or message us directly on WhatsApp.</p></div>
+      <div class="flex flex-wrap gap-3 shrink-0">
+        <button type="button" class="btn-primary" data-enquire>Enquire now <span aria-hidden="true">→</span></button>
+        <a href="https://wa.me/917411889838?text=Hi%2C%20I%27d%20like%20to%20enrol%20in%20the%20CRA%20for%20Beginners%20training." target="_blank" rel="noopener" class="btn-wa"><svg class="wa-ico" aria-hidden="true"><use href="#wa-icon"/></svg> WhatsApp</a>
+      </div>
     </div>
   </section>
 
@@ -377,7 +388,7 @@
       </div>
       <div><h4 class="text-white font-semibold text-sm">Solutions</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="/complyps-cra/" class="hover:text-white">EU CRA</a></li><li><a href="/training.html" class="hover:text-white">CRA Training</a></li></ul></div>
       <div><h4 class="text-white font-semibold text-sm">Company</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="/#why" class="hover:text-white">Why ComplyPS</a></li><li><a href="/#contact" class="hover:text-white">Contact</a></li><li><a href="/privacy.html" class="hover:text-white">Privacy Policy</a></li></ul></div>
-      <div><h4 class="text-white font-semibold text-sm">Get in touch</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="mailto:complyps@outlook.com" class="hover:text-white">complyps@outlook.com</a></li><li><button type="button" class="hover:text-white" data-enquire>Send a training enquiry</button></li></ul></div>
+      <div><h4 class="text-white font-semibold text-sm">Get in touch</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="mailto:complyps@outlook.com" class="hover:text-white">complyps@outlook.com</a></li><li><button type="button" class="hover:text-white" data-enquire>Send a training enquiry</button></li><li><a href="https://wa.me/917411889838?text=Hi%2C%20I%27d%20like%20to%20enrol%20in%20the%20CRA%20for%20Beginners%20training." target="_blank" rel="noopener" class="hover:text-white">WhatsApp: +91 74118 89838</a></li></ul></div>
     </div>
     <div class="border-t border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
@@ -417,6 +428,15 @@
       var body = document.getElementById('chatBody');
       var launcher = document.getElementById('chatLauncher');
       var chosen = null;
+      var WA = 'https://wa.me/917411889838?text=';
+      function waLink(t) {
+        var msg = "Hi, I'd like to enrol in the CRA for Beginners training" + (t && t.id.indexOf('undecided') < 0 ? ' — ' + t.title + ' (' + t.when + ')' : '') + '.';
+        var a = el('a', 'opt'); a.href = WA + encodeURIComponent(msg); a.target = '_blank'; a.rel = 'noopener';
+        a.style.borderColor = '#25D366'; a.style.color = '#075E54';
+        a.appendChild(document.createTextNode('💬 Prefer WhatsApp? Message us directly'));
+        a.appendChild(el('small', null, '+91 74118 89838'));
+        return a;
+      }
 
       function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
       function bot(text) { var b = el('div', 'bub bot', text); body.appendChild(b); body.scrollTop = body.scrollHeight; return b; }
@@ -436,6 +456,7 @@
           o.addEventListener('click', function () { pick(t); });
           b.appendChild(o);
         });
+        b.appendChild(waLink(null));
       }
 
       function pick(t) {
@@ -443,6 +464,7 @@
         me('CRA for Beginners — ' + t.title + (t.id.indexOf('undecided') < 0 ? ' (' + t.when + ')' : ''));
         bot('Great choice! Leave your email address or mobile number and we will send you the full prospectus and enrolment details.');
         form();
+        bot('Or, if you use WhatsApp, you can enrol directly:').appendChild(waLink(t));
       }
 
       function form() {
